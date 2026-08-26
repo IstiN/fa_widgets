@@ -9,6 +9,7 @@ const knownManifestKeys = <String>{
   // runtime (consumed by the Fa app)
   'id', 'name', 'description', 'version', 'icon',
   'network', 'allowedCommands', 'cli', 'widget',
+  'platforms', 'chrome',
   // service permission gates — default denied regardless
   'llm', 'homekit', 'health', 'contacts', 'calendar',
   'microphone', 'notifications', 'media', 'keys',

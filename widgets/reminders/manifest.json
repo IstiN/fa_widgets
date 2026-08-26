@@ -1,0 +1,51 @@
+{
+  "id": "reminders",
+  "name": "Reminders",
+  "description": "Local notification reminders — schedule one, cancel it later",
+  "version": "1.0.0",
+  "platforms": [
+    "ios",
+    "macos"
+  ],
+  "icon": "icon.svg",
+  "allowedCommands": [],
+  "network": false,
+  "notifications": true,
+  "widget": {
+    "entry": "widget_tile.js",
+    "size": "2x2",
+    "refreshSeconds": 60
+  },
+  "cli": {
+    "summary": "Local notification reminders: schedule in N minutes, cancel per row",
+    "events": [
+      {
+        "id": "remind_add",
+        "description": "Schedule a reminder from the form fields"
+      },
+      {
+        "id": "cancel_0",
+        "description": "Cancel the first listed reminder"
+      },
+      {
+        "id": "retry",
+        "description": "Reload after granting the permission"
+      }
+    ],
+    "read": {
+      "state": "yoloit app:state reminders — reminderCount, loading, error, notice",
+      "snapshot": "yoloit app:snapshot reminders — full render JSON tree"
+    },
+    "examples": [
+      "yoloit app:run reminders",
+      "yoloit app:execute reminders remind_add",
+      "yoloit app:state reminders"
+    ]
+  },
+  "author": "Fa",
+  "license": "MIT",
+  "minRuntime": "0.4.79",
+  "tags": [
+    "productivity"
+  ]
+}

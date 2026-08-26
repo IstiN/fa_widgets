@@ -1,0 +1,38 @@
+{
+  "id": "health",
+  "name": "Health",
+  "description": "HealthKit dashboard (steps, heart rate, sleep) with a demo fallback when the bridge is unavailable",
+  "version": "1.1.0",
+  "platforms": [
+    "ios",
+    "macos"
+  ],
+  "icon": "icon.svg",
+  "allowedCommands": [],
+  "network": false,
+  "health": true,
+  "cli": {
+    "summary": "HealthKit dashboard (steps/HR/sleep) + demo fallback",
+    "events": [
+      {
+        "id": "retry",
+        "description": "Retry the health bridge call"
+      }
+    ],
+    "read": {
+      "state": "yoloit app:state health — bridgeAvailable, bridgeError",
+      "snapshot": "yoloit app:snapshot health — full render JSON tree"
+    },
+    "examples": [
+      "yoloit app:run health",
+      "yoloit app:execute health retry",
+      "yoloit app:state health"
+    ]
+  },
+  "author": "Fa",
+  "license": "MIT",
+  "minRuntime": "0.4.79",
+  "tags": [
+    "health"
+  ]
+}

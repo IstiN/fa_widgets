@@ -1,0 +1,50 @@
+{
+  "id": "calendar",
+  "name": "Calendar",
+  "description": "Today's and upcoming events from your system calendar",
+  "version": "1.0.0",
+  "platforms": [
+    "ios",
+    "macos"
+  ],
+  "icon": "icon.svg",
+  "allowedCommands": [],
+  "network": false,
+  "calendar": true,
+  "cli": {
+    "summary": "System calendar events for a day, with prev/next navigation",
+    "events": [
+      {
+        "id": "prev_day",
+        "description": "Show the previous day"
+      },
+      {
+        "id": "next_day",
+        "description": "Show the next day"
+      },
+      {
+        "id": "today",
+        "description": "Jump back to today"
+      },
+      {
+        "id": "retry",
+        "description": "Reload events after granting permission"
+      }
+    ],
+    "read": {
+      "state": "yoloit app:state calendar — date, eventCount, loading, error",
+      "snapshot": "yoloit app:snapshot calendar — full render JSON tree"
+    },
+    "examples": [
+      "yoloit app:run calendar",
+      "yoloit app:execute calendar next_day",
+      "yoloit app:state calendar"
+    ]
+  },
+  "author": "Fa",
+  "license": "MIT",
+  "minRuntime": "0.4.79",
+  "tags": [
+    "demo"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "contacts",
+  "name": "Contacts",
+  "description": "Search your system contacts, call or text them, add new ones",
+  "version": "1.0.0",
+  "platforms": [
+    "ios",
+    "macos"
+  ],
+  "icon": "icon.svg",
+  "allowedCommands": [],
+  "network": false,
+  "contacts": true,
+  "cli": {
+    "summary": "System contacts search with call/SMS actions and an add form",
+    "events": [
+      {
+        "id": "search_submit",
+        "description": "Run the search for the current query"
+      },
+      {
+        "id": "contact_0",
+        "description": "Open the first result's detail card"
+      },
+      {
+        "id": "add_open",
+        "description": "Open the add-contact form"
+      },
+      {
+        "id": "retry",
+        "description": "Reload after granting permission"
+      }
+    ],
+    "read": {
+      "state": "yoloit app:state contacts — query, resultCount, selected, error",
+      "snapshot": "yoloit app:snapshot contacts — full render JSON tree"
+    },
+    "examples": [
+      "yoloit app:run contacts",
+      "yoloit app:execute contacts search_submit",
+      "yoloit app:state contacts"
+    ]
+  },
+  "author": "Fa",
+  "license": "MIT",
+  "minRuntime": "0.4.79",
+  "tags": [
+    "demo"
+  ]
+}
