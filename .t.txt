@@ -1,0 +1,94 @@
+00:00 +0: loading test/validator_test.dart
+00:00 +0 -1: loading test/diff_tags_test.dart [E]
+  Failed to load "test/diff_tags_test.dart":
+  test/diff_tags_test.dart:17:21: Error: Method not found: 'diffTagChanges'.
+      final changes = diffTagChanges(null, catalog([
+                      ^^^^^^^^^^^^^^
+  test/diff_tags_test.dart:36:21: Error: Method not found: 'diffTagChanges'.
+      final changes = diffTagChanges(previous, current);
+                      ^^^^^^^^^^^^^^
+  test/diff_tags_test.dart:44:21: Error: Method not found: 'diffTagChanges'.
+      final changes = diffTagChanges(
+                      ^^^^^^^^^^^^^^
+  test/diff_tags_test.dart:57:13: Error: Method not found: 'CatalogBuilder'.
+        await CatalogBuilder(
+              ^^^^^^^^^^^^^^
+  test/diff_tags_test.dart:67:13: Error: Method not found: 'CatalogBuilder'.
+        await CatalogBuilder(
+              ^^^^^^^^^^^^^^
+  test/diff_tags_test.dart:74:28: Error: Undefined name 'p'.
+          p.normalize(p.join(p.current, 'bin', 'fa_widgets.dart')),
+                             ^
+  test/diff_tags_test.dart:74:21: Error: Undefined name 'p'.
+          p.normalize(p.join(p.current, 'bin', 'fa_widgets.dart')),
+                      ^
+  test/diff_tags_test.dart:74:9: Error: Undefined name 'p'.
+          p.normalize(p.join(p.current, 'bin', 'fa_widgets.dart')),
+          ^
+00:00 +0 -1: test/validator_test.dart: isValidSemver accepts strict X.Y.Z
+00:00 +1 -1: test/validator_test.dart: isValidSemver rejects loose forms
+00:00 +2 -1: test/validator_test.dart: WidgetManifest decoding parses all supported fields
+00:00 +3 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +4 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +5 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +6 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +7 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +8 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +9 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +10 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +11 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +12 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +13 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +14 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +15 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +16 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +17 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +18 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:00 +19 -1: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+00:02 +19 -2: test/cli_test.dart: validate exits 0 on a healthy tree and prints OK [E]
+  Expected: <0>
+    Actual: <254>
+  
+  package:matcher          expect
+  test/cli_test.dart 45:7  main.<fn>
+  
+00:02 +19 -2: test/cli_test.dart: validate exits non-zero on an invalid widget
+00:04 +19 -3: test/cli_test.dart: validate exits non-zero on an invalid widget [E]
+  Expected: contains 'INVALID'
+    Actual: 'bin/fa_widgets.dart:55:15: Error: No named parameter with the name \'required\'.\n'
+              '              required: true,\n'
+              '              ^^^^^^^^\n'
+              ''
+     Which: does not contain 'INVALID'
+  
+  package:matcher          expect
+  test/cli_test.dart 60:7  main.<fn>
+  
+00:04 +19 -3: test/cli_test.dart: catalog writes artifacts; exit code surfaced through pub run
+00:06 +19 -4: test/cli_test.dart: catalog writes artifacts; exit code surfaced through pub run [E]
+  Expected: <0>
+    Actual: <254>
+  
+  package:matcher          expect
+  test/cli_test.dart 76:7  main.<fn>
+  
+00:06 +19 -4: test/cli_test.dart: no command prints usage and exits with usage code
+00:07 +19 -5: test/cli_test.dart: no command prints usage and exits with usage code [E]
+  Expected: <2>
+    Actual: <254>
+  
+  package:matcher          expect
+  test/cli_test.dart 96:5  main.<fn>
+  
+00:07 +19 -5: Some tests failed.
+
+Failing tests:
+  test/cli_test.dart: catalog writes artifacts; exit code surfaced through pub run
+  test/cli_test.dart: no command prints usage and exits with usage code
+  test/cli_test.dart: validate exits 0 on a healthy tree and prints OK
+  test/cli_test.dart: validate exits non-zero on an invalid widget
+  test/diff_tags_test.dart: loading test/diff_tags_test.dart
+
+Consider enabling the flag chain-stack-traces to receive more detailed exceptions.
+For example, 'dart test --chain-stack-traces'.
+T=1

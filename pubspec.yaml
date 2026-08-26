@@ -1,0 +1,23 @@
+name: fa_widgets_tool
+description: >-
+  Validation and packaging tooling for the Fa widget catalog
+  (github.com/IstiN/fa_widgets): manifest validation, widget zipping,
+  catalog.json generation.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+dependencies:
+  archive: ^3.6.1
+  args: ^2.5.0
+  crypto: ^3.0.3
+  path: ^1.9.0
+
+dev_dependencies:
+  lints: ^4.0.0
+  test: ^1.25.0
+
+executables:
+  fa_widgets:

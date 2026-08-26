@@ -1,0 +1,90 @@
+# Rebuilds the rolling `catalog` release on every push to main.
+#
+# Contract (docs/schema.md + flutter_agent/docs/widgets/GOAL.md):
+#   https://github.com/IstiN/fa_widgets/releases/latest/download/catalog.json
+#   https://github.com/IstiN/fa_widgets/releases/latest/download/<id>-<version>.zip
+# plus immutable per-widget tags <id>-v<version> cut automatically whenever a
+# manifest version is bumped.
+name: publish-catalog
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: catalog-publish
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - name: Install dependencies
+        run: dart pub get
+      - name: Analyze
+        run: dart analyze
+      - name: Test
+        run: dart test
+      - name: Validate widgets
+        run: dart run bin/fa_widgets.dart validate --root widgets
+      - name: Build catalog artifacts
+        run: |
+          dart run bin/fa_widgets.dart catalog \
+            --root widgets --out build/catalog
+          echo "--- build/catalog ---"
+          ls -la build/catalog
+      - name: Download currently published catalog
+        continue-on-error: true
+        run: |
+          gh release download catalog -R IstiN/fa_widgets \
+            -p 'catalog.json' -O build/previous_catalog.json || true
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Cut per-widget release tags for new/bumped versions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          dart run bin/fa_widgets.dart diff-tags \
+            --previous build/previous_catalog.json \
+            --current build/catalog/catalog.json \
+            > build/changed.txt || true
+          cat build/changed.txt
+          while IFS= read -r line; do
+            [ -z "$line" ] && continue
+            id="${line%% *}"
+            version="${line##* }"
+            tag="${id}-v${version}"
+            if gh release view "$tag" -R IstiN/fa_widgets >/dev/null 2>&1; then
+              echo "tag $tag already exists — skipping"
+              continue
+            fi
+            zip_file="build/catalog/${id}-${version}.zip"
+            gh release create "$tag" "$zip_file" \
+              -R IstiN/fa_widgets \
+              --title "${id} v${version}" \
+              --notes "Immutable artifact for ${id} ${version}. Latest copy also lives in the rolling \`catalog\` release."
+            echo "released ${tag}"
+          done < build/changed.txt
+      - name: Refresh the rolling catalog release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view catalog -R IstiN/fa_widgets >/dev/null 2>&1; then
+            gh release create catalog -R IstiN/fa_widgets \
+              --title "Widget catalog" \
+              --notes "Auto-generated widget catalog (rolling latest)." \
+              --latest
+          fi
+          gh release upload catalog build/catalog/* \
+            -R IstiN/fa_widgets --clobber
+          # Ensure the rolling release stays marked latest even after a
+          # per-widget tag was created most recently.
+          gh release edit catalog -R IstiN/fa_widgets --latest=true
