@@ -88,3 +88,21 @@ jobs:
           # Ensure the rolling release stays marked latest even after a
           # per-widget tag was created most recently.
           gh release edit catalog -R IstiN/fa_widgets --latest=true
+      # Browser fetch() cannot read release assets (no CORS headers on
+      # release-assets.githubusercontent.com), which left the fa1.dev
+      # gallery empty. raw.githubusercontent.com DOES send
+      # access-control-allow-origin: *, so the gallery and any web client
+      # read the catalog from this repo mirror; [skip ci] keeps the push
+      # from re-triggering this workflow.
+      - name: Mirror catalog.json into the repo (CORS-friendly raw URL)
+        run: |
+          cp build/catalog/catalog.json catalog.json
+          git add catalog.json
+          if git diff --cached --quiet -- catalog.json; then
+            echo "mirror unchanged"
+          else
+            git config user.name "fa-widgets-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "chore: refresh catalog.json mirror [skip ci]"
+            git push origin HEAD:main
+          fi
