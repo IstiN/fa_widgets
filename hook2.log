@@ -1,0 +1,35 @@
+🔍 Running dart analyze...
+Analyzing flutter_agent...
+
+  error - flutter_app/test/apps/apps_catalog_tool_test.dart:127:30 - The method 'readFile' isn't defined for the type 'MemoryExecutionEnv'. Try correcting the name to the name of an existing method, or defining a method named 'readFile'. - undefined_method
+  error - flutter_app/test/apps/apps_catalog_tool_test.dart:149:18 - The getter 'text' isn't defined for the type 'ToolExecutionResult'. Try importing the library that defines 'text', correcting the name to the name of an existing getter, or defining a getter or field named 'text'. - undefined_getter
+  error - flutter_app/test/apps/demo_seed_real_bundle_test.dart:50:19 - The function 'Directory' isn't defined. Try importing the library that defines 'Directory', correcting the name to the name of an existing function, or defining a function named 'Directory'. - undefined_function
+  error - flutter_app/test/apps/widgets_catalog_sheet_test.dart:117:14 - The expression doesn't evaluate to a function, so it can't be invoked. - invocation_of_non_function_expression
+warning - flutter_app/test/apps/apps_catalog_tool_test.dart:19:14 - The declaration '_entry' isn't referenced. Try removing the declaration of '_entry'. - unused_element
+warning - flutter_app/test/apps/apps_catalog_tool_test.dart:45:57 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - flutter_app/test/apps/apps_catalog_tool_test.dart:63:17 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - flutter_app/test/apps/apps_store_catalog_test.dart:5:8 - Unused import: 'package:crypto/crypto.dart'. Try removing the import directive. - unused_import
+warning - flutter_app/test/apps/apps_store_catalog_test.dart:22:57 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - flutter_app/test/apps/catalog_service_test.dart:30:59 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - flutter_app/test/apps/catalog_service_test.dart:266:63 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - flutter_app/test/apps/widgets_catalog_sheet_test.dart:5:8 - Unused import: 'package:fa/apps/apps_store.dart'. Try removing the import directive. - unused_import
+warning - flutter_app/test/apps/widgets_catalog_sheet_test.dart:24:57 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - tool/tui_stream_bench.dart:13:8 - Unused import: 'package:flutter_agent_harness/src/cli/fa_tui.dart'. Try removing the import directive. - unused_import
+warning - tool/tui_stream_bench.dart:13:65 - The library 'package:flutter_agent_harness/src/cli/fa_tui.dart' doesn't export a member with the shown name 'wrapAnsiLine'. Try removing the name from the list of shown members. - undefined_shown_name
+   info - flutter_app/integration_test/agent_e2e_test.dart:12:37 - Angle brackets will be interpreted as HTML. Try using backticks around the content with angle brackets, or try replacing `<` with `&lt;` and `>` with `&gt;`. - unintended_html_in_doc_comment
+   info - flutter_app/lib/sandbox/fs_persistence_web.dart:6:1 - 'dart:html' is deprecated and shouldn't be used. Use package:web and dart:js_interop instead. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - flutter_app/lib/sandbox/fs_persistence_web.dart:6:1 - Don't use web-only libraries outside Flutter web plugins. Try finding a different library for your needs. - avoid_web_libraries_in_flutter
+   info - flutter_app/lib/sandbox/web_interpreters_web.dart:7:1 - 'dart:html' is deprecated and shouldn't be used. Use package:web and dart:js_interop instead. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - flutter_app/lib/sandbox/web_interpreters_web.dart:7:1 - Don't use web-only libraries outside Flutter web plugins. Try finding a different library for your needs. - avoid_web_libraries_in_flutter
+   info - flutter_app/lib/services/openrouter_oauth_launch_web.dart:5:1 - 'dart:html' is deprecated and shouldn't be used. Use package:web and dart:js_interop instead. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - flutter_app/lib/services/openrouter_oauth_launch_web.dart:5:1 - Don't use web-only libraries outside Flutter web plugins. Try finding a different library for your needs. - avoid_web_libraries_in_flutter
+   info - flutter_app/lib/services/openrouter_oauth_links_web.dart:7:1 - 'dart:html' is deprecated and shouldn't be used. Use package:web and dart:js_interop instead. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - flutter_app/lib/services/openrouter_oauth_links_web.dart:7:1 - Don't use web-only libraries outside Flutter web plugins. Try finding a different library for your needs. - avoid_web_libraries_in_flutter
+   info - flutter_app/lib/services/upload_picker_web.dart:6:1 - 'dart:html' is deprecated and shouldn't be used. Use package:web and dart:js_interop instead. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - flutter_app/lib/services/upload_picker_web.dart:6:1 - Don't use web-only libraries outside Flutter web plugins. Try finding a different library for your needs. - avoid_web_libraries_in_flutter
+   info - flutter_app/lib/ui/widgets/html_preview_web.dart:1:1 - 'dart:html' is deprecated and shouldn't be used. Use package:web and dart:js_interop instead. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - flutter_app/lib/ui/widgets/html_preview_web.dart:1:1 - Don't use web-only libraries outside Flutter web plugins. Try finding a different library for your needs. - avoid_web_libraries_in_flutter
+   info - lib/src/env/cwd_override_env.dart:61:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+29 issues found.
+HE=3

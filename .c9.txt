@@ -1,0 +1,2 @@
+EXIT9=1
+a1d8a42 style(env): brace single-statement if in CwdOverrideEnv.backgroundJobsSupported

@@ -1,0 +1,9 @@
+Analyzing apps_catalog_tool_test.dart, apps_store_catalog_test.dart, catalog_service_test.dart, widgets_catalog_sheet_test.dart...
+
+warning - test/apps/apps_catalog_tool_test.dart:30:57 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - test/apps/apps_store_catalog_test.dart:21:57 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - test/apps/catalog_service_test.dart:30:59 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - test/apps/catalog_service_test.dart:266:63 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - test/apps/widgets_catalog_sheet_test.dart:23:57 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+
+5 issues found.

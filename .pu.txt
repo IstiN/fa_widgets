@@ -1,3 +1,0 @@
-https://github.com/IstiN/fa_widgets.git
-fatal: unable to access 'https://github.com/IstiN/fa_widgets.git/': The requested URL returned error: 403
-PUSHEXIT=128

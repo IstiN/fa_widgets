@@ -1,7 +1,0 @@
-      16
-40	widgets/english-teacher
-24	widgets/homekit
-24	widgets/animation-showcase
-20	widgets/weather
-20	widgets/reminders
-ported 14

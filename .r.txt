@@ -1,3 +1,0 @@
-origin	git@github.com:IstiN/fa_widgets.git (fetch)
-origin	git@github.com:IstiN/fa_widgets.git (push)
-ece0009 feat: widget catalog tooling, workflows and seed widgets

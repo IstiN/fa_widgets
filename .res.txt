@@ -1,0 +1,8 @@
+lib/apps/catalog_service.dart:55:72: Error: Expected '{' before this.
+lib/apps/catalog_service.dart:55:72: Error: Expected a class member, but got ')'.
+lib/apps/catalog_service.dart:55:73: Error: Expected a class member, but got ';'.
+test/apps/catalog_service_test.dart:107:3: Error: Undefined name 'TestWidgetsFlutterBinding'.
+test/apps/catalog_service_test.dart:305:61: Error: The argument type 'Map<dynamic, dynamic>' can't be assigned to the parameter type 'Map<String, dynamic>'.
+  Compilation failed for testPath=/Users/Uladzimir_Klyshevich/git/flutter_agent/flutter_app/test/apps/catalog_service_test.dart: lib/apps/catalog_service.dart:55:72: Error: Expected '{' before this.
+  lib/apps/catalog_service.dart:55:72: Error: Expected a class member, but got ')'.
+  lib/apps/catalog_service.dart:55:73: Error: Expected a class member, but got ';'.
