@@ -26,6 +26,14 @@
         "description": "Switch the navigationBar destination (payload value = index; empty payload cycles)"
       },
       {
+        "id": "rail_changed",
+        "description": "Switch the navigationRail destination (payload value = index; empty payload cycles)"
+      },
+      {
+        "id": "drawer_item",
+        "description": "Drawer menu tap (payload value = item id; 'reset' resets demo state)"
+      },
+      {
         "id": "reset",
         "description": "Reset all demo state"
       }

@@ -7,11 +7,12 @@
   var state = {
     banner: true,
     nav: 0,
+    rail: 0,
     seg: 'week',
     radio: 'standard',
     created: 0,
     lastMenu: null,
-    overlay: null // null | 'sheet' | 'dialog' | 'snack'
+    overlay: null // null | 'sheet' | 'dialog' | 'snack' | 'date' | 'time'
   };
 
   var SEGMENTS = ['day', 'week', 'month'];
@@ -28,6 +29,39 @@
       decoration: { color: t.surface, borderRadius: 14, border: { color: t.border } },
       child: { type: 'column', crossAxisAlignment: 'stretch', mainAxisSize: 'min',
         children: children } };
+  }
+
+  function drawerNode(t) {
+    function item(icon, label, payload) {
+      return {
+        type: 'listTile',
+        leading: { type: 'icon', icon: icon, color: t.muted },
+        title: label,
+        dense: true,
+        onTap: 'drawer_item',
+        payload: { value: payload }
+      };
+    }
+    return {
+      type: 'container',
+      color: t.surface,
+      child: {
+        type: 'column',
+        crossAxisAlignment: 'stretch',
+        children: [
+          { type: 'padding', padding: [16, 20, 16, 8], child: {
+            type: 'text', data: '🧩 M3 Showcase',
+            style: { color: t.text, fontSize: 16, fontWeight: 'w700' }
+          } },
+          { type: 'divider', color: t.border },
+          item('home', 'Home', 'home'),
+          item('widgets', 'Components', 'components'),
+          item('info', 'About', 'about'),
+          { type: 'divider', color: t.border },
+          item('refresh', 'Reset demo', 'reset')
+        ]
+      }
+    };
   }
 
   function overlayNode(t) {
@@ -83,10 +117,13 @@
   function render() {
     var t = jsr.theme;
     jsr.exportState({
-      nav: state.nav, seg: state.seg, radio: state.radio,
+      nav: state.nav, rail: state.rail, seg: state.seg, radio: state.radio,
       created: state.created, banner: state.banner, lastMenu: state.lastMenu
     });
     jsr.render({
+      type: 'drawer',
+      drawer: drawerNode(t),
+      child: {
       type: 'column',
       crossAxisAlignment: 'stretch',
       children: [
@@ -95,7 +132,8 @@
           type: 'appBar',
           title: 'Material 3',
           color: t.bg,
-          leading: { icon: 'menu', onTap: 'noop' },
+          // No explicit leading: the drawer node's nested Scaffold makes
+          // AppBar show the hamburger automatically.
           actions: [
             { icon: 'refresh', tooltip: 'Reset', onTap: 'reset' }
           ]
@@ -211,6 +249,78 @@
                   }
                 ]),
                 card(t, [
+                  caption(t, 'NAVIGATIONRAIL'),
+                  {
+                    type: 'container',
+                    height: 190,
+                    child: {
+                      type: 'row',
+                      children: [
+                        {
+                          type: 'navigationRail',
+                          selectedIndex: state.rail,
+                          onChanged: 'rail_changed',
+                          destinations: [
+                            { icon: 'home', label: 'Home' },
+                            { icon: 'favorite', label: 'Favorites' },
+                            { icon: 'settings', label: 'Settings' }
+                          ]
+                        },
+                        {
+                          type: 'expanded',
+                          child: {
+                            type: 'center',
+                            child: {
+                              type: 'text',
+                              data: 'Rail destination #' + state.rail + ' — same destinations API as navigationBar.',
+                              style: { color: t.muted, fontSize: 12 }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]),
+                card(t, [
+                  caption(t, 'CAROUSEL'),
+                  {
+                    type: 'container',
+                    height: 150,
+                    child: {
+                      type: 'carousel',
+                      itemExtent: 170,
+                      children: [
+                        { type: 'container', margin: [0, 4, 0, 4], decoration: { color: t.accent, borderRadius: 14 }, child: { type: 'center', child: { type: 'text', data: 'One', style: { color: t.onAccent, fontSize: 16, fontWeight: 'w700' } } } },
+                        { type: 'container', margin: [0, 4, 0, 4], decoration: { color: t.accent2, borderRadius: 14 }, child: { type: 'center', child: { type: 'text', data: 'Two', style: { color: t.onAccent, fontSize: 16, fontWeight: 'w700' } } } },
+                        { type: 'container', margin: [0, 4, 0, 4], decoration: { color: t.surfaceAlt, borderRadius: 14, border: { color: t.borderBright } }, child: { type: 'center', child: { type: 'text', data: 'Three', style: { color: t.text, fontSize: 16, fontWeight: 'w700' } } } },
+                        { type: 'container', margin: [0, 4, 0, 4], decoration: { color: t.accent, borderRadius: 14 }, child: { type: 'center', child: { type: 'text', data: 'Four', style: { color: t.onAccent, fontSize: 16, fontWeight: 'w700' } } } },
+                        { type: 'container', margin: [0, 4, 0, 4], decoration: { color: t.accent2, borderRadius: 14 }, child: { type: 'center', child: { type: 'text', data: 'Five', style: { color: t.onAccent, fontSize: 16, fontWeight: 'w700' } } } }
+                      ]
+                    }
+                  }
+                ]),
+                card(t, [
+                  caption(t, 'BOTTOMAPPBAR'),
+                  {
+                    type: 'bottomAppBar',
+                    color: t.surfaceAlt,
+                    height: 48,
+                    children: [
+                      { type: 'iconButton', icon: 'search', onTap: 'noop' },
+                      { type: 'iconButton', icon: 'star', onTap: 'noop' },
+                      { type: 'iconButton', icon: 'share', onTap: 'noop' },
+                      {
+                        type: 'expanded',
+                        child: {
+                          type: 'text',
+                          data: '  BottomAppBar inline — pairs with a fab in a real Scaffold.',
+                          style: { color: t.muted, fontSize: 11 }
+                        }
+                      }
+                    ]
+                  }
+                ]),
+                card(t, [
                   caption(t, 'FLOATINGACTIONBUTTON'),
                   {
                     type: 'row',
@@ -267,6 +377,7 @@
           ]
         }
       ]
+      }
     });
   }
 
@@ -287,6 +398,20 @@
       state.nav = payload && typeof payload.value === 'number'
         ? payload.value
         : (state.nav + 1) % 3;
+    }
+    if (name === 'rail_changed') {
+      state.rail = payload && typeof payload.value === 'number'
+        ? payload.value
+        : (state.rail + 1) % 3;
+    }
+    if (name === 'drawer_item') {
+      var pick = payload && payload.value ? String(payload.value) : null;
+      if (pick === 'reset') {
+        state.banner = true; state.nav = 0; state.rail = 0; state.seg = 'week';
+        state.radio = 'standard'; state.created = 0; state.lastMenu = null;
+      } else if (pick) {
+        state.lastMenu = 'drawer: ' + pick;
+      }
     }
     if (name === 'seg_changed') {
       state.seg = payload && typeof payload.value === 'string'
