@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-30T20:14:54.188819Z",
+  "generatedAt": "2026-08-30T20:26:27.121720Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -301,7 +301,7 @@
     {
       "id": "pomodoro",
       "name": "Pomodoro",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Pomodoro timer: 25-minute focus / 5-minute break cycles (every 4th break is 15), start/pause/reset/skip, donut progress ring, completed counter persisted in storage",
       "author": "Fa",
       "tags": [
@@ -316,9 +316,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "pomodoro-1.0.1.zip",
-        "sha256": "eae1baf8b81b7f47f29aa2d2358bcd05046055c6e33346307c86cd4620d0859d",
-        "sizeBytes": 3194
+        "file": "pomodoro-1.0.2.zip",
+        "sha256": "6876a4cbdf77b8bd9778349b261629e815eb525134b3856b2d4baca6d173253f",
+        "sizeBytes": 3206
       }
     },
     {
