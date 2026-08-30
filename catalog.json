@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T16:08:09.292539Z",
+  "generatedAt": "2026-08-30T12:14:32.827417Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -21,7 +21,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "3d-game-1.0.0.zip",
-        "sha256": "439f03069fb8539183aaa2791b40d9f8cf4ac3c172ee950253a8b6bc7cba82d9",
+        "sha256": "6f01c98c1b3a0e1df438aef2b997baf3650665fe9b9894d6a56f967b236aa405",
         "sizeBytes": 4078
       }
     },
@@ -42,7 +42,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "animation-showcase-1.0.0.zip",
-        "sha256": "97f8a30b9c3b8d016afb21070416d1bb66049e5bb62fa0dcadbbc9cdd75e4964",
+        "sha256": "c7ff283bf8f239020cfb1808cc87064b1c140fe55202017de9e42fc056f09ab9",
         "sizeBytes": 6027
       }
     },
@@ -64,7 +64,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "calculator-1.0.0.zip",
-        "sha256": "5afb5e61cbf21d3a09be460f113550d90c42ff3cb0aeeac53cf5f0d5776b00b4",
+        "sha256": "d4d1f37a6852796adbedc57f4dfccf29775ce637ba08b2c577d7cfcdbbbc88f6",
         "sizeBytes": 2620
       }
     },
@@ -85,7 +85,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "calendar-1.0.0.zip",
-        "sha256": "35e7adf50c8fa00f58d259721e57b18a3a4f1342c8dd834d0f7e535733b8eed7",
+        "sha256": "5dd4b880b70dec3766947bff1b08338eb53ae4961247dbaf31a32d4f71fee728",
         "sizeBytes": 5082
       }
     },
@@ -106,7 +106,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "contacts-1.0.0.zip",
-        "sha256": "2b9234e2188a4dffce93f62a5a1deb55e7c0452b9a3e6f659b4e524db8b533ae",
+        "sha256": "17f4ee13e8984603058fe2becae5bffb114b61729ace0655de1c698831c65250",
         "sizeBytes": 5189
       }
     },
@@ -127,7 +127,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "crypto-1.0.0.zip",
-        "sha256": "2d8c776470ebda50233200f19e961ded1fb51897f7c74fc0cb7d3b9dd5fd43bd",
+        "sha256": "bd4dfa601b9552e9266362ec355f867b23fa29a420b0ce4dbaf4985fed0d0ed7",
         "sizeBytes": 3423
       }
     },
@@ -148,14 +148,14 @@
       "icon": "icon.svg",
       "zip": {
         "file": "english-teacher-2.0.0.zip",
-        "sha256": "41fad46fcc13ed73bb4166c02a2eac96b871275c3a683fb95ec9bd3e73031af1",
+        "sha256": "dfa38f70ded387c38f91f6a830f743821ce18f3b49804cdf9e92139360d68ed1",
         "sizeBytes": 9758
       }
     },
     {
       "id": "focus-timer",
       "name": "Focus Timer",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Pomodoro-style focus timer: 25-minute focus / 5-minute break cycles with start, pause and reset",
       "author": "Fa",
       "tags": [
@@ -170,9 +170,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "focus-timer-1.0.0.zip",
-        "sha256": "69f556e573ef91caa97116945a734c66dd2d7c7b85344b87937118ca8a483069",
-        "sizeBytes": 2520
+        "file": "focus-timer-1.0.1.zip",
+        "sha256": "de4ba6b9ea7fd20e72b2ff9365921eb7a098e0e93f97f516fb2c9d7a0b0e5b91",
+        "sizeBytes": 2609
       }
     },
     {
@@ -192,7 +192,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "health-1.1.0.zip",
-        "sha256": "d45c0998be35c5bfd73437347e6f6b3dea19d9d9612484798204346be090f8f3",
+        "sha256": "7c22143aaf9f62949dd7a0696840ac2f6b78c9afc4aee6f40e0e3744233fb20f",
         "sizeBytes": 4161
       }
     },
@@ -213,7 +213,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "homekit-1.1.0.zip",
-        "sha256": "c9d9a51a1dcb57ab696c81c44fb999a84f31841f37469da3d4f6d2b56eb1975a",
+        "sha256": "598f1ae7c01f8778edb4eb3d94ac3dca20dd6a745aff76e6472124d56729022a",
         "sizeBytes": 6810
       }
     },
@@ -234,7 +234,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "map-1.0.0.zip",
-        "sha256": "818e333aba78d6b25fa228a2a27a4ed3072091b8a964f966f1339323d8c8b973",
+        "sha256": "3a6c00a7f74fd82f1764f7300342cc976f9137f11b66bc527d8be42b03e38df4",
         "sizeBytes": 3878
       }
     },
@@ -255,7 +255,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "reminders-1.0.0.zip",
-        "sha256": "22a958b161f81b6c63546f9b19c4b409e09984b0a3387e57ceade69599d7372b",
+        "sha256": "7823de454613dbac65931913636aa4d8f8962f3b1213fd6d22aa994699800775",
         "sizeBytes": 5702
       }
     },
@@ -276,7 +276,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "stocks-1.0.0.zip",
-        "sha256": "e88998c78d7c07ad1b9722c1335ee52b50514a65d845b7119d8745a5533ab614",
+        "sha256": "afac84a5723d94eb5686a026b518944686eb072b6552b2ee5f20ee95d300ae7d",
         "sizeBytes": 3941
       }
     },
@@ -297,7 +297,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "voice-notes-1.0.0.zip",
-        "sha256": "08f9ed25330856cb6209770ed3c2147d31555f6cf3f2990c0ec7236c6fc3ad9a",
+        "sha256": "fbe58a8a133e5a8d0483c18e5b6fdf9d8e4c453bfff6b0c34c106b2b0fdb0f80",
         "sizeBytes": 3576
       }
     },
@@ -318,7 +318,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "weather-1.0.0.zip",
-        "sha256": "ccf041f83e3f6953dd07633a4b7538ae9481a041dd8dcfd8047a03fa406b3bca",
+        "sha256": "ab89a4887461c89ee179f93fcdeae280639fab070b4afc2a30763e4182f60856",
         "sizeBytes": 5536
       }
     },
@@ -339,7 +339,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "yolo-hello-1.0.0.zip",
-        "sha256": "b56383dae7eeb12e586429b4e5c7fe81c8c30a578778e762111d97353a08c81f",
+        "sha256": "276ed0ae9c0b758c90ae6e5ebb817804b9287831f9d068d99ab8b18c8d85d24f",
         "sizeBytes": 2257
       }
     }
