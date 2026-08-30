@@ -123,38 +123,37 @@
     jsr.render({
       type: 'container',
       color: t.bg,
+      // Scrollable root by contract: hosts embed widgets at arbitrary
+      // heights (~150px cards), a fixed centered column overflows there.
       child: {
-        type: 'center',
-        child: {
-          type: 'column', mainAxisSize: 'min', crossAxisAlignment: 'center',
-          children: [
-            ring(t),
-            { type: 'sizedBox', height: 20 },
-            cycleDots(t),
-            { type: 'sizedBox', height: 20 },
-            {
-              type: 'row', mainAxisAlignment: 'center',
-              children: [
-                {
-                  type: 'button',
-                  text: state.running ? 'Pause' : 'Start',
-                  style: { backgroundColor: state.mode === 'focus' ? t.accent : t.accent2, foregroundColor: t.onAccent },
-                  onTap: 'start_pause'
-                },
-                { type: 'sizedBox', width: 10 },
-                { type: 'outlinedButton', text: 'Reset', onTap: 'reset' },
-                { type: 'sizedBox', width: 10 },
-                { type: 'textButton', text: 'Skip', onTap: 'skip' }
-              ]
-            },
-            { type: 'sizedBox', height: 16 },
-            {
-              type: 'text',
-              data: 'Completed: ' + state.completed + ' pomodoro' + (state.completed === 1 ? '' : 's'),
-              style: { color: t.muted, fontSize: 12 }
-            }
-          ]
-        }
+        type: 'listView', shrinkWrap: false, padding: [16, 40, 16, 24],
+        children: [
+          { type: 'center', child: ring(t) },
+          { type: 'sizedBox', height: 20 },
+          cycleDots(t),
+          { type: 'sizedBox', height: 20 },
+          {
+            type: 'row', mainAxisAlignment: 'center',
+            children: [
+              {
+                type: 'button',
+                text: state.running ? 'Pause' : 'Start',
+                style: { backgroundColor: state.mode === 'focus' ? t.accent : t.accent2, foregroundColor: t.onAccent },
+                onTap: 'start_pause'
+              },
+              { type: 'sizedBox', width: 10 },
+              { type: 'outlinedButton', text: 'Reset', onTap: 'reset' },
+              { type: 'sizedBox', width: 10 },
+              { type: 'textButton', text: 'Skip', onTap: 'skip' }
+            ]
+          },
+          { type: 'sizedBox', height: 16 },
+          {
+            type: 'text',
+            data: 'Completed: ' + state.completed + ' pomodoro' + (state.completed === 1 ? '' : 's'),
+            style: { color: t.muted, fontSize: 12, textAlign: 'center' }
+          }
+        ]
       }
     });
   }
