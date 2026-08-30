@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-30T14:14:33.173567Z",
+  "generatedAt": "2026-08-30T14:57:14.611013Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -21,7 +21,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "3d-game-1.0.0.zip",
-        "sha256": "f5451dda05c4aa3c7c1a93096f08998bd1eed53571eca150ab80a1f748264aac",
+        "sha256": "9cce83c84efc8ea6a1800913978e62c60093ea83a1f0df4d79a846db543cc719",
         "sizeBytes": 4078
       }
     },
@@ -42,7 +42,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "animation-showcase-1.0.0.zip",
-        "sha256": "cb552f47af097e89d303cb43aa9e417e28244ab5822bf66d9442b3ae00666736",
+        "sha256": "098d11736374632da2b3939589d0a5ac1b7a710265b0e77cf57eff75812ea253",
         "sizeBytes": 6027
       }
     },
@@ -64,7 +64,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "calculator-1.0.0.zip",
-        "sha256": "2ae2b524df55338fa7acc51f56a3ff1bab0b751ed4d76cfaf318f9efba7a7836",
+        "sha256": "8034c20802a394e9b769365b3688cceb00af91726ba3ee6b1accbd29d5aed0f6",
         "sizeBytes": 2620
       }
     },
@@ -89,7 +89,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "calendar-1.0.0.zip",
-        "sha256": "ae951f26e03c413a00da5244982ead88350c2aa61763f84f28557b4c89f94945",
+        "sha256": "1496fe85d65708a5ee986699278dd27d01f1dca6200034bd3fd14e4c5e7d562e",
         "sizeBytes": 5082
       }
     },
@@ -114,7 +114,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "contacts-1.0.0.zip",
-        "sha256": "ea6926067206fdc80100849693f0012617ab1c005906ba89e2b7cfe203651bc5",
+        "sha256": "d6942d140b1639f612f3313b0071512eb16464a8a8e8a5ade472039d4bd935ba",
         "sizeBytes": 5189
       }
     },
@@ -135,7 +135,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "crypto-1.0.0.zip",
-        "sha256": "6f25124b009e7c1c773d97ef98885cc13e5a019b0f1b98c846684c6ca7e86c8b",
+        "sha256": "dac2cd51de064dc04af1b5e5f741435070f12fca3294d226c14dc4cb3e336319",
         "sizeBytes": 3423
       }
     },
@@ -156,7 +156,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "english-teacher-2.0.0.zip",
-        "sha256": "319a59ea32b8ef0560a9306e58ed28758b0063dc82bb76bbcc5dea30b3d2b59e",
+        "sha256": "e5eba6cdfbd74afe3c5e25fad7a32e896bb076a7abee746c7298ce4d62c46a59",
         "sizeBytes": 9758
       }
     },
@@ -179,7 +179,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "focus-timer-1.0.1.zip",
-        "sha256": "5eeb6f413d82ebcdf4ea48f4fd4e7e6fc42d715760058e89c02f3c97e1044bfd",
+        "sha256": "33ab27220d1875bbdd6a4d11c788f95655d4382a49c52321add4c8449318d46c",
         "sizeBytes": 2615
       }
     },
@@ -204,7 +204,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "health-1.1.0.zip",
-        "sha256": "006e6535eca3c56a3a28477a2cf6481f215a9630089feab8c2fd45ccadab72d3",
+        "sha256": "10487db341f996b69d79e20a3b5cc09a7b2411dbb6439c8228f8e09c5a3df9ed",
         "sizeBytes": 4161
       }
     },
@@ -228,7 +228,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "homekit-1.1.0.zip",
-        "sha256": "1cd3c092271754967813554182be3dfd7bf4b93a4accc1b55dbfe63177635085",
+        "sha256": "61d560663c9dd1c31e0bd1c2d9a2083a3ace47f4a699cebded12b2a4e128c561",
         "sizeBytes": 6810
       }
     },
@@ -250,7 +250,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "m3-showcase-1.0.0.zip",
-        "sha256": "e5d0fe37dca7811f7e016b193a6cc4750a7eadaaf65ce95d7dfdc6b37ef5fd31",
+        "sha256": "1422f136af94b89dcd737fdd774006056122e5abd4043f09b4e8fdd817c10e25",
         "sizeBytes": 5444
       }
     },
@@ -271,8 +271,31 @@
       "icon": "icon.svg",
       "zip": {
         "file": "map-1.0.0.zip",
-        "sha256": "e30888465310801e6d12fa5d5e77ea458f7b0e7b48f1a8fbba5831dcea6695d4",
+        "sha256": "fda2ea3ad79a504486bf6058e26776b3c273dd43b575f6a2199633e00f38ce8e",
         "sizeBytes": 3878
+      }
+    },
+    {
+      "id": "pomodoro",
+      "name": "Pomodoro",
+      "version": "1.0.0",
+      "description": "Pomodoro timer: 25-minute focus / 5-minute break cycles (every 4th break is 15), start/pause/reset/skip, donut progress ring, completed counter persisted in storage",
+      "author": "Fa",
+      "tags": [
+        "productivity",
+        "timer",
+        "focus"
+      ],
+      "permissions": {
+        "network": false,
+        "allowedCommands": []
+      },
+      "minRuntime": "0.4.79",
+      "icon": "icon.svg",
+      "zip": {
+        "file": "pomodoro-1.0.0.zip",
+        "sha256": "9175f47e202e4aaeceeeab6f6b5b0ffff7466829308283f5745f68e0b0694a40",
+        "sizeBytes": 3081
       }
     },
     {
@@ -296,7 +319,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "reminders-1.0.0.zip",
-        "sha256": "fc32add6a5c80157f43d98ef263500cf4d3f8ad007c5eb78c2f5e18459b64c7b",
+        "sha256": "d638cd9e2ac7a4ad69279c4d2e026b7be7c335210a3f0cf3dced2bc3abc3b918",
         "sizeBytes": 5702
       }
     },
@@ -324,7 +347,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "stocks-1.0.0.zip",
-        "sha256": "70429e089a44110116d094dc6aafd832364eb4eeb85f0d5eb87cac066869752f",
+        "sha256": "688fbdc7161601cf105ebb286917510e6baadb5cbb11804fc1b099e6f8c52a37",
         "sizeBytes": 3977
       }
     },
@@ -349,7 +372,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "voice-notes-1.0.0.zip",
-        "sha256": "d6e026700057806ed67a397e415bd13d9079634f928782e9b574b91080997222",
+        "sha256": "34772d4a8f7b45d2cc3fb675ea4245c2d909e7f9b563aba3195a16c0dbc54201",
         "sizeBytes": 3576
       }
     },
@@ -370,7 +393,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "weather-1.0.0.zip",
-        "sha256": "4dc3cd91042dc1c6a0648987a8d294d7b98c276601c821c04ec6223fd9702f6a",
+        "sha256": "fb66017de64249202bcdf7800fde6b0e5ff3f7b75fe1779a6594b11854d155ef",
         "sizeBytes": 5536
       }
     },
@@ -391,7 +414,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "yolo-hello-1.0.0.zip",
-        "sha256": "1ec6baf1d40efa652e136467409a2e8dfc1272b9a3c288a890f2e7b85f76a021",
+        "sha256": "9b8ca49768dc4c275472250a3edca69455c64e134481d317d1b092c23ddcaa7e",
         "sizeBytes": 2257
       }
     }
