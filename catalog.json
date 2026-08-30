@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-30T20:06:09.152170Z",
+  "generatedAt": "2026-08-30T20:14:54.188819Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -158,6 +158,29 @@
         "file": "english-teacher-2.0.0.zip",
         "sha256": "f76cccceeef8e6ec66d0ea848047bc05111447ecdae7a24e8367d71786d23f6f",
         "sizeBytes": 9758
+      }
+    },
+    {
+      "id": "fitness-trainer",
+      "name": "Fitness Trainer",
+      "version": "2.0.0",
+      "description": "Guided workout with a 3D animated coach — press start and follow along",
+      "author": "Fa",
+      "tags": [
+        "health",
+        "fitness",
+        "3d"
+      ],
+      "permissions": {
+        "network": false,
+        "allowedCommands": []
+      },
+      "minRuntime": "0.4.79",
+      "icon": "icon.svg",
+      "zip": {
+        "file": "fitness-trainer-2.0.0.zip",
+        "sha256": "c7ec6ad5d8866ae9ceac35a5660ffd04f9c72b187ce88d503e39aa697e1f61fc",
+        "sizeBytes": 3322688
       }
     },
     {
