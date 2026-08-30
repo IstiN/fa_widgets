@@ -72,6 +72,7 @@ final class CatalogBuilder {
         if (manifest.description.isNotEmpty) 'description': manifest.description,
         if (manifest.author.isNotEmpty) 'author': manifest.author,
         if (manifest.tags.isNotEmpty) 'tags': manifest.tags.toList(),
+        ..._platformsEntry(manifest),
         'permissions': {
           'network': manifest.network,
           'allowedCommands': manifest.allowedCommands.toList(),
@@ -131,6 +132,20 @@ final class CatalogBuilder {
     }
     return encoder.encode(archive)!;
   }
+}
+
+/// The optional `platforms` catalog field: the manifest's declared list,
+/// verbatim, but only when it holds at least one non-empty string
+/// (defensive — malformed entries are dropped, not propagated).
+Map<String, dynamic> _platformsEntry(WidgetManifest manifest) {
+  final raw = manifest.raw['platforms'];
+  if (raw is! List) return const {};
+  final platforms = [
+    for (final platform in raw)
+      if (platform is String && platform.trim().isNotEmpty) platform.trim(),
+  ];
+  if (platforms.isEmpty) return const {};
+  return {'platforms': platforms};
 }
 
 /// The outcome of a successful build.

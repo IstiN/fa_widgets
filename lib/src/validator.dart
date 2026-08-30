@@ -10,6 +10,12 @@ import 'manifest.dart';
 const sizeWarnBytes = 5 * 1024 * 1024;
 const fileCountWarn = 50;
 
+/// Platforms the Fa app targets. Values outside this set warn (not error)
+/// so new platforms can roll out additively.
+const knownPlatforms = <String>{
+  'ios', 'macos', 'android', 'windows', 'linux', 'web',
+};
+
 /// Result of scanning one `widgets/<id>/` directory.
 final class WidgetValidation {
   WidgetValidation._(this.directory, this.manifest, this.errors, this.warnings);
@@ -101,6 +107,31 @@ WidgetValidation validateWidgetDirectory(Directory dir) {
   final rawCommands = manifest.raw['allowedCommands'];
   if (rawCommands != null && rawCommands is! List) {
     error("'allowedCommands' must be a list");
+  }
+
+  // ── platforms shape / known values (warnings) ───────────────────────────
+  final rawPlatforms = manifest.raw['platforms'];
+  if (rawPlatforms != null) {
+    if (rawPlatforms is! List) {
+      warn("'platforms' must be a list of non-empty strings");
+    } else {
+      var shapeWarned = false;
+      for (final platform in rawPlatforms) {
+        if (platform is! String || platform.trim().isEmpty) {
+          if (!shapeWarned) {
+            warn("'platforms' must be a list of non-empty strings");
+            shapeWarned = true;
+          }
+          continue;
+        }
+        if (!knownPlatforms.contains(platform.trim().toLowerCase())) {
+          warn(
+            "unknown platform '$platform' "
+            '(known: ${knownPlatforms.join(', ')})',
+          );
+        }
+      }
+    }
   }
 
   // ── entry + icon files ──────────────────────────────────────────────────

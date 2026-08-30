@@ -203,6 +203,57 @@ void main() {
       }
     });
 
+    test('known platforms pass silently', () async {
+      final t = await FixtureTree.create({
+        'app': {
+          'platforms': ['ios', 'macos', 'web'],
+        },
+      });
+      try {
+        final result = validateWidgetDirectory(Directory('${t.root.path}/app'));
+        expect(result.isValid, isTrue, reason: '${result.issues}');
+        expect(result.warnings, isEmpty);
+      } finally {
+        await t.dispose();
+      }
+    });
+
+    test('unknown platform value warns but passes', () async {
+      final t = await FixtureTree.create({
+        'app': {
+          'platforms': ['ios', 'amiga'],
+        },
+      });
+      try {
+        final result = validateWidgetDirectory(Directory('${t.root.path}/app'));
+        expect(result.isValid, isTrue);
+        expect(result.warnings.join(' '), contains('amiga'));
+      } finally {
+        await t.dispose();
+      }
+    });
+
+    test('platforms that is not a list of non-empty strings warns', () async {
+      final t = await FixtureTree.create({
+        'not-a-list': {'platforms': 'ios'},
+        'empty-item': {
+          'platforms': [''],
+        },
+      });
+      try {
+        for (final id in ['not-a-list', 'empty-item']) {
+          final result = validateWidgetDirectory(
+            Directory('${t.root.path}/$id'),
+          );
+          expect(result.isValid, isTrue, reason: id);
+          expect(result.warnings.join(' '), contains('platforms'),
+              reason: id);
+        }
+      } finally {
+        await t.dispose();
+      }
+    });
+
     test('unknown manifest key warns', () async {
       final t = await FixtureTree.create({
         'app': {'brandNewField': true},

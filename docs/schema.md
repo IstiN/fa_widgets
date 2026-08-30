@@ -14,6 +14,7 @@ warnings — schema evolves additively.
 | `icon` | string | – | relative path, existing file (`.svg` recommended) |
 | `author` | string | – | display credit |
 | `tags` | list<string> | – | free-form, lowercased by CI |
+| `platforms` | list<string> | – | OS targets: `ios`, `macos`, `android`, `windows`, `linux`, `web`; omit for runs-everywhere widgets. Unknown values → warning; mirrored into the catalog entry |
 | `minRuntime` | string | ✔ | minimum `js_widget_runtime` version, e.g. `0.4.79` |
 | `license` | string | – | defaults to repo MIT |
 | `network` | bool | ✔ | `jsr.fetchJson` gate |
@@ -27,6 +28,7 @@ warnings — schema evolves additively.
 {
   "id": "...", "name": "...", "version": "1.0.0",
   "description": "...", "author": "...", "tags": [],
+  "platforms": ["ios", "macos"], // only when the manifest declares it
   "permissions": {"network": false, "allowedCommands": []},
   "minRuntime": "0.4.79", "icon": "icon.svg",
   "zip": {"file": "<id>-<version>.zip", "sha256": "<hex>", "sizeBytes": 1234}
@@ -41,4 +43,6 @@ schemaVersion 1.
 
 Single root folder `<id>/` containing every file of the widget directory;
 entries sorted by path; deflate. Consumers join asset names against
+`https://github.com/IstiN/fa_widgets/releases/latest/download/`.
+es sorted by path; deflate. Consumers join asset names against
 `https://github.com/IstiN/fa_widgets/releases/latest/download/`.

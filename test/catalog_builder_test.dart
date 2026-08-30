@@ -69,6 +69,60 @@ void main() {
     }
   });
 
+  test('declared platforms flow into the catalog entry after tags', () async {
+    final tree = await FixtureTree.create({
+      'mobile-only': {
+        'tags': ['demo'],
+        'platforms': ['ios', 'macos'],
+      },
+    });
+    final out = Directory('${tree.root.parent.path}/catalog-out');
+    try {
+      final result = CatalogBuilder(widgetsRoot: tree.root).build(outDir: out);
+      final catalog =
+          jsonDecode(result.catalogFile.readAsStringSync())
+              as Map<String, dynamic>;
+      final entry =
+          ((catalog['widgets'] as List).single) as Map<String, dynamic>;
+      expect(entry['platforms'], ['ios', 'macos']);
+      // Sits right after 'tags' in the encoded entry.
+      final keys = entry.keys.toList();
+      expect(keys.indexOf('platforms'), keys.indexOf('tags') + 1);
+    } finally {
+      await out.delete(recursive: true);
+      await tree.dispose();
+    }
+  });
+
+  test('no platforms key when the manifest does not declare it', () async {
+    final tree = await FixtureTree.create({
+      'universal': null,
+      'empty-platforms': {'platforms': <String>[]},
+      'bad-platforms': {
+        'platforms': ['ios', 42, ' '],
+      },
+    });
+    final out = Directory('${tree.root.parent.path}/catalog-out');
+    try {
+      final result = CatalogBuilder(widgetsRoot: tree.root).build(outDir: out);
+      final catalog =
+          jsonDecode(result.catalogFile.readAsStringSync())
+              as Map<String, dynamic>;
+      final entries = {
+        for (final entry
+            in (catalog['widgets'] as List).cast<Map<String, dynamic>>())
+          entry['id'] as String: entry,
+      };
+      expect(entries['universal']!.containsKey('platforms'), isFalse);
+      expect(entries['empty-platforms']!.containsKey('platforms'), isFalse);
+      // Defensive: non-string / blank items are dropped, not propagated.
+      expect(entries['bad-platforms']!['platforms'], ['ios']);
+    } finally {
+      await out.delete(recursive: true);
+      await tree.dispose();
+    }
+  });
+
   test('any invalid widget aborts the whole build', () async {
     final tree = await FixtureTree.create({
       'good': null,
