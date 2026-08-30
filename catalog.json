@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-30T15:52:52.354870Z",
+  "generatedAt": "2026-08-30T19:58:14.669292Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -179,8 +179,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "focus-timer-1.0.1.zip",
-        "sha256": "69e62d74cf448c0f48962153372cc047d17441480c09f3fb32beff3282de9a24",
-        "sizeBytes": 2615
+        "sha256": "5def211511b4458deffcb8aebe85fca38e2df6c7957b673a3fb65fe29ac2e181",
+        "sizeBytes": 2729
       }
     },
     {
