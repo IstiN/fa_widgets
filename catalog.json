@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-30T14:57:14.611013Z",
+  "generatedAt": "2026-08-30T15:52:52.354870Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -21,7 +21,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "3d-game-1.0.0.zip",
-        "sha256": "9cce83c84efc8ea6a1800913978e62c60093ea83a1f0df4d79a846db543cc719",
+        "sha256": "be4725a5800a4f6ae9bc3b29ccd0ff158a12f8632ae166eab9d560c4d5374708",
         "sizeBytes": 4078
       }
     },
@@ -42,7 +42,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "animation-showcase-1.0.0.zip",
-        "sha256": "098d11736374632da2b3939589d0a5ac1b7a710265b0e77cf57eff75812ea253",
+        "sha256": "8253fae14a2d674b742e5c929e11d584bdc6e1ebed27d6e12f8b00e410f093a8",
         "sizeBytes": 6027
       }
     },
@@ -64,7 +64,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "calculator-1.0.0.zip",
-        "sha256": "8034c20802a394e9b769365b3688cceb00af91726ba3ee6b1accbd29d5aed0f6",
+        "sha256": "31fb41297405da3ec1a39260eac223397c873c8fb4e79f7182ca1d4e44d0f17c",
         "sizeBytes": 2620
       }
     },
@@ -89,7 +89,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "calendar-1.0.0.zip",
-        "sha256": "1496fe85d65708a5ee986699278dd27d01f1dca6200034bd3fd14e4c5e7d562e",
+        "sha256": "9032ba0cdbcc112c1e1449cf11b255a8bed5daa146dd1bd6d6a6852e751cdf6c",
         "sizeBytes": 5082
       }
     },
@@ -114,7 +114,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "contacts-1.0.0.zip",
-        "sha256": "d6942d140b1639f612f3313b0071512eb16464a8a8e8a5ade472039d4bd935ba",
+        "sha256": "44e4d8948bd9b212744af4ea296d2389b4ca36745571bd714c0f388e9a4e4671",
         "sizeBytes": 5189
       }
     },
@@ -135,7 +135,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "crypto-1.0.0.zip",
-        "sha256": "dac2cd51de064dc04af1b5e5f741435070f12fca3294d226c14dc4cb3e336319",
+        "sha256": "e87f2239de1e6654b2efe1c50eb32783350c0f2ec8acc5617c55a83f2300c6e8",
         "sizeBytes": 3423
       }
     },
@@ -156,7 +156,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "english-teacher-2.0.0.zip",
-        "sha256": "e5eba6cdfbd74afe3c5e25fad7a32e896bb076a7abee746c7298ce4d62c46a59",
+        "sha256": "f76cccceeef8e6ec66d0ea848047bc05111447ecdae7a24e8367d71786d23f6f",
         "sizeBytes": 9758
       }
     },
@@ -179,7 +179,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "focus-timer-1.0.1.zip",
-        "sha256": "33ab27220d1875bbdd6a4d11c788f95655d4382a49c52321add4c8449318d46c",
+        "sha256": "69e62d74cf448c0f48962153372cc047d17441480c09f3fb32beff3282de9a24",
         "sizeBytes": 2615
       }
     },
@@ -204,7 +204,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "health-1.1.0.zip",
-        "sha256": "10487db341f996b69d79e20a3b5cc09a7b2411dbb6439c8228f8e09c5a3df9ed",
+        "sha256": "7242fa898adfa8a202b5a2b9f3295179bd78acca0aeb2037cdd28a89c8abb23c",
         "sizeBytes": 4161
       }
     },
@@ -228,7 +228,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "homekit-1.1.0.zip",
-        "sha256": "61d560663c9dd1c31e0bd1c2d9a2083a3ace47f4a699cebded12b2a4e128c561",
+        "sha256": "4ce68684de2646267caea6efa6be84bdcc9f1214d0ca987f76a33861b44ff8b4",
         "sizeBytes": 6810
       }
     },
@@ -250,7 +250,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "m3-showcase-1.0.0.zip",
-        "sha256": "1422f136af94b89dcd737fdd774006056122e5abd4043f09b4e8fdd817c10e25",
+        "sha256": "361c80eeefb9cc34091c15898af9102d9eb76420ab3c82b8774c8047e8e2826f",
         "sizeBytes": 5444
       }
     },
@@ -271,7 +271,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "map-1.0.0.zip",
-        "sha256": "fda2ea3ad79a504486bf6058e26776b3c273dd43b575f6a2199633e00f38ce8e",
+        "sha256": "17d21f0ffcf353aeaab9889b7ee30e5e66ff680e7e05adbc09270e5aac06db44",
         "sizeBytes": 3878
       }
     },
@@ -294,7 +294,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "pomodoro-1.0.0.zip",
-        "sha256": "9175f47e202e4aaeceeeab6f6b5b0ffff7466829308283f5745f68e0b0694a40",
+        "sha256": "3f911d49f2edd895fca8e10d0854e3505fc3f422126b989e0cbc422b5f4d8913",
         "sizeBytes": 3081
       }
     },
@@ -319,7 +319,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "reminders-1.0.0.zip",
-        "sha256": "d638cd9e2ac7a4ad69279c4d2e026b7be7c335210a3f0cf3dced2bc3abc3b918",
+        "sha256": "fcb78094d592fd1cdb868909d17ed475d16b72ad9238d910bfd548c8199355d3",
         "sizeBytes": 5702
       }
     },
@@ -347,7 +347,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "stocks-1.0.0.zip",
-        "sha256": "688fbdc7161601cf105ebb286917510e6baadb5cbb11804fc1b099e6f8c52a37",
+        "sha256": "bc0677176838dfac795fd895e7dd2ad3a3bd63719e7b87f0ca0fb4695863df61",
         "sizeBytes": 3977
       }
     },
@@ -372,7 +372,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "voice-notes-1.0.0.zip",
-        "sha256": "34772d4a8f7b45d2cc3fb675ea4245c2d909e7f9b563aba3195a16c0dbc54201",
+        "sha256": "49baed72c8b2a942cc7fac11f0fd07793abf4aec2f2aaebe7a561392c73f3c3f",
         "sizeBytes": 3576
       }
     },
@@ -393,7 +393,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "weather-1.0.0.zip",
-        "sha256": "fb66017de64249202bcdf7800fde6b0e5ff3f7b75fe1779a6594b11854d155ef",
+        "sha256": "a976fb00b87a250aa9d6d0ab99a5af7919db98f127da2b55c773da347daff8f5",
         "sizeBytes": 5536
       }
     },
@@ -414,7 +414,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "yolo-hello-1.0.0.zip",
-        "sha256": "9b8ca49768dc4c275472250a3edca69455c64e134481d317d1b092c23ddcaa7e",
+        "sha256": "02126a97b8a6833c58d4b74c0674f80c72f4288313f5e83c2441297873b43fed",
         "sizeBytes": 2257
       }
     }
