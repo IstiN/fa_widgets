@@ -148,12 +148,13 @@
     };
 
     jsr.render({
-      type: 'padding',
+      // A scrollable root: hosts embed widgets at ANY height (app panels,
+      // landing cards) — a fixed column overflows small viewports with
+      // RenderFlex stripes instead of scrolling.
+      type: 'listView',
+      shrinkWrap: false,
       padding: [16, 16, 16, 16],
-      child: {
-        type: 'column',
-        crossAxisAlignment: 'stretch',
-        children: [
+      children: [
           {
             type: 'row',
             mainAxisAlignment: 'spaceBetween',
@@ -202,7 +203,6 @@
           { type: 'sizedBox', height: 12 },
           controls,
         ],
-      },
     });
 
     jsr.exportState({
