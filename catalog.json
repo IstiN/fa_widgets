@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-30T12:14:32.827417Z",
+  "generatedAt": "2026-08-30T12:51:35.260646Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -21,7 +21,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "3d-game-1.0.0.zip",
-        "sha256": "6f01c98c1b3a0e1df438aef2b997baf3650665fe9b9894d6a56f967b236aa405",
+        "sha256": "4949f1ba74cc11fab099e33073d93a4d82f16e94316080312bd8be47a60da137",
         "sizeBytes": 4078
       }
     },
@@ -42,7 +42,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "animation-showcase-1.0.0.zip",
-        "sha256": "c7ff283bf8f239020cfb1808cc87064b1c140fe55202017de9e42fc056f09ab9",
+        "sha256": "ad5f0c2a7c4c7e990c0a2aad4ab7a8722bf67c77db7434ca9ca8fc8ff5db089b",
         "sizeBytes": 6027
       }
     },
@@ -64,7 +64,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "calculator-1.0.0.zip",
-        "sha256": "d4d1f37a6852796adbedc57f4dfccf29775ce637ba08b2c577d7cfcdbbbc88f6",
+        "sha256": "ade5f60b0ff9390701866e0e5857380d49ed9df6a85627840fb08ef08def3167",
         "sizeBytes": 2620
       }
     },
@@ -77,6 +77,10 @@
       "tags": [
         "demo"
       ],
+      "platforms": [
+        "ios",
+        "macos"
+      ],
       "permissions": {
         "network": false,
         "allowedCommands": []
@@ -85,7 +89,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "calendar-1.0.0.zip",
-        "sha256": "5dd4b880b70dec3766947bff1b08338eb53ae4961247dbaf31a32d4f71fee728",
+        "sha256": "e632099fd3835233a57c5fc45aa90a1bd1bce57b2b5a292d23c9c6f86a43bbde",
         "sizeBytes": 5082
       }
     },
@@ -98,6 +102,10 @@
       "tags": [
         "demo"
       ],
+      "platforms": [
+        "ios",
+        "macos"
+      ],
       "permissions": {
         "network": false,
         "allowedCommands": []
@@ -106,7 +114,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "contacts-1.0.0.zip",
-        "sha256": "17f4ee13e8984603058fe2becae5bffb114b61729ace0655de1c698831c65250",
+        "sha256": "cf85274b73d8f422f5644889c071b4dc9326efbe7fd9f89ea444e635c120f60d",
         "sizeBytes": 5189
       }
     },
@@ -127,7 +135,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "crypto-1.0.0.zip",
-        "sha256": "bd4dfa601b9552e9266362ec355f867b23fa29a420b0ce4dbaf4985fed0d0ed7",
+        "sha256": "ebe30200797437bbd7bdfa27ed9da8765296c56c422e1a4f8ceb77fefe478e48",
         "sizeBytes": 3423
       }
     },
@@ -148,7 +156,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "english-teacher-2.0.0.zip",
-        "sha256": "dfa38f70ded387c38f91f6a830f743821ce18f3b49804cdf9e92139360d68ed1",
+        "sha256": "4b07907dab154709c5417e9039519e0d207db5e9a676501a41ec147cd0bf5a99",
         "sizeBytes": 9758
       }
     },
@@ -171,7 +179,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "focus-timer-1.0.1.zip",
-        "sha256": "de4ba6b9ea7fd20e72b2ff9365921eb7a098e0e93f97f516fb2c9d7a0b0e5b91",
+        "sha256": "eb9712224f1594cebfde8973c8e7dbf566ae7730505623a0a0410c18e66b695d",
         "sizeBytes": 2609
       }
     },
@@ -184,6 +192,10 @@
       "tags": [
         "health"
       ],
+      "platforms": [
+        "ios",
+        "macos"
+      ],
       "permissions": {
         "network": false,
         "allowedCommands": []
@@ -192,7 +204,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "health-1.1.0.zip",
-        "sha256": "7c22143aaf9f62949dd7a0696840ac2f6b78c9afc4aee6f40e0e3744233fb20f",
+        "sha256": "d1c709587f41d72ea6366a8797faed40bc9611e1f2d0a85ce76e3ed682a90a92",
         "sizeBytes": 4161
       }
     },
@@ -205,6 +217,9 @@
       "tags": [
         "smart-home"
       ],
+      "platforms": [
+        "ios"
+      ],
       "permissions": {
         "network": false,
         "allowedCommands": []
@@ -213,8 +228,30 @@
       "icon": "icon.svg",
       "zip": {
         "file": "homekit-1.1.0.zip",
-        "sha256": "598f1ae7c01f8778edb4eb3d94ac3dca20dd6a745aff76e6472124d56729022a",
+        "sha256": "fd891bad8eb6ff54d0fbd3fe64150f6421d32d5e1d3626256acccf241431d815",
         "sizeBytes": 6810
+      }
+    },
+    {
+      "id": "m3-showcase",
+      "name": "M3 Showcase",
+      "version": "1.0.0",
+      "description": "Material 3 components rendered from a single JSON tree: appBar, banner, searchBar, segmentedButton, radio, tabBar, fab, popupMenu, tooltip, navigationBar.",
+      "author": "Fa",
+      "tags": [
+        "demo",
+        "m3"
+      ],
+      "permissions": {
+        "network": false,
+        "allowedCommands": []
+      },
+      "minRuntime": "0.4.79",
+      "icon": "icon.svg",
+      "zip": {
+        "file": "m3-showcase-1.0.0.zip",
+        "sha256": "f92592575b71ee35ee10dd888a04e46e609979450a6b29b0e173c066ba52fdda",
+        "sizeBytes": 4381
       }
     },
     {
@@ -234,7 +271,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "map-1.0.0.zip",
-        "sha256": "3a6c00a7f74fd82f1764f7300342cc976f9137f11b66bc527d8be42b03e38df4",
+        "sha256": "15af2162551a3e4327abd60dfbcb2bc3d67e58a684b98a75a4743dafc9f93540",
         "sizeBytes": 3878
       }
     },
@@ -247,6 +284,10 @@
       "tags": [
         "productivity"
       ],
+      "platforms": [
+        "ios",
+        "macos"
+      ],
       "permissions": {
         "network": false,
         "allowedCommands": []
@@ -255,7 +296,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "reminders-1.0.0.zip",
-        "sha256": "7823de454613dbac65931913636aa4d8f8962f3b1213fd6d22aa994699800775",
+        "sha256": "907f27335ed26f27066c94f40c247b8d95d3b8001d5a4fd24186ee2e2e7f706d",
         "sizeBytes": 5702
       }
     },
@@ -276,7 +317,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "stocks-1.0.0.zip",
-        "sha256": "afac84a5723d94eb5686a026b518944686eb072b6552b2ee5f20ee95d300ae7d",
+        "sha256": "5573503eb62a2c4872e04f075be0ae34793559e92f60e0ded9ea7584763433ae",
         "sizeBytes": 3941
       }
     },
@@ -289,6 +330,10 @@
       "tags": [
         "voice"
       ],
+      "platforms": [
+        "ios",
+        "macos"
+      ],
       "permissions": {
         "network": false,
         "allowedCommands": []
@@ -297,7 +342,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "voice-notes-1.0.0.zip",
-        "sha256": "fbe58a8a133e5a8d0483c18e5b6fdf9d8e4c453bfff6b0c34c106b2b0fdb0f80",
+        "sha256": "8366ab2cb98b56cb7c3e2da393c13360a68c30b2465c02bab73f7fe2ebc5cd19",
         "sizeBytes": 3576
       }
     },
@@ -318,7 +363,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "weather-1.0.0.zip",
-        "sha256": "ab89a4887461c89ee179f93fcdeae280639fab070b4afc2a30763e4182f60856",
+        "sha256": "668d3eb91ded68278d64fd37598cd2326db8311454374dac64e450d3ce92744f",
         "sizeBytes": 5536
       }
     },
@@ -339,7 +384,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "yolo-hello-1.0.0.zip",
-        "sha256": "276ed0ae9c0b758c90ae6e5ebb817804b9287831f9d068d99ab8b18c8d85d24f",
+        "sha256": "21d519a376b00e83f4acfe6bc2b0730625eaa3ad9aa12cd22e52952e72f6f452",
         "sizeBytes": 2257
       }
     }
