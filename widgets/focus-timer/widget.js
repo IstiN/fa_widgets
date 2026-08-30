@@ -176,7 +176,7 @@
           },
           { type: 'sizedBox', height: 8 },
           {
-            type: 'linearProgress',
+            type: 'linearProgressIndicator',
             value: progress,
             backgroundColor: '#1e293b',
             color: timeColor,

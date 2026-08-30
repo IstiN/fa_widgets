@@ -45,5 +45,12 @@
   "minRuntime": "0.4.79",
   "tags": [
     "demo"
+  ],
+  "platforms": [
+    "ios",
+    "macos",
+    "android",
+    "windows",
+    "linux"
   ]
 }
