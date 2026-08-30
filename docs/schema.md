@@ -20,7 +20,7 @@ warnings — schema evolves additively.
 | `network` | bool | ✔ | `jsr.fetchJson` gate |
 | `allowedCommands` | list<string> | ✔ | `jsr.exec` allowlist (runtime prompts regardless) |
 | `permissions.*` | key/value | – | service gates: `llm`, `homekit`, `health`, `contacts`, `calendar`, `microphone`, `notifications`, `media`, `keys` |
-| `widget` | object | – | live tile: `{entry, size: 'WxH', refreshSeconds}` |
+| `widget` | object | – | live tile: `{entry, size: 'WxH', refreshSeconds, interactive}` — `interactive: true` routes tile taps to `jsr.onEvent` on the board instead of opening the app |
 
 ## Generated `catalog.json` entry
 
