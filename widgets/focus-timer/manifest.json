@@ -2,7 +2,7 @@
   "id": "focus-timer",
   "name": "Focus Timer",
   "description": "Pomodoro-style focus timer: 25-minute focus / 5-minute break cycles with start, pause and reset",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icon": "icon.svg",
   "author": "Fa",
   "tags": ["productivity", "timer", "focus"],

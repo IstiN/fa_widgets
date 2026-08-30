@@ -7,7 +7,13 @@
   var remaining = FOCUS_SECONDS;
   var running = false;
   var timerId = null;
-  var completedCycles = Number(jsr.storage.get('cycles') || 0);
+  // jsr.storage.get returns a PROMISE (async bridge) — a sync
+  // Number(jsr.storage.get(...) || 0) reads NaN. Load, then re-render.
+  var completedCycles = 0;
+  jsr.storage.get('cycles').then(function (saved) {
+    completedCycles = Number(saved || 0);
+    render();
+  });
 
   function totalSeconds() {
     return mode === 'focus' ? FOCUS_SECONDS : BREAK_SECONDS;
