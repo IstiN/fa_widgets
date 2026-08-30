@@ -31,9 +31,14 @@ final class BuiltWidget {
 }
 
 /// Builds a catalog from a widgets root into an output directory.
+/// The fixed DOS-friendly mtime stamped on every zip entry (1980-01-01,
+/// the zip epoch): rebuilds over unchanged sources are byte-identical,
+/// keeping published sha256 values stable.
+const int canonicalZipTimestamp = 315532800;
+
 final class CatalogBuilder {
   CatalogBuilder({required this.widgetsRoot, DateTime Function()? now})
-    : _now = now ?? (() => DateTime.now().toUtc());
+      : _now = now ?? (() => DateTime.now().toUtc());
 
   final Directory widgetsRoot;
   final DateTime Function() _now;
@@ -69,7 +74,8 @@ final class CatalogBuilder {
         'id': id,
         'name': manifest.name,
         'version': version,
-        if (manifest.description.isNotEmpty) 'description': manifest.description,
+        if (manifest.description.isNotEmpty)
+          'description': manifest.description,
         if (manifest.author.isNotEmpty) 'author': manifest.author,
         if (manifest.tags.isNotEmpty) 'tags': manifest.tags.toList(),
         ..._platformsEntry(manifest),
@@ -112,22 +118,26 @@ final class CatalogBuilder {
   }
 
   /// Zips the widget directory with a single root folder [rootFolderName],
-  /// entries sorted by path.
+  /// entries sorted by path. Every entry gets the CANONICAL mtime so the
+  /// bytes — and therefore the published sha256 — are deterministic
+  /// across rebuilds: a re-run of the publish pipeline over unchanged
+  /// sources must produce the exact same asset, or the app (which may
+  /// hold a cached catalog) fails installs with a hash mismatch.
   List<int> _writeZip(Directory dir, {required String rootFolderName}) {
     final encoder = ZipEncoder();
     final archive = Archive();
-    final files =
-        dir.listSync(recursive: true).whereType<File>().toList()
-          ..sort(
-            (File a, File b) => a.path.compareTo(b.path),
-          );
+    final files = dir.listSync(recursive: true).whereType<File>().toList()
+      ..sort(
+        (File a, File b) => a.path.compareTo(b.path),
+      );
     for (final file in files) {
       final relative = p.relative(file.path, from: dir.path);
       final normalized = relative.replaceAll('\\', '/');
       final data = file.readAsBytesSync();
       archive.addFile(
         ArchiveFile('$rootFolderName/$normalized', data.length, data)
-          ..compress = true,
+          ..compress = true
+          ..lastModTime = canonicalZipTimestamp,
       );
     }
     return encoder.encode(archive)!;
@@ -224,7 +234,8 @@ List<TagChange> diffTagChanges(
       changes.add(TagChange(id: id, version: version));
     }
   }
-  return changes..sort(
-    (TagChange a, TagChange b) => a.id.compareTo(b.id),
-  );
+  return changes
+    ..sort(
+      (TagChange a, TagChange b) => a.id.compareTo(b.id),
+    );
 }
