@@ -53,11 +53,11 @@
         {type: 'sizedBox', height: 20},
         // Controls
         {type: 'row', mainAxisSize: 'min', children: [
-          {type: 'textButton', text: '🎨 Color', onTap: 'color'},
+          {type: 'textButton', text: 'Color', onTap: 'color'},
           {type: 'sizedBox', width: 8},
-          {type: 'textButton', text: '🏀 Bounce', onTap: 'bounce'},
+          {type: 'textButton', text: 'Bounce', onTap: 'bounce'},
           {type: 'sizedBox', width: 8},
-          {type: 'textButton', text: scale > 1 ? '⬇️ Shrink' : '⬆️ Grow', onTap: 'resize'},
+          {type: 'textButton', text: scale > 1 ? 'Shrink' : 'Grow', onTap: 'resize'},
         ]},
       ]}]
     });

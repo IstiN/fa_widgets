@@ -2,7 +2,7 @@
   "id": "3d-game",
   "name": "3D Dodge Game",
   "description": "Dodge the falling blocks in 3D — drag to steer",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "icon": "icon.svg",
   "allowedCommands": [],
   "network": false,

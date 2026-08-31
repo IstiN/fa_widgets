@@ -176,12 +176,21 @@
     return v < lo ? lo : (v > hi ? hi : v);
   }
 
-  function hearts() {
-    var s = '';
+  // Hand-drawn SVG icons (24×24 viewBox) — no emoji fonts, identical on
+  // every platform.
+  var HEART_FULL = '<svg viewBox="0 0 24 24"><path d="M12 20.5 4.8 13a4.6 4.6 0 0 1 6.5-6.5l.7.7.7-.7A4.6 4.6 0 0 1 19.2 13z" fill="#f43f5e"/></svg>';
+  var HEART_EMPTY = '<svg viewBox="0 0 24 24"><path d="M12 20.5 4.8 13a4.6 4.6 0 0 1 6.5-6.5l.7.7.7-.7A4.6 4.6 0 0 1 19.2 13z" fill="#334155"/></svg>';
+  var BURST = '<svg viewBox="0 0 24 24"><path d="M12 1.8l2 4.9 5-1.3-1.8 4.8 4.9 1.8-4.2 2.8 2.7 4.4-5.1-1-1.5 4.9-2-4.6-2 4.6-1.5-4.9-5.1 1 2.7-4.4-4.2-2.8 4.9-1.8L5 5.4l5 1.3z" fill="#ef4444"/></svg>';
+
+  function heartsRow() {
+    var icons = [];
     for (var i = 0; i < START_LIVES; i++) {
-      s += i < state.lives ? '❤️' : '🖤';
+      icons.push({ type: 'svg',
+        data: i < state.lives ? HEART_FULL : HEART_EMPTY, size: 18 });
+      if (i < START_LIVES - 1) icons.push({ type: 'sizedBox', width: 3 });
     }
-    return s;
+    return { type: 'row', mainAxisSize: 'min',
+      crossAxisAlignment: 'center', children: icons };
   }
 
   function statText(t, label, value) {
@@ -208,8 +217,14 @@
           mainAxisSize: 'min',
           crossAxisAlignment: 'center',
           children: [
-            { type: 'text', data: '💥 GAME OVER',
-              style: { fontSize: 26, color: '#ef4444', fontWeight: 'w700' } },
+            { type: 'row', mainAxisSize: 'min',
+              crossAxisAlignment: 'center', children: [
+                { type: 'svg', data: BURST, size: 28 },
+                { type: 'sizedBox', width: 10 },
+                { type: 'text', data: 'GAME OVER',
+                  style: { fontSize: 26, color: '#ef4444',
+                    fontWeight: 'w700' } }
+              ] },
             { type: 'sizedBox', height: 8 },
             { type: 'text', data: 'Score: ' + state.score.toFixed(1) + 's',
               style: { fontSize: 16, color: '#ffffff' } },
@@ -256,7 +271,7 @@
             crossAxisAlignment: 'center',
             children: [
               statText(t, 'SCORE', state.score.toFixed(1) + 's'),
-              { type: 'text', data: hearts(), style: { fontSize: 16 } },
+              heartsRow(),
               statText(t, 'BEST', state.best.toFixed(1) + 's'),
               { type: 'text', data: 'drag to steer',
                 style: { fontSize: 11, color: t.muted } }
@@ -281,7 +296,7 @@
   });
   // Re-render with the new colors when the host flips light/dark mode.
   jsr._onThemeChange = function() { render(); };
-  jsr.setTitle('🕹️ 3D Game');
+  jsr.setTitle('3D Game');
   state = freshState();
   init();
 })();

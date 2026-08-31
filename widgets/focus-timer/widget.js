@@ -1,5 +1,8 @@
 // Focus Timer widget — pomodoro-style 25/5 cycles on the jsr JSON UI API.
 (function () {
+  // Hand-drawn SVG flag (24×24 viewBox) — no emoji fonts.
+  var FLAG_ICON = '<svg viewBox="0 0 24 24"><path d="M6 3v18" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 3.5h10l-2.5 4 2.5 4h-10z" fill="#a78bfa"/></svg>';
+
   var FOCUS_SECONDS = 25 * 60;
   var BREAK_SECONDS = 5 * 60;
 
@@ -169,9 +172,18 @@
                 },
               },
               {
-                type: 'text',
-                data: '🏁 ' + completedCycles,
-                style: { color: '#64748b', fontSize: 12 },
+                type: 'row',
+                mainAxisSize: 'min',
+                crossAxisAlignment: 'center',
+                children: [
+                  { type: 'svg', data: FLAG_ICON, size: 13 },
+                  { type: 'sizedBox', width: 5 },
+                  {
+                    type: 'text',
+                    data: String(completedCycles),
+                    style: { color: '#64748b', fontSize: 12 },
+                  },
+                ],
               },
             ],
           },
