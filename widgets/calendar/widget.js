@@ -248,7 +248,37 @@
       style: { color: t.muted, fontSize: 12 } } };
   }
 
+
+  // The web preview has no device bridge — render a calm stub instead of
+  // an uncaught TypeError alarm (jsr.fa.calendar is undefined there).
+  function bridgeAvailable() {
+    return typeof jsr !== 'undefined' && jsr.fa && jsr.fa.calendar;
+  }
+
+  function renderBridgeStub() {
+    jsr.render({
+      type: 'center',
+      child: {
+        type: 'column', mainAxisSize: 'min', crossAxisAlignment: 'center',
+        children: [
+          { type: 'container', padding: [16, 16, 16, 16],
+            color: '#1e293b', borderRadius: 16, child:
+            { type: 'icon', name: 'calendar_today', color: '#94a3b8', size: 28 } },
+          { type: 'sizedBox', height: 12 },
+          { type: 'text', data: 'Runs in the Fa app',
+            style: { color: '#e2e8f0', fontSize: 15,
+              fontWeight: 'w600' } },
+          { type: 'sizedBox', height: 4 },
+          { type: 'text',
+            data: 'Device calendar is not available in the web preview.',
+            style: { color: '#64748b', fontSize: 12,
+              textAlign: 'center' } },
+        ] },
+    });
+  }
+
   function render() {
+    if (!bridgeAvailable()) { renderBridgeStub(); return; }
     jsr.render({
       type: 'column', crossAxisAlignment: 'stretch', children: [
         // Date navigation header
