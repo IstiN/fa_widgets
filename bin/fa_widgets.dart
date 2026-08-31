@@ -12,49 +12,48 @@ const _exitFail = 1;
 const _exitUsage = 2;
 
 Future<void> main(List<String> arguments) async {
-  final parser =
+  final parser = ArgParser()
+    ..addCommand(
+      'validate',
       ArgParser()
-        ..addCommand(
-          'validate',
-          ArgParser()
-            ..addOption(
-              'root',
-              abbr: 'r',
-              defaultsTo: 'widgets',
-              help: 'Path to the widgets root directory.',
-            ),
+        ..addOption(
+          'root',
+          abbr: 'r',
+          defaultsTo: 'widgets',
+          help: 'Path to the widgets root directory.',
+        ),
+    )
+    ..addCommand(
+      'catalog',
+      ArgParser()
+        ..addOption(
+          'root',
+          abbr: 'r',
+          defaultsTo: 'widgets',
+          help: 'Path to the widgets root directory.',
         )
-        ..addCommand(
-          'catalog',
-          ArgParser()
-            ..addOption(
-              'root',
-              abbr: 'r',
-              defaultsTo: 'widgets',
-              help: 'Path to the widgets root directory.',
-            )
-            ..addOption(
-              'out',
-              abbr: 'o',
-              defaultsTo: 'build/catalog',
-              help: 'Output directory for catalog.json and zips.',
-            ),
+        ..addOption(
+          'out',
+          abbr: 'o',
+          defaultsTo: 'build/catalog',
+          help: 'Output directory for catalog.json and zips.',
+        ),
+    )
+    ..addCommand(
+      'diff-tags',
+      ArgParser()
+        ..addOption(
+          'previous',
+          abbr: 'p',
+          help: 'Path to the currently published catalog.json '
+              '(missing or unreadable = nothing published yet).',
         )
-        ..addCommand(
-          'diff-tags',
-          ArgParser()
-            ..addOption(
-              'previous',
-              abbr: 'p',
-              help: 'Path to the currently published catalog.json '
-                  '(missing or unreadable = nothing published yet).',
-            )
-            ..addOption(
-              'current',
-              abbr: 'c',
-              help: 'Path to the freshly built catalog.json.',
-            ),
-        );
+        ..addOption(
+          'current',
+          abbr: 'c',
+          help: 'Path to the freshly built catalog.json.',
+        ),
+    );
 
   ArgResults parsed;
   try {
@@ -102,11 +101,34 @@ int _runValidate(ArgResults command) {
   return hadErrors ? _exitFail : _exitOk;
 }
 
+/// The git ref the vendor submodule is pinned at — preview URLs for
+/// vendored widgets point at exactly this revision of the runtime repo.
+/// Falls back to `main` when the submodule is not initialized (validation
+/// fails loudly for vendored widgets in that case anyway).
+String _resolveVendorRef() {
+  try {
+    final result = Process.runSync(
+      'git',
+      ['-C', 'vendor/js_widget_runtime', 'rev-parse', 'HEAD'],
+    );
+    if (result.exitCode == 0) {
+      final ref = (result.stdout as String).trim();
+      if (ref.isNotEmpty) return ref;
+    }
+  } on ProcessException {
+    // git not available — fall through.
+  }
+  return 'main';
+}
+
 int _runCatalog(ArgResults command) {
   final root = Directory(command['root'] as String);
   final out = Directory(command['out'] as String);
   try {
-    final result = CatalogBuilder(widgetsRoot: root).build(outDir: out);
+    final result = CatalogBuilder(
+      widgetsRoot: root,
+      vendorRef: _resolveVendorRef(),
+    ).build(outDir: out);
     for (final warning in result.warnings) {
       stderr.writeln('warn  $warning');
     }

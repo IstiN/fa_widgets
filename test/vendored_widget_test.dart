@@ -157,8 +157,9 @@ void main() {
       expect(names, contains('core-demo/icon.svg'));
 
       String entry(String name) => utf8.decode(
-        archive.files.firstWhere((f) => f.name == name).content as List<int>,
-      );
+            archive.files.firstWhere((f) => f.name == name).content
+                as List<int>,
+          );
       // Code comes from the VENDOR tree…
       expect(entry('core-demo/widget.js'), contains('vendored'));
       // …the manifest is the MERGE (base version, overlay meta)…
@@ -171,9 +172,8 @@ void main() {
       expect(entry('core-demo/icon.svg'), '<svg>local</svg>');
 
       // The catalog entry mirrors the merged manifest.
-      final catalog =
-          jsonDecode(result.catalogFile.readAsStringSync())
-              as Map<String, dynamic>;
+      final catalog = jsonDecode(result.catalogFile.readAsStringSync())
+          as Map<String, dynamic>;
       final widgetEntry =
           (catalog['widgets'] as List).single as Map<String, dynamic>;
       expect(widgetEntry['version'], '2.3.4');
@@ -185,6 +185,63 @@ void main() {
       final tree = await FixtureTree.create({'local-demo': null});
       final results = validateWidgetsRoot(tree.root);
       expect(results.single.isValid, isTrue);
+    });
+  });
+  group('catalog preview URLs', () {
+    test(
+      'vendored entries point at the runtime repo raw URLs (pinned ref)',
+      () async {
+        final tree = await FixtureTree.create({});
+        final vendor = await Directory.systemTemp.createTemp('faw_vendor');
+        writeVendoredWidget(tree, vendor, 'core-demo');
+        final out = await Directory.systemTemp.createTemp('faw_out');
+
+        final result = CatalogBuilder(
+          widgetsRoot: tree.root,
+          vendorRoot: vendor,
+          vendorRef: 'abc1234',
+        ).build(outDir: out);
+
+        final catalog = jsonDecode(result.catalogFile.readAsStringSync())
+            as Map<String, dynamic>;
+        final entry =
+            (catalog['widgets'] as List).single as Map<String, dynamic>;
+        final preview = entry['preview'] as Map<String, dynamic>;
+        expect(
+          preview['manifest'],
+          'https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/'
+          'abc1234/example/widgets/core-demo/manifest.json',
+        );
+        expect(
+          preview['js'],
+          'https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/'
+          'abc1234/example/widgets/core-demo/widget.js',
+        );
+      },
+    );
+
+    test('local entries point at the fa_widgets repo raw URLs', () async {
+      final tree = await FixtureTree.create({'local-demo': null});
+      final out = await Directory.systemTemp.createTemp('faw_out');
+
+      final result = CatalogBuilder(
+        widgetsRoot: tree.root,
+      ).build(outDir: out);
+
+      final catalog = jsonDecode(result.catalogFile.readAsStringSync())
+          as Map<String, dynamic>;
+      final entry = (catalog['widgets'] as List).single as Map<String, dynamic>;
+      final preview = entry['preview'] as Map<String, dynamic>;
+      expect(
+        preview['manifest'],
+        'https://raw.githubusercontent.com/IstiN/fa_widgets/main/'
+        'widgets/local-demo/manifest.json',
+      );
+      expect(
+        preview['js'],
+        'https://raw.githubusercontent.com/IstiN/fa_widgets/main/'
+        'widgets/local-demo/widget.js',
+      );
     });
   });
 }

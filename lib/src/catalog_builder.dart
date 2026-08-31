@@ -40,6 +40,7 @@ final class CatalogBuilder {
   CatalogBuilder({
     required this.widgetsRoot,
     this.vendorRoot,
+    this.vendorRef = 'main',
     DateTime Function()? now,
   }) : _now = now ?? (() => DateTime.now().toUtc());
 
@@ -49,6 +50,11 @@ final class CatalogBuilder {
   /// sources); the validator defaults it to `../vendor/js_widget_runtime`
   /// next to [widgetsRoot].
   final Directory? vendorRoot;
+
+  /// The git ref (tag/sha) the vendor submodule is pinned at — used for
+  /// the `preview` URLs of vendored widgets so the web preview runner
+  /// fetches EXACTLY the code that went into the zip.
+  final String vendorRef;
   final DateTime Function() _now;
 
   /// Validates everything first; only when EVERY widget passes, writes
@@ -98,6 +104,7 @@ final class CatalogBuilder {
           'sha256': sha256.convert(bytes).toString(),
           'sizeBytes': bytes.length,
         },
+        'preview': _previewEntry(result),
       });
     }
     entries.sort(
@@ -123,6 +130,24 @@ final class CatalogBuilder {
       ],
       warnings: warnings,
     );
+  }
+
+  /// Where the web preview runner (jsr's GitHub Pages) fetches this
+  /// widget's manifest.json + widget.js. VENDORED widgets live in the
+  /// runtime repo (the fa_widgets repo only holds the overlay — raw
+  /// github does not follow submodules), pinned at [vendorRef] so the
+  /// preview shows exactly what shipped in the zip; LOCAL widgets live in
+  /// this repo on main.
+  Map<String, String> _previewEntry(WidgetValidation result) {
+    final id = result.manifest!.id;
+    final vendored =
+        File(p.join(result.directory.path, 'overlay.json')).existsSync();
+    final base = vendored
+        ? 'https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/'
+            '$vendorRef/example/widgets/$id'
+        : 'https://raw.githubusercontent.com/IstiN/fa_widgets/main/'
+            'widgets/$id';
+    return {'manifest': '$base/manifest.json', 'js': '$base/widget.js'};
   }
 
   /// Zips [entries] (`path-in-widget` + bytes) under a single root folder
