@@ -1,0 +1,11 @@
+{
+  "icon": "icon.svg",
+  "tags": [
+    "productivity",
+    "timer",
+    "focus"
+  ],
+  "author": "Fa",
+  "minRuntime": "0.4.79",
+  "description": "Pomodoro timer: 25-minute focus / 5-minute break cycles (every 4th break is 15), start/pause/reset/skip, donut progress ring, completed counter persisted in storage"
+}
