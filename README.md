@@ -21,11 +21,39 @@ attached — stable permalinks and rollback points.
 ## Layout
 
 ```
-widgets/<id>/            one folder per widget: manifest.json + widget.js + icon.svg + assets
-lib/, bin/, test/        the Dart tooling that validates and packages the catalog
-docs/                    schema notes
-.github/workflows/       validate.yml (PRs) · publish.yml (rolling release)
+widgets/<id>/            one folder per widget, two kinds:
+    manifest.json + widget.js   LOCAL widgets (Fa-specific APIs, forks)
+    overlay.json + icon.svg     VENDORED widgets — code + base manifest live in
+                                the runtime repo (single source of truth)
+vendor/js_widget_runtime   git submodule: flutter_js_widget_runtime (CORE sources)
+lib/, bin/, test/          the Dart tooling that validates and packages the catalog
+docs/                      schema notes
+.github/workflows/         validate.yml (PRs) · publish.yml (rolling release)
 ```
+
+### Vendored (CORE) widgets
+
+Widgets that use only the portable `jsr` API are **single-sourced** from
+[`flutter_js_widget_runtime`](https://github.com/IstiN/flutter_js_widget_runtime)
+(`example/widgets/<id>/`), vendored here as a git submodule. This repo adds
+only catalog meta in `widgets/<id>/overlay.json`:
+
+```json
+{
+  "icon": "icon.svg",
+  "tags": ["demo"],
+  "author": "Fa",
+  "minRuntime": "0.4.89",
+  "description": "optional override"
+}
+```
+
+`version`/`id`/runtime flags (`network`, `allowedCommands`, …) are FORBIDDEN
+in the overlay — they come from the submodule manifest so the two repos
+cannot drift (validator errors otherwise). Syncing = bumping the submodule
+pin (`git submodule update --remote vendor/js_widget_runtime` on a fresh
+runtime release tag) + push; CI rebuilds the changed zips. After cloning,
+run `git submodule update --init` once.
 
 ## Contributing a widget
 

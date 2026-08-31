@@ -1,0 +1,3 @@
+[submodule "vendor/js_widget_runtime"]
+	path = vendor/js_widget_runtime
+	url = https://github.com/IstiN/flutter_js_widget_runtime.git

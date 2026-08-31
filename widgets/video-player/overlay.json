@@ -1,0 +1,11 @@
+{
+  "icon": "icon.svg",
+  "tags": [
+    "demo",
+    "media",
+    "video"
+  ],
+  "author": "Fa",
+  "minRuntime": "0.4.89",
+  "description": "Cinematic video playback via the video node: source switcher (Big Buck Bunny / Elephants Dream / Sintel), BoxFit selector, native transport controls"
+}

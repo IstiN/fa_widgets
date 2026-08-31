@@ -61,7 +61,8 @@ final class WidgetManifest {
     final version = stringField('version');
 
     final descriptionValue = json['description'];
-    final description = descriptionValue is String ? descriptionValue.trim() : '';
+    final description =
+        descriptionValue is String ? descriptionValue.trim() : '';
 
     final authorValue = json['author'];
     final author = authorValue is String ? authorValue.trim() : '';
@@ -72,7 +73,8 @@ final class WidgetManifest {
       if (tagsValue is List) {
         tags.addAll([
           for (final tag in tagsValue)
-            if (tag is String && tag.trim().isNotEmpty) tag.trim().toLowerCase(),
+            if (tag is String && tag.trim().isNotEmpty)
+              tag.trim().toLowerCase(),
         ]);
       } else {
         errors.add("'tags' must be a list of strings");

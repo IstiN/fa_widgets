@@ -1,0 +1,9 @@
+{
+  "icon": "icon.svg",
+  "tags": [
+    "demo"
+  ],
+  "author": "Fa",
+  "minRuntime": "0.4.79",
+  "description": "Interactive demos of all animation & gesture capabilities"
+}

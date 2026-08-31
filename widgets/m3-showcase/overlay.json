@@ -1,0 +1,10 @@
+{
+  "icon": "icon.svg",
+  "tags": [
+    "demo",
+    "m3"
+  ],
+  "author": "Fa",
+  "minRuntime": "0.4.79",
+  "description": "Material 3 components rendered from a single JSON tree: appBar, banner, searchBar, segmentedButton, radio, tabBar, fab, popupMenu, tooltip, navigationBar."
+}

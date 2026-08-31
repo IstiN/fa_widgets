@@ -1,0 +1,9 @@
+{
+  "icon": "icon.svg",
+  "tags": [
+    "demo"
+  ],
+  "author": "Fa",
+  "minRuntime": "0.4.92",
+  "description": "Current weather for any city using wttr.in"
+}

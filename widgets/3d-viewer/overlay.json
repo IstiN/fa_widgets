@@ -1,0 +1,10 @@
+{
+  "icon": "icon.svg",
+  "tags": [
+    "demo",
+    "3d"
+  ],
+  "author": "Fa",
+  "minRuntime": "0.4.89",
+  "description": "Interactive GLB/GLTF model viewer via jsr.scene3d: load, auto-rotate and reset with a control-room panel"
+}

@@ -1,0 +1,9 @@
+{
+  "icon": "icon.svg",
+  "tags": [
+    "maps"
+  ],
+  "author": "Fa",
+  "minRuntime": "0.4.79",
+  "description": "OpenStreetMap with preset landmarks — tap to drop your own pins"
+}

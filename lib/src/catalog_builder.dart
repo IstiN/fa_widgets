@@ -37,10 +37,18 @@ final class BuiltWidget {
 const int canonicalZipTimestamp = 315532800;
 
 final class CatalogBuilder {
-  CatalogBuilder({required this.widgetsRoot, DateTime Function()? now})
-      : _now = now ?? (() => DateTime.now().toUtc());
+  CatalogBuilder({
+    required this.widgetsRoot,
+    this.vendorRoot,
+    DateTime Function()? now,
+  }) : _now = now ?? (() => DateTime.now().toUtc());
 
   final Directory widgetsRoot;
+
+  /// The `flutter_js_widget_runtime` submodule checkout (vendored widget
+  /// sources); the validator defaults it to `../vendor/js_widget_runtime`
+  /// next to [widgetsRoot].
+  final Directory? vendorRoot;
   final DateTime Function() _now;
 
   /// Validates everything first; only when EVERY widget passes, writes
@@ -49,7 +57,7 @@ final class CatalogBuilder {
   /// the rolling release never ends up half-current, and a rejected build
   /// leaves no artifacts behind.
   CatalogResult build({required Directory outDir}) {
-    final results = validateWidgetsRoot(widgetsRoot);
+    final results = validateWidgetsRoot(widgetsRoot, vendorRoot: vendorRoot);
     final fatal = [
       for (final result in results)
         for (final error in result.errors) error,
@@ -67,7 +75,7 @@ final class CatalogBuilder {
       final id = manifest.id;
       final version = manifest.version;
       final zipPath = p.join(outDir.path, '$id-$version.zip');
-      final bytes = _writeZip(result.directory, rootFolderName: id);
+      final bytes = _writeZip(result.sourceFiles!, rootFolderName: id);
       File(zipPath).writeAsBytesSync(bytes);
 
       entries.add({
@@ -117,25 +125,26 @@ final class CatalogBuilder {
     );
   }
 
-  /// Zips the widget directory with a single root folder [rootFolderName],
-  /// entries sorted by path. Every entry gets the CANONICAL mtime so the
-  /// bytes — and therefore the published sha256 — are deterministic
-  /// across rebuilds: a re-run of the publish pipeline over unchanged
-  /// sources must produce the exact same asset, or the app (which may
-  /// hold a cached catalog) fails installs with a hash mismatch.
-  List<int> _writeZip(Directory dir, {required String rootFolderName}) {
+  /// Zips [entries] (`path-in-widget` + bytes) under a single root folder
+  /// [rootFolderName], entries sorted by path. Every entry gets the
+  /// CANONICAL mtime so the bytes — and therefore the published sha256 —
+  /// are deterministic across rebuilds: a re-run of the publish pipeline
+  /// over unchanged sources must produce the exact same asset, or the app
+  /// (which may hold a cached catalog) fails installs with a hash
+  /// mismatch. The entry list comes from validation — local widget dirs
+  /// verbatim, or vendor code + synthesized merged manifest + local icon
+  /// for vendored widgets.
+  List<int> _writeZip(
+    List<({String path, List<int> bytes})> entries, {
+    required String rootFolderName,
+  }) {
     final encoder = ZipEncoder();
     final archive = Archive();
-    final files = dir.listSync(recursive: true).whereType<File>().toList()
-      ..sort(
-        (File a, File b) => a.path.compareTo(b.path),
-      );
-    for (final file in files) {
-      final relative = p.relative(file.path, from: dir.path);
-      final normalized = relative.replaceAll('\\', '/');
-      final data = file.readAsBytesSync();
+    final sorted = entries.toList()..sort((a, b) => a.path.compareTo(b.path));
+    for (final entry in sorted) {
       archive.addFile(
-        ArchiveFile('$rootFolderName/$normalized', data.length, data)
+        ArchiveFile(
+            '$rootFolderName/${entry.path}', entry.bytes.length, entry.bytes)
           ..compress = true
           ..lastModTime = canonicalZipTimestamp,
       );

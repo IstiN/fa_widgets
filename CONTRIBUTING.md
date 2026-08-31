@@ -7,10 +7,20 @@ validation only on paper — publish still re-validates and fails loudly.
 
 ```sh
 git clone git@github.com:IstiN/fa_widgets.git && cd fa_widgets
+git submodule update --init                  # vendored CORE widget sources
 dart pub get
 dart run bin/fa_widgets.dart validate        # must exit 0
 dart run bin/fa_widgets.dart catalog --out build/catalog
 ```
+
+## Local or vendored?
+
+- Widget calls **Fa-specific APIs** (`jsr.fa.*`) or is a conscious fork →
+  LOCAL: `manifest.json` + `widget.js` here, as below.
+- Widget uses **only the portable `jsr` API** → it belongs to the runtime
+  repo (`flutter_js_widget_runtime/example/widgets/`); here it becomes
+  VENDORED: `overlay.json` + `icon.svg` (see `docs/schema.md` and
+  `README.md` → "Vendored (CORE) widgets"). Do not copy the code.
 
 ## Authoring checklist
 

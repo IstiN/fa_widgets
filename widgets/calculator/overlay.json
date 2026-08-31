@@ -1,0 +1,10 @@
+{
+  "icon": "icon.svg",
+  "tags": [
+    "productivity",
+    "calculator"
+  ],
+  "author": "Fa",
+  "minRuntime": "0.4.79",
+  "description": "Scientific calculator with animated keys"
+}

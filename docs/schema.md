@@ -1,5 +1,31 @@
 # Schema reference
 
+## Two widget kinds
+
+A `widgets/<id>/` folder is one of:
+
+- **LOCAL** — `manifest.json` + `widget.js` (+ assets) all live here.
+  Used for widgets calling Fa-specific APIs (`jsr.fa.*`) and conscious
+  forks (e.g. `fitness-trainer` with its install-dir GLB, `yolo-hello`
+  branding).
+- **VENDORED** — `overlay.json` + `icon.svg` only; the code and the base
+  `manifest.json` come from the `vendor/js_widget_runtime` submodule
+  (`example/widgets/<id>/`, single source of truth). The merged manifest
+  (base + overlay) is what validation, zips and `catalog.json` see.
+
+### `widgets/<id>/overlay.json` (vendored only)
+
+| field | required | notes |
+|-------|----------|-------|
+| `icon` | yes (file must exist locally) | path inside the widget folder |
+| `tags` | – | free-form, lowercased by CI |
+| `author` | – | defaults from the base manifest |
+| `minRuntime` | yes | runtime floor, strict semver |
+| `description` | – | overrides the base description |
+
+Any other key — especially `version` or `id` — is a validation ERROR:
+those are single-sourced from the submodule manifest.
+
 ## `widgets/<id>/manifest.json`
 
 Runtime fields (consumed by the Fa app) + catalog metadata. Unknown keys are
