@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-31T08:22:55.329892Z",
+  "generatedAt": "2026-08-31T08:47:19.543437Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -23,6 +23,28 @@
         "file": "3d-game-1.0.0.zip",
         "sha256": "be4725a5800a4f6ae9bc3b29ccd0ff158a12f8632ae166eab9d560c4d5374708",
         "sizeBytes": 4078
+      }
+    },
+    {
+      "id": "3d-viewer",
+      "name": "3D Model Viewer",
+      "version": "1.0.2",
+      "description": "Interactive GLB/GLTF model viewer via jsr.scene3d: load, auto-rotate and reset with a control-room panel",
+      "author": "Fa",
+      "tags": [
+        "demo",
+        "3d"
+      ],
+      "permissions": {
+        "network": true,
+        "allowedCommands": []
+      },
+      "minRuntime": "0.4.89",
+      "icon": "icon.svg",
+      "zip": {
+        "file": "3d-viewer-1.0.2.zip",
+        "sha256": "357c606f2a127e78895516107a799d0d4d0f0770d81a0d58f1becf2d48911452",
+        "sizeBytes": 3577
       }
     },
     {
@@ -395,6 +417,29 @@
         "file": "stocks-1.0.1.zip",
         "sha256": "0b04114f68ec2a538469c397dedf349fa16ce2023fb00c550f0a7014b8c51cd9",
         "sizeBytes": 3986
+      }
+    },
+    {
+      "id": "video-player",
+      "name": "Video Player",
+      "version": "1.0.2",
+      "description": "Cinematic video playback via the video node: source switcher (Big Buck Bunny / Elephants Dream / Sintel), BoxFit selector, native transport controls",
+      "author": "Fa",
+      "tags": [
+        "demo",
+        "media",
+        "video"
+      ],
+      "permissions": {
+        "network": true,
+        "allowedCommands": []
+      },
+      "minRuntime": "0.4.89",
+      "icon": "icon.svg",
+      "zip": {
+        "file": "video-player-1.0.2.zip",
+        "sha256": "b28f111ce5231504ab9003bf726e91d3b25fabf18adb15ece8d1b9c35780f84b",
+        "sizeBytes": 4284
       }
     },
     {
