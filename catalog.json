@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-31T08:47:19.543437Z",
+  "generatedAt": "2026-08-31T11:10:36.909862Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -43,8 +43,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "3d-viewer-1.0.2.zip",
-        "sha256": "357c606f2a127e78895516107a799d0d4d0f0770d81a0d58f1becf2d48911452",
-        "sizeBytes": 3577
+        "sha256": "add1a8315d43cd446499f78a636459d2b1ba1f6a9f53adbce8cdb157d91c52a9",
+        "sizeBytes": 3543
       }
     },
     {
@@ -66,8 +66,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "adaptive-dashboard-1.0.0.zip",
-        "sha256": "d69e5350fe4911afd58cb1e3e83c9429c40d5e198b1916e82f272d993ff430d3",
-        "sizeBytes": 2471
+        "sha256": "e51abba358c952468e8262b00576efc3ccc3843681bad3ecbb85cf16fe9447fb",
+        "sizeBytes": 2541
       }
     },
     {
@@ -87,8 +87,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "animation-showcase-1.0.0.zip",
-        "sha256": "8253fae14a2d674b742e5c929e11d584bdc6e1ebed27d6e12f8b00e410f093a8",
-        "sizeBytes": 6027
+        "sha256": "cb646a36bafd6897cef468dc97aff91b44faddbdd0111a472117db3f75044ee6",
+        "sizeBytes": 5924
       }
     },
     {
@@ -109,8 +109,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "calculator-1.0.1.zip",
-        "sha256": "988086729d1414788945ee0678c9e8a1237cd1aeb89210e804b6bce756882012",
-        "sizeBytes": 2630
+        "sha256": "0d2536d33f4df14717d8f6e3b4a22f5b2ef7a6652d68411ac47affa39b723fc4",
+        "sizeBytes": 2567
       }
     },
     {
@@ -180,8 +180,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "crypto-1.0.1.zip",
-        "sha256": "1a0c272792423eb5ce8588b4de9b073f1cda5d1f1e5678afd80ff93e9349a88e",
-        "sizeBytes": 3427
+        "sha256": "efaefc3065bc935b94f91e3de17998d461d10607750e2226d8bf6d5bab70397f",
+        "sizeBytes": 3356
       }
     },
     {
@@ -318,8 +318,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "m3-showcase-1.0.0.zip",
-        "sha256": "361c80eeefb9cc34091c15898af9102d9eb76420ab3c82b8774c8047e8e2826f",
-        "sizeBytes": 5444
+        "sha256": "9ae437b9985acab347c0622e8f61000954c3e5950a2a74683e487dc2b38553c0",
+        "sizeBytes": 5340
       }
     },
     {
@@ -339,8 +339,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "map-1.0.1.zip",
-        "sha256": "a6221663baf67fff17573ebdbb4c391463c48e8491551f6b78bbe12b4151ad90",
-        "sizeBytes": 3932
+        "sha256": "9c31f0eb352c89468a6a67a2fd93321ded45718fd3995fb9823ecbc818c78466",
+        "sizeBytes": 3862
       }
     },
     {
@@ -400,13 +400,6 @@
       "tags": [
         "demo"
       ],
-      "platforms": [
-        "ios",
-        "macos",
-        "android",
-        "windows",
-        "linux"
-      ],
       "permissions": {
         "network": true,
         "allowedCommands": []
@@ -415,8 +408,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "stocks-1.0.1.zip",
-        "sha256": "0b04114f68ec2a538469c397dedf349fa16ce2023fb00c550f0a7014b8c51cd9",
-        "sizeBytes": 3986
+        "sha256": "91bed97fb9ab891dca08a32b2c4b245960da8ed6e2a5468cdf3e5babf6254c70",
+        "sizeBytes": 3870
       }
     },
     {
@@ -438,8 +431,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "video-player-1.0.2.zip",
-        "sha256": "b28f111ce5231504ab9003bf726e91d3b25fabf18adb15ece8d1b9c35780f84b",
-        "sizeBytes": 4284
+        "sha256": "3cda955a85907c7b135bd4a15227a50675da5f1fedf15a75cdbc8eef7ca6a84a",
+        "sizeBytes": 4445
       }
     },
     {
@@ -470,7 +463,7 @@
     {
       "id": "weather",
       "name": "Weather",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "description": "Current weather for any city using wttr.in",
       "author": "Fa",
       "tags": [
@@ -480,12 +473,12 @@
         "network": true,
         "allowedCommands": []
       },
-      "minRuntime": "0.4.79",
+      "minRuntime": "0.4.92",
       "icon": "icon.svg",
       "zip": {
-        "file": "weather-1.0.1.zip",
-        "sha256": "608028a4767f7d1105e89d3cb3a854709b4018a75f2bbab1813d00858a49787a",
-        "sizeBytes": 5543
+        "file": "weather-1.1.0.zip",
+        "sha256": "a119421db493d6514ff7de297477fb3ec360fe49e1a8169c6516a1dbd9c03952",
+        "sizeBytes": 4251
       }
     },
     {
