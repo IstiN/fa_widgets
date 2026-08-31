@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-31T14:48:40.618368Z",
+  "generatedAt": "2026-08-31T15:09:11.961980Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -136,7 +136,7 @@
     {
       "id": "calendar",
       "name": "Calendar",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Today's and upcoming events from your system calendar",
       "author": "Fa",
       "tags": [
@@ -153,9 +153,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "calendar-1.0.0.zip",
-        "sha256": "9032ba0cdbcc112c1e1449cf11b255a8bed5daa146dd1bd6d6a6852e751cdf6c",
-        "sizeBytes": 5082
+        "file": "calendar-1.0.1.zip",
+        "sha256": "690d25168b84101a481c9e8f40f452bd14fdcd16b7aac5b68711ca75356f3f0d",
+        "sizeBytes": 5455
       },
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/calendar/manifest.json",
@@ -165,7 +165,7 @@
     {
       "id": "contacts",
       "name": "Contacts",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Search your system contacts, call or text them, add new ones",
       "author": "Fa",
       "tags": [
@@ -182,9 +182,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "contacts-1.0.0.zip",
-        "sha256": "44e4d8948bd9b212744af4ea296d2389b4ca36745571bd714c0f388e9a4e4671",
-        "sizeBytes": 5189
+        "file": "contacts-1.0.1.zip",
+        "sha256": "c7e8832b1eaaec59040b18279ecdc9d99bc6efdd68c9a9db74a242615dfe34ba",
+        "sizeBytes": 5563
       },
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/contacts/manifest.json",
@@ -298,7 +298,7 @@
     {
       "id": "health",
       "name": "Health",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "HealthKit dashboard (steps, heart rate, sleep) with a demo fallback when the bridge is unavailable",
       "author": "Fa",
       "tags": [
@@ -315,9 +315,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "health-1.1.0.zip",
-        "sha256": "7242fa898adfa8a202b5a2b9f3295179bd78acca0aeb2037cdd28a89c8abb23c",
-        "sizeBytes": 4161
+        "file": "health-1.1.1.zip",
+        "sha256": "c2fb8fff543bdce6803333e292ca1bdac0ba0a6825599a6ea23a7f3f2a1abc18",
+        "sizeBytes": 4527
       },
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/health/manifest.json",
