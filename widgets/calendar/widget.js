@@ -58,6 +58,7 @@
   }
 
   function load() {
+    if (!bridgeAvailable()) { renderBridgeStub(); return; }
     loading = true;
     error = null;
     render();

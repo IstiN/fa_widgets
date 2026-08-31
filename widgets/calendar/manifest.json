@@ -2,7 +2,7 @@
   "id": "calendar",
   "name": "Calendar",
   "description": "Today's and upcoming events from your system calendar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "platforms": [
     "ios",
     "macos"

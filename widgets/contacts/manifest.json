@@ -2,7 +2,7 @@
   "id": "contacts",
   "name": "Contacts",
   "description": "Search your system contacts, call or text them, add new ones",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "platforms": [
     "ios",
     "macos"

@@ -26,6 +26,7 @@
   ];
 
   function checkBridge() {
+    if (!bridgeAvailable()) { renderBridgeStub(); return; }
     loading = true;
     render();
     jsr.fa.health.summary({ days: DAYS }).then(function(result) {

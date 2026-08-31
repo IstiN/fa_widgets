@@ -24,6 +24,7 @@
   }
 
   function search() {
+    if (!bridgeAvailable()) { renderBridgeStub(); return; }
     loading = true;
     error = null;
     selected = null;
