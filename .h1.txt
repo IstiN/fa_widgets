@@ -1,3 +1,0 @@
-HOOK_EXIT=3
-41 issues found.
-HOOK_EXIT=3

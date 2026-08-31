@@ -5,3 +5,9 @@ coverage/
 .idea/
 .DS_Store
 pubspec.lock
+# Agent scratch dumps (build/test logs must live in /tmp, not the repo)
+/.*.txt
+/.*.log
+/*.txt
+/*.log
+!/*.LICENSE.txt
