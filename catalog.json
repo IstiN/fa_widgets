@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-30T20:26:27.121720Z",
+  "generatedAt": "2026-08-31T07:07:40.722948Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -23,6 +23,29 @@
         "file": "3d-game-1.0.0.zip",
         "sha256": "be4725a5800a4f6ae9bc3b29ccd0ff158a12f8632ae166eab9d560c4d5374708",
         "sizeBytes": 4078
+      }
+    },
+    {
+      "id": "adaptive-dashboard",
+      "name": "Adaptive Dashboard",
+      "version": "1.0.0",
+      "description": "Adaptive-layout reference: the adaptive node switches between a single column, a 2-column grid and a floating grid by allotted width (M3 breakpoints), gridView.maxCrossAxisExtent floats the column count, jsr.breakpoint/adaptive pick values, jsr.onViewport re-renders on resize",
+      "author": "Fa",
+      "tags": [
+        "demo",
+        "adaptive",
+        "layout"
+      ],
+      "permissions": {
+        "network": false,
+        "allowedCommands": []
+      },
+      "minRuntime": "0.4.87",
+      "icon": "icon.svg",
+      "zip": {
+        "file": "adaptive-dashboard-1.0.0.zip",
+        "sha256": "d69e5350fe4911afd58cb1e3e83c9429c40d5e198b1916e82f272d993ff430d3",
+        "sizeBytes": 2471
       }
     },
     {
