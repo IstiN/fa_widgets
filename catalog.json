@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-31T11:13:19.456146Z",
+  "generatedAt": "2026-08-31T12:35:45.412071Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -23,6 +23,10 @@
         "file": "3d-game-1.0.0.zip",
         "sha256": "be4725a5800a4f6ae9bc3b29ccd0ff158a12f8632ae166eab9d560c4d5374708",
         "sizeBytes": 4078
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/3d-game/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/3d-game/widget.js"
       }
     },
     {
@@ -45,6 +49,10 @@
         "file": "3d-viewer-1.0.2.zip",
         "sha256": "add1a8315d43cd446499f78a636459d2b1ba1f6a9f53adbce8cdb157d91c52a9",
         "sizeBytes": 3543
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/3d-viewer/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/3d-viewer/widget.js"
       }
     },
     {
@@ -68,6 +76,10 @@
         "file": "adaptive-dashboard-1.0.0.zip",
         "sha256": "e51abba358c952468e8262b00576efc3ccc3843681bad3ecbb85cf16fe9447fb",
         "sizeBytes": 2541
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/adaptive-dashboard/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/adaptive-dashboard/widget.js"
       }
     },
     {
@@ -89,6 +101,10 @@
         "file": "animation-showcase-1.0.0.zip",
         "sha256": "cb646a36bafd6897cef468dc97aff91b44faddbdd0111a472117db3f75044ee6",
         "sizeBytes": 5924
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/animation-showcase/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/animation-showcase/widget.js"
       }
     },
     {
@@ -111,6 +127,10 @@
         "file": "calculator-1.0.1.zip",
         "sha256": "0d2536d33f4df14717d8f6e3b4a22f5b2ef7a6652d68411ac47affa39b723fc4",
         "sizeBytes": 2567
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/calculator/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/calculator/widget.js"
       }
     },
     {
@@ -136,6 +156,10 @@
         "file": "calendar-1.0.0.zip",
         "sha256": "9032ba0cdbcc112c1e1449cf11b255a8bed5daa146dd1bd6d6a6852e751cdf6c",
         "sizeBytes": 5082
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/calendar/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/calendar/widget.js"
       }
     },
     {
@@ -161,6 +185,10 @@
         "file": "contacts-1.0.0.zip",
         "sha256": "44e4d8948bd9b212744af4ea296d2389b4ca36745571bd714c0f388e9a4e4671",
         "sizeBytes": 5189
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/contacts/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/contacts/widget.js"
       }
     },
     {
@@ -182,6 +210,10 @@
         "file": "crypto-1.0.1.zip",
         "sha256": "efaefc3065bc935b94f91e3de17998d461d10607750e2226d8bf6d5bab70397f",
         "sizeBytes": 3356
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/crypto/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/crypto/widget.js"
       }
     },
     {
@@ -203,6 +235,10 @@
         "file": "english-teacher-2.0.0.zip",
         "sha256": "f76cccceeef8e6ec66d0ea848047bc05111447ecdae7a24e8367d71786d23f6f",
         "sizeBytes": 9758
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/english-teacher/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/english-teacher/widget.js"
       }
     },
     {
@@ -226,6 +262,10 @@
         "file": "fitness-trainer-2.0.1.zip",
         "sha256": "52c5627343e15b19e93408a2c9770eaa23c561e755b74c887fbaca6bcfb36705",
         "sizeBytes": 3322769
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/fitness-trainer/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/fitness-trainer/widget.js"
       }
     },
     {
@@ -249,6 +289,10 @@
         "file": "focus-timer-1.0.1.zip",
         "sha256": "5def211511b4458deffcb8aebe85fca38e2df6c7957b673a3fb65fe29ac2e181",
         "sizeBytes": 2729
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/focus-timer/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/focus-timer/widget.js"
       }
     },
     {
@@ -274,6 +318,10 @@
         "file": "health-1.1.0.zip",
         "sha256": "7242fa898adfa8a202b5a2b9f3295179bd78acca0aeb2037cdd28a89c8abb23c",
         "sizeBytes": 4161
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/health/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/health/widget.js"
       }
     },
     {
@@ -298,6 +346,10 @@
         "file": "homekit-1.1.0.zip",
         "sha256": "4ce68684de2646267caea6efa6be84bdcc9f1214d0ca987f76a33861b44ff8b4",
         "sizeBytes": 6810
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/homekit/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/homekit/widget.js"
       }
     },
     {
@@ -320,6 +372,10 @@
         "file": "m3-showcase-1.0.0.zip",
         "sha256": "9ae437b9985acab347c0622e8f61000954c3e5950a2a74683e487dc2b38553c0",
         "sizeBytes": 5340
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/m3-showcase/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/m3-showcase/widget.js"
       }
     },
     {
@@ -341,6 +397,10 @@
         "file": "map-1.0.1.zip",
         "sha256": "9c31f0eb352c89468a6a67a2fd93321ded45718fd3995fb9823ecbc818c78466",
         "sizeBytes": 3862
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/map/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/map/widget.js"
       }
     },
     {
@@ -364,6 +424,10 @@
         "file": "pomodoro-1.0.2.zip",
         "sha256": "6a80df9cfc136f60b5580dfe3bc1ecda6aea98c202ebdd9d3fff675ed272fad9",
         "sizeBytes": 3373
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/pomodoro/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/pomodoro/widget.js"
       }
     },
     {
@@ -389,6 +453,10 @@
         "file": "reminders-1.0.0.zip",
         "sha256": "fcb78094d592fd1cdb868909d17ed475d16b72ad9238d910bfd548c8199355d3",
         "sizeBytes": 5702
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/reminders/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/reminders/widget.js"
       }
     },
     {
@@ -410,6 +478,10 @@
         "file": "stocks-1.0.1.zip",
         "sha256": "91bed97fb9ab891dca08a32b2c4b245960da8ed6e2a5468cdf3e5babf6254c70",
         "sizeBytes": 3870
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/stocks/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/stocks/widget.js"
       }
     },
     {
@@ -433,6 +505,10 @@
         "file": "video-player-1.0.2.zip",
         "sha256": "3cda955a85907c7b135bd4a15227a50675da5f1fedf15a75cdbc8eef7ca6a84a",
         "sizeBytes": 4445
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/video-player/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/video-player/widget.js"
       }
     },
     {
@@ -458,6 +534,10 @@
         "file": "voice-notes-1.0.0.zip",
         "sha256": "49baed72c8b2a942cc7fac11f0fd07793abf4aec2f2aaebe7a561392c73f3c3f",
         "sizeBytes": 3576
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/voice-notes/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/voice-notes/widget.js"
       }
     },
     {
@@ -479,6 +559,10 @@
         "file": "weather-1.1.0.zip",
         "sha256": "a119421db493d6514ff7de297477fb3ec360fe49e1a8169c6516a1dbd9c03952",
         "sizeBytes": 4251
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/weather/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/c49be93d90494fa71184460278e6ef47d434dec6/example/widgets/weather/widget.js"
       }
     },
     {
@@ -500,6 +584,10 @@
         "file": "yolo-hello-1.0.1.zip",
         "sha256": "12f6384c13573f0a205571a3e8f5969a287a347b6a3986e955ac09f01871e6e0",
         "sizeBytes": 2383
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/yolo-hello/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/yolo-hello/widget.js"
       }
     }
   ]
