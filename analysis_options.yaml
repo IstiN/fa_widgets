@@ -5,3 +5,8 @@ analyzer:
     strict-casts: true
     strict-inference: true
     strict-raw-types: true
+
+  # The flutter_js_widget_runtime submodule is Flutter code vendored for
+  # widget sources only — never part of this package's analysis/build.
+  exclude:
+    - vendor/**

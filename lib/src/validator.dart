@@ -89,7 +89,6 @@ WidgetValidation validateWidgetDirectory(
   final id = p.basename(dir.path);
 
   void error(String message) => errors.add(ValidationError('$id: $message'));
-  void warn(String message) => warnings.add(ValidationWarning('$id: $message'));
 
   final overlayFile = File('${dir.path}/overlay.json');
   final manifestFile = File('${dir.path}/manifest.json');
