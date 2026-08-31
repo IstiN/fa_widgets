@@ -2,7 +2,7 @@
   "id": "calculator",
   "name": "Calculator",
   "description": "Scientific calculator with animated keys",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icon": "icon.svg",
   "author": "Fa",
   "tags": ["productivity", "calculator"],

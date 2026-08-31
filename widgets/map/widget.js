@@ -41,7 +41,6 @@
   function mapNode() {
     var node = {
       type: 'map',
-      height: 340,
       center: center,
       zoom: zoom,
       markers: allMarkers().map(function(m) {
@@ -162,13 +161,14 @@
             { type: 'sizedBox', width: 8 },
             zoomButton('+', 'zoom_in'),
           ] } },
-        // The map
-        { type: 'padding', padding: [12, 0, 12, 0], child: {
+        // The map — fills whatever height the host allots (expanded),
+        // no hardcoded pixel height.
+        { type: 'expanded', child: { type: 'padding', padding: [12, 0, 12, 0], child: {
           type: 'container',
           decoration: { borderRadius: 12,
             border: { color: t.border, width: 1 } },
           child: { type: 'clipRRect', borderRadius: 12, child: mapNode() },
-        } },
+        } } },
         { type: 'padding', padding: [16, 6, 16, 4], child: {
           type: 'text',
           data: 'Tap the map to drop a pin · tap a marker for details',

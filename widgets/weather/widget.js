@@ -54,8 +54,8 @@
       duration: 400,
       curve: 'easeInOut',
       child: {
-      type: 'column',
-      crossAxisAlignment: 'stretch',
+      type: 'listView',
+      shrinkWrap: false,
       children: [
         // Header with animated temperature
         {type:'animatedContainer', duration:500, curve:'easeOut',

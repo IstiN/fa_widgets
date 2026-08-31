@@ -64,7 +64,7 @@
 
     jsr.render({
       type:'padding',padding:[12,12,12,12],
-      child:{type:'column',crossAxisAlignment:'stretch',children:[display].concat(rows)},
+      child:{type:'listView',shrinkWrap:false,children:[display].concat(rows)},
     });
     jsr.exportState({
       expression: expr,

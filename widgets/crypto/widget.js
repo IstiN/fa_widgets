@@ -69,8 +69,8 @@
       });
 
       jsr.render({
-        type:'column',
-        crossAxisAlignment:'stretch',
+        type:'listView',
+        shrinkWrap:false,
         children:[
           {type:'padding',padding:[12,12,12,8],child:{type:'column',
             crossAxisAlignment:'stretch',
@@ -120,7 +120,7 @@
       var arrow = chg >= 0 ? '▲' : '▼';
 
       jsr.render({
-        type:'column', crossAxisAlignment:'stretch',
+        type:'listView', shrinkWrap:false,
         children:[
           // Header
           {type:'padding', padding:[12,12,12,8], child:{type:'row',

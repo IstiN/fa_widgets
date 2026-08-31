@@ -2,7 +2,7 @@
   "id": "weather",
   "name": "Weather",
   "description": "Current weather for any city using wttr.in",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icon": "icon.svg",
   "allowedCommands": [],
   "network": true,

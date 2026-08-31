@@ -2,7 +2,7 @@
   "id": "map",
   "name": "Map",
   "description": "OpenStreetMap with preset landmarks — tap to drop your own pins",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icon": "icon.svg",
   "allowedCommands": [],
   "network": true,
