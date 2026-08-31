@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-31T11:10:36.909862Z",
+  "generatedAt": "2026-08-31T11:13:19.456146Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -362,8 +362,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "pomodoro-1.0.2.zip",
-        "sha256": "6876a4cbdf77b8bd9778349b261629e815eb525134b3856b2d4baca6d173253f",
-        "sizeBytes": 3206
+        "sha256": "6a80df9cfc136f60b5580dfe3bc1ecda6aea98c202ebdd9d3fff675ed272fad9",
+        "sizeBytes": 3373
       }
     },
     {
