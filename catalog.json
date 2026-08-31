@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-31T17:37:51.803518Z",
+  "generatedAt": "2026-08-31T19:05:14.297300Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -514,8 +514,8 @@
     {
       "id": "voice-notes",
       "name": "Voice Notes",
-      "version": "1.0.0",
-      "description": "Record short voice takes and keep their transcripts",
+      "version": "1.1.0",
+      "description": "Record voice takes with a Record/Stop toggle and play them back; transcripts are kept when available",
       "author": "Fa",
       "tags": [
         "voice"
@@ -528,12 +528,12 @@
         "network": false,
         "allowedCommands": []
       },
-      "minRuntime": "0.4.79",
+      "minRuntime": "0.4.100",
       "icon": "icon.svg",
       "zip": {
-        "file": "voice-notes-1.0.0.zip",
-        "sha256": "49baed72c8b2a942cc7fac11f0fd07793abf4aec2f2aaebe7a561392c73f3c3f",
-        "sizeBytes": 3576
+        "file": "voice-notes-1.1.0.zip",
+        "sha256": "a6c21074bd6713762f3cf68e503192ba2336c8cc65d91011e52d87e12674b24e",
+        "sizeBytes": 3908
       },
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/voice-notes/manifest.json",
