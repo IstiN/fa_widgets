@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-31T07:07:40.722948Z",
+  "generatedAt": "2026-08-31T07:15:23.413752Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -72,7 +72,7 @@
     {
       "id": "calculator",
       "name": "Calculator",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Scientific calculator with animated keys",
       "author": "Fa",
       "tags": [
@@ -86,9 +86,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "calculator-1.0.0.zip",
-        "sha256": "31fb41297405da3ec1a39260eac223397c873c8fb4e79f7182ca1d4e44d0f17c",
-        "sizeBytes": 2620
+        "file": "calculator-1.0.1.zip",
+        "sha256": "988086729d1414788945ee0678c9e8a1237cd1aeb89210e804b6bce756882012",
+        "sizeBytes": 2630
       }
     },
     {
@@ -144,7 +144,7 @@
     {
       "id": "crypto",
       "name": "Crypto Prices",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Live BTC, ETH, SOL prices via CoinGecko",
       "author": "Fa",
       "tags": [
@@ -157,9 +157,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "crypto-1.0.0.zip",
-        "sha256": "e87f2239de1e6654b2efe1c50eb32783350c0f2ec8acc5617c55a83f2300c6e8",
-        "sizeBytes": 3423
+        "file": "crypto-1.0.1.zip",
+        "sha256": "1a0c272792423eb5ce8588b4de9b073f1cda5d1f1e5678afd80ff93e9349a88e",
+        "sizeBytes": 3427
       }
     },
     {
@@ -186,7 +186,7 @@
     {
       "id": "fitness-trainer",
       "name": "Fitness Trainer",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "description": "Guided workout with a 3D animated coach — press start and follow along",
       "author": "Fa",
       "tags": [
@@ -201,9 +201,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "fitness-trainer-2.0.0.zip",
-        "sha256": "c7ec6ad5d8866ae9ceac35a5660ffd04f9c72b187ce88d503e39aa697e1f61fc",
-        "sizeBytes": 3322688
+        "file": "fitness-trainer-2.0.1.zip",
+        "sha256": "52c5627343e15b19e93408a2c9770eaa23c561e755b74c887fbaca6bcfb36705",
+        "sizeBytes": 3322769
       }
     },
     {
@@ -303,7 +303,7 @@
     {
       "id": "map",
       "name": "Map",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "OpenStreetMap with preset landmarks — tap to drop your own pins",
       "author": "Fa",
       "tags": [
@@ -316,9 +316,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "map-1.0.0.zip",
-        "sha256": "17d21f0ffcf353aeaab9889b7ee30e5e66ff680e7e05adbc09270e5aac06db44",
-        "sizeBytes": 3878
+        "file": "map-1.0.1.zip",
+        "sha256": "a6221663baf67fff17573ebdbb4c391463c48e8491551f6b78bbe12b4151ad90",
+        "sizeBytes": 3932
       }
     },
     {
@@ -372,7 +372,7 @@
     {
       "id": "stocks",
       "name": "Stock Prices",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Real-time stock quotes",
       "author": "Fa",
       "tags": [
@@ -392,9 +392,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "stocks-1.0.0.zip",
-        "sha256": "bc0677176838dfac795fd895e7dd2ad3a3bd63719e7b87f0ca0fb4695863df61",
-        "sizeBytes": 3977
+        "file": "stocks-1.0.1.zip",
+        "sha256": "0b04114f68ec2a538469c397dedf349fa16ce2023fb00c550f0a7014b8c51cd9",
+        "sizeBytes": 3986
       }
     },
     {
@@ -425,7 +425,7 @@
     {
       "id": "weather",
       "name": "Weather",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Current weather for any city using wttr.in",
       "author": "Fa",
       "tags": [
@@ -438,15 +438,15 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "weather-1.0.0.zip",
-        "sha256": "a976fb00b87a250aa9d6d0ab99a5af7919db98f127da2b55c773da347daff8f5",
-        "sizeBytes": 5536
+        "file": "weather-1.0.1.zip",
+        "sha256": "608028a4767f7d1105e89d3cb3a854709b4018a75f2bbab1813d00858a49787a",
+        "sizeBytes": 5543
       }
     },
     {
       "id": "yolo-hello",
       "name": "Hello Animation",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Interactive demo: animations, gestures, requestAnimationFrame",
       "author": "Fa",
       "tags": [
@@ -459,9 +459,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "yolo-hello-1.0.0.zip",
-        "sha256": "02126a97b8a6833c58d4b74c0674f80c72f4288313f5e83c2441297873b43fed",
-        "sizeBytes": 2257
+        "file": "yolo-hello-1.0.1.zip",
+        "sha256": "12f6384c13573f0a205571a3e8f5969a287a347b6a3986e955ac09f01871e6e0",
+        "sizeBytes": 2383
       }
     }
   ]
