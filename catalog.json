@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-31T12:35:45.412071Z",
+  "generatedAt": "2026-08-31T12:38:35.449836Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
       "id": "3d-game",
       "name": "3D Dodge Game",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "description": "Dodge the falling blocks in 3D — drag to steer",
       "author": "Fa",
       "tags": [
@@ -20,9 +20,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "3d-game-1.0.0.zip",
-        "sha256": "be4725a5800a4f6ae9bc3b29ccd0ff158a12f8632ae166eab9d560c4d5374708",
-        "sizeBytes": 4078
+        "file": "3d-game-1.0.2.zip",
+        "sha256": "24155fd8befa2f8901c832dc65e919c7a55869a8bb80f3995c8e52ab093ec9f8",
+        "sizeBytes": 4466
       },
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/3d-game/manifest.json",
@@ -271,7 +271,7 @@
     {
       "id": "focus-timer",
       "name": "Focus Timer",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Pomodoro-style focus timer: 25-minute focus / 5-minute break cycles with start, pause and reset",
       "author": "Fa",
       "tags": [
@@ -286,9 +286,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "focus-timer-1.0.1.zip",
-        "sha256": "5def211511b4458deffcb8aebe85fca38e2df6c7957b673a3fb65fe29ac2e181",
-        "sizeBytes": 2729
+        "file": "focus-timer-1.0.2.zip",
+        "sha256": "0ceb83d51d701e9882b708c2b8e3699c49448f852b902d5a5784ef386b3136bc",
+        "sizeBytes": 2974
       },
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/focus-timer/manifest.json",
@@ -568,7 +568,7 @@
     {
       "id": "yolo-hello",
       "name": "Hello Animation",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Interactive demo: animations, gestures, requestAnimationFrame",
       "author": "Fa",
       "tags": [
@@ -581,9 +581,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "yolo-hello-1.0.1.zip",
-        "sha256": "12f6384c13573f0a205571a3e8f5969a287a347b6a3986e955ac09f01871e6e0",
-        "sizeBytes": 2383
+        "file": "yolo-hello-1.0.2.zip",
+        "sha256": "55cebd63dcceeb678477bfd2e643fbfafa52d460b8201954240e5d216b980725",
+        "sizeBytes": 2346
       },
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/yolo-hello/manifest.json",
