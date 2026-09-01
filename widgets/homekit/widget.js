@@ -61,6 +61,40 @@
     });
   }
 
+  // Raw HomeKit type UUIDs (stable Apple constants — the channel passes
+  // them through un-normalized, uppercase).
+  var HK_SVC_WINDOW_COVERING = '00089-0000-1000-8000-0026BB765291';
+  var HK_CURRENT_POSITION = '0006D-0000-1000-8000-0026BB765291';
+  var HK_TARGET_POSITION = '0007C-0000-1000-8000-0026BB765291';
+
+  function hkType(x) { return String(x || '').toUpperCase(); }
+
+  function curtainCharacteristic(a, typeUuid) {
+    for (var i = 0; i < (a.services || []).length; i++) {
+      var svc = a.services[i];
+      for (var j = 0; j < (svc.characteristics || []).length; j++) {
+        var c = svc.characteristics[j];
+        if (hkType(c.type) === typeUuid) return c;
+      }
+    }
+    return null;
+  }
+
+  function isCurtain(a) {
+    if (curtainCharacteristic(a, HK_TARGET_POSITION)) return true;
+    for (var i = 0; i < (a.services || []).length; i++) {
+      if (hkType(a.services[i].type) === HK_SVC_WINDOW_COVERING) return true;
+    }
+    return false;
+  }
+
+  // Last reported position % (0 = closed, 100 = open), null when unknown.
+  function curtainPosition(a) {
+    var c = curtainCharacteristic(a, HK_CURRENT_POSITION) ||
+            curtainCharacteristic(a, HK_TARGET_POSITION);
+    return c && typeof c.value === 'number' ? Math.round(c.value) : null;
+  }
+
   function findAccessory(id) {
     for (var i = 0; i < (accessories || []).length; i++) {
       if (accessories[i].id === id) return accessories[i];
@@ -156,6 +190,11 @@
     if (a.category === 'lock') {
       return { name: 'lock', color: a.isOn ? '#22c55e' : '#f43f5e' };
     }
+    if (isCurtain(a)) {
+      var pos = curtainPosition(a);
+      return { name: 'unfold_more',
+        color: pos !== null && pos > 0 ? '#22c55e' : t.muted };
+    }
     // switch / outlet / anything else
     return { name: 'power_settings_new', color: a.isOn ? '#22c55e' : t.muted };
   }
@@ -163,13 +202,24 @@
   function accessoryStatus(a) {
     var parts = [];
     if (!a.reachable) parts.push('Unreachable');
+    if (isCurtain(a)) {
+      var pos = curtainPosition(a);
+      parts.push(pos === null ? 'Position unknown'
+        : pos === 0 ? 'Closed'
+        : pos === 100 ? 'Open'
+        : pos + '% open');
+      return parts.join(' · ');
+    }
     if (a.isOn === true) parts.push('On');
     if (a.isOn === false) parts.push('Off');
     if (typeof a.brightness === 'number') parts.push(a.brightness + '%');
     if (typeof a.targetTemperature === 'number') {
       parts.push(a.targetTemperature.toFixed(1) + '°C');
     }
-    return parts.length ? parts.join(' · ') : a.category;
+    if (parts.length) return parts.join(' · ');
+    // Unknown categories arrive as raw HomeKit UUIDs — never show those.
+    var cat = String(a.category || '');
+    return /^[0-9A-Fa-f-]{30,}$/.test(cat) ? 'Accessory' : cat;
   }
 
   function stepButton(label, action, enabled) {
@@ -182,6 +232,19 @@
         child: { type: 'text', data: label,
           style: { color: enabled ? t.text : t.muted, fontSize: 14,
             fontWeight: 'w700' } } },
+    };
+  }
+
+  function curtainButton(label, action, enabled) {
+    return {
+      type: 'inkWell', onTap: enabled ? action : null, borderRadius: 8,
+      child: { type: 'container',
+        padding: [8, 5, 8, 5],
+        decoration: { color: t.bg, borderRadius: 8,
+          border: { color: t.border, width: 1 } },
+        child: { type: 'text', data: label,
+          style: { color: enabled ? t.accent : t.muted, fontSize: 11,
+            fontWeight: 'w600' } } },
     };
   }
 
@@ -231,6 +294,13 @@
       controls.push(stepButton('−', 'tempdown_' + a.id, enabled));
       controls.push({ type: 'sizedBox', width: 6 });
       controls.push(stepButton('+', 'tempup_' + a.id, enabled));
+    }
+    if (isCurtain(a)) {
+      controls.push(curtainButton('Open', 'curtain_' + a.id + '_100', enabled));
+      controls.push({ type: 'sizedBox', width: 6 });
+      controls.push(curtainButton('50%', 'curtain_' + a.id + '_50', enabled));
+      controls.push({ type: 'sizedBox', width: 6 });
+      controls.push(curtainButton('Close', 'curtain_' + a.id + '_0', enabled));
     }
     if (controls.length) {
       children.push({ type: 'sizedBox', height: 8 });
@@ -493,6 +563,25 @@
   }
 
   function handleRealEvent(actionId) {
+    // Curtain actions carry the position as a suffix
+    // ('curtain_<id>_<pos>') — parse before the generic id slice.
+    if (actionId.indexOf('curtain_') === 0) {
+      var tail = actionId.substring('curtain_'.length);
+      var splitAt = tail.lastIndexOf('_');
+      var curtainId = tail.substring(0, splitAt);
+      var curtainPos = Number(tail.substring(splitAt + 1));
+      var curtain = findAccessory(curtainId);
+      if (!curtain || !curtain.reachable) return;
+      write(jsr.fa.home.write({
+        id: curtainId, type: HK_TARGET_POSITION, value: curtainPos,
+        name: curtain.name, room: curtain.room,
+      }), function() {
+        var c = curtainCharacteristic(curtain, HK_CURRENT_POSITION) ||
+                curtainCharacteristic(curtain, HK_TARGET_POSITION);
+        if (c) c.value = curtainPos;
+      });
+      return;
+    }
     var id = actionId.slice(actionId.indexOf('_') + 1);
     var a = findAccessory(id);
     if (!a || !a.reachable) return;

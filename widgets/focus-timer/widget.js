@@ -7,6 +7,7 @@
   var BREAK_SECONDS = 5 * 60;
 
   var mode = 'focus'; // 'focus' | 'break'
+  var viewport = null; // {width, height} once the host reports it
   var remaining = FOCUS_SECONDS;
   var running = false;
   var timerId = null;
@@ -100,9 +101,90 @@
     return totalSeconds() > 0 ? (totalSeconds() - remaining) / totalSeconds() : 0;
   }
 
+  // Tiles come in many sizes — a short viewport (2x2 tile ≈ 160px,
+  // landing cards) gets the compact face: time + start/pause + reset,
+  // no header/progress/cycles (they never fit and clip ugly).
+  function isCompact() {
+    return viewport != null && viewport.height > 0 && viewport.height < 210;
+  }
+
   function render() {
     var progress = ringProgress();
     var timeColor = mode === 'focus' ? '#fbbf24' : '#4ade80';
+
+    if (isCompact()) {
+      jsr.render({
+        type: 'container',
+        padding: [10, 8, 10, 8],
+        child: {
+          type: 'column',
+          mainAxisAlignment: 'center',
+          crossAxisAlignment: 'center',
+          children: [
+            {
+              type: 'text',
+              data: fmt(remaining),
+              style: {
+                color: timeColor,
+                fontSize: 30,
+                fontWeight: 'w700',
+                textAlign: 'center',
+              },
+            },
+            { type: 'sizedBox', height: 4 },
+            {
+              type: 'text',
+              data: mode === 'focus' ? 'FOCUS' : 'BREAK',
+              style: { color: '#64748b', fontSize: 10, fontWeight: 'w600' },
+            },
+            { type: 'sizedBox', height: 8 },
+            {
+              type: 'row',
+              mainAxisAlignment: 'center',
+              children: [
+                {
+                  type: 'gestureDetector',
+                  onTap: 'toggle',
+                  child: {
+                    type: 'container',
+                    decoration: { color: accent(), borderRadius: 16 },
+                    padding: [12, 6, 12, 6],
+                    child: {
+                      type: 'text',
+                      data: running ? 'Pause' : 'Start',
+                      style: {
+                        color: '#0f172a',
+                        fontSize: 12,
+                        fontWeight: 'w700',
+                      },
+                    },
+                  },
+                },
+                { type: 'sizedBox', width: 10 },
+                {
+                  type: 'gestureDetector',
+                  onTap: 'reset',
+                  child: {
+                    type: 'text',
+                    data: 'Reset',
+                    style: { color: '#94a3b8', fontSize: 12 },
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      });
+      jsr.exportState({
+        mode: mode,
+        running: running,
+        remainingSeconds: remaining,
+        display: fmt(remaining),
+        completedCycles: completedCycles,
+        progress: progress,
+      });
+      return;
+    }
 
     var controls = {
       type: 'row',
@@ -228,6 +310,12 @@
   }
 
   jsr.onEvent(handleEvent);
+  if (jsr.onViewport) {
+    jsr.onViewport(function (v) {
+      viewport = v;
+      render();
+    });
+  }
   jsr.setTitle('Focus Timer');
   render();
 })();

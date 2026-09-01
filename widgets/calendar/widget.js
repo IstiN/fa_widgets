@@ -309,7 +309,13 @@
           ] } },
         { type: 'divider', color: t.border, height: 1 },
         noticeLine(),
-        body(),
+        // The day list outgrows any phone quickly (10+ events) — pin the
+        // chrome and scroll the body. A plain column root clipped the
+        // overflow instead (owner report: 'calendar doesn't scroll').
+        { type: 'expanded', child: {
+          type: 'listView', shrinkWrap: false, padding: [0, 0, 0, 24],
+          children: [ body() ],
+        } },
       ],
     });
     jsr.exportState({

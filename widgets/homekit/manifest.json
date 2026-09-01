@@ -1,7 +1,7 @@
 {
   "id": "homekit",
   "name": "HomeKit Demo",
-  "description": "Control HomeKit accessories — rooms, lights, switches, thermostats (iOS)",
+  "description": "HomeKit control: lights, switches, thermostats — and window coverings (curtains/blinds) with Open/50%/Close",
   "version": "1.1.0",
   "platforms": [
     "ios"
