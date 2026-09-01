@@ -20,9 +20,28 @@
       type: 'thermostat', temp: 21.5 },
     { id: 'front-lock', name: 'Front Door', room: 'Entry',
       type: 'lock', locked: true },
+    { id: 'curtains', name: 'Curtains', room: 'Bedroom',
+      type: 'curtain', position: 0 },
   ];
 
   var devices = null; // demo panel state (fallback mode only)
+  var activity = []; // recent real-mode actions, newest first (cap 8)
+
+  function log(msg) {
+    try { jsr.log('[homekit] ' + msg); } catch (e) {}
+  }
+
+  function logActivity(name, action) {
+    activity.unshift({ name: name, action: action, at: Date.now() });
+    if (activity.length > 8) activity.length = 8;
+    try { jsr.storage.set('activity', activity); } catch (e) {}
+  }
+
+  function fmtTime(ms) {
+    var d = new Date(ms);
+    function p(n) { return n < 10 ? '0' + n : '' + n; }
+    return p(d.getHours()) + ':' + p(d.getMinutes());
+  }
 
   function clone(list) {
     return list.map(function(d) {
@@ -73,6 +92,7 @@
       homes = (result && !result.__error && result.homes) || null;
       render();
     }, function() { /* the list call below reports the bridge error */ });
+    log('checkBridge: querying accessories…');
     jsr.fa.home.list().then(function(result) {
       loading = false;
       if (result && result.__error) {
@@ -81,6 +101,16 @@
       } else {
         bridgeError = null;
         accessories = (result && result.accessories) || [];
+        log('list ok: ' + accessories.length + ' accessories, categories: ' +
+            accessories.map(function(a) {
+              return a.name + '=' + a.category; }).join(', '));
+        render();
+        loading = true; // enrichment phase — keep the spinner honest
+        enrichUnknown(accessories, function() {
+          loading = false;
+          render();
+        });
+        return;
       }
       render();
     }, function(e) {
@@ -91,9 +121,43 @@
     });
   }
 
+  var FRIENDLY_CATEGORIES = { lightbulb: 1, switch: 1, outlet: 1,
+    thermostat: 1 };
+
+  // The list payload carries no services/characteristics — unknown-category
+  // accessories are enriched via home.read so curtains/blinds get their
+  // controls (the targetPosition characteristic only shows up there).
+  function enrichUnknown(list, done) {
+    var pending = 0;
+    for (var i = 0; i < list.length; i++) {
+      (function(a) {
+        if (FRIENDLY_CATEGORIES[a.category] || !a.reachable) return;
+        pending++;
+        jsr.fa.home.read({ id: a.id }).then(function(result) {
+          var full = result && result.accessory;
+          if (full && full.services) {
+            a.services = full.services;
+            var svcTypes = full.services.map(function(sv) {
+              return sv.type; }).join(',');
+            log('enrich ' + a.name + ' category=' + a.category +
+                ' services=[' + svcTypes + ']' +
+                (isCurtain(a) ? ' -> CURTAIN' : ''));
+          }
+        }, function(e) {
+          log('enrich ' + a.name + ' failed: ' + e);
+        }).then(function() {
+          if (--pending === 0) done();
+        });
+      })(list[i]);
+    }
+    if (pending === 0) done();
+  }
+
   // Raw HomeKit type UUIDs (stable Apple constants — the channel passes
   // them through un-normalized, uppercase).
-  var HK_SVC_WINDOW_COVERING = '00089-0000-1000-8000-0026BB765291';
+  // 0x8C = Window Covering service; 0x8B = Window (treat as coverable too).
+  var HK_SVC_WINDOW_COVERING = '0008C-0000-1000-8000-0026BB765291';
+  var HK_SVC_WINDOW = '0008B-0000-1000-8000-0026BB765291';
   var HK_CURRENT_POSITION = '0006D-0000-1000-8000-0026BB765291';
   var HK_TARGET_POSITION = '0007C-0000-1000-8000-0026BB765291';
 
@@ -113,7 +177,8 @@
   function isCurtain(a) {
     if (curtainCharacteristic(a, HK_TARGET_POSITION)) return true;
     for (var i = 0; i < (a.services || []).length; i++) {
-      if (hkType(a.services[i].type) === HK_SVC_WINDOW_COVERING) return true;
+      var st = hkType(a.services[i].type);
+      if (st === HK_SVC_WINDOW_COVERING || st === HK_SVC_WINDOW) return true;
     }
     return false;
   }
@@ -413,18 +478,27 @@
       return { name: 'wb_sunny', color: d.on ? '#fbbf24' : t.muted };
     }
     if (d.type === 'thermostat') return { name: 'thermostat', color: '#0ea5e9' };
+    if (d.type === 'curtain') {
+      return { name: 'unfold_more',
+        color: d.position > 0 ? '#22c55e' : t.muted };
+    }
     return { name: 'lock', color: d.locked ? '#22c55e' : '#f43f5e' };
   }
 
   function demoStatusText(d) {
     if (d.type === 'light') return d.on ? 'On' : 'Off';
     if (d.type === 'thermostat') return d.temp.toFixed(1) + '°C';
+    if (d.type === 'curtain') {
+      return d.position === 0 ? 'Closed'
+        : d.position === 100 ? 'Open' : d.position + '% open';
+    }
     return d.locked ? 'Locked' : 'Unlocked';
   }
 
   function demoStatusColor(d) {
     if (d.type === 'light') return d.on ? '#fbbf24' : t.muted;
     if (d.type === 'thermostat') return '#0ea5e9';
+    if (d.type === 'curtain') return d.position > 0 ? '#22c55e' : t.muted;
     return d.locked ? '#22c55e' : '#f43f5e';
   }
 
@@ -449,7 +523,22 @@
       ] },
       { type: 'sizedBox', height: 8 },
     ];
-    if (d.type === 'thermostat') {
+    if (d.type === 'curtain') {
+      children.push({
+        type: 'row', mainAxisAlignment: 'spaceBetween',
+        crossAxisAlignment: 'center', children: [
+          { type: 'text', data: demoStatusText(d),
+            style: { color: demoStatusColor(d), fontSize: 14,
+              fontWeight: 'w700' } },
+          { type: 'row', mainAxisSize: 'min', children: [
+            curtainButton('Open', 'democurtain_' + d.id + '_100', true),
+            { type: 'sizedBox', width: 6 },
+            curtainButton('50%', 'democurtain_' + d.id + '_50', true),
+            { type: 'sizedBox', width: 6 },
+            curtainButton('Close', 'democurtain_' + d.id + '_0', true),
+          ] },
+        ] });
+    } else if (d.type === 'thermostat') {
       children.push({
         type: 'row', mainAxisAlignment: 'spaceBetween',
         crossAxisAlignment: 'center', children: [
@@ -545,6 +634,35 @@
     ];
     var note = noticeCard();
     if (note) children.push(note);
+    if (real && activity.length) {
+      var lines = [];
+      for (var ai = 0; ai < activity.length && ai < 4; ai++) {
+        var ev = activity[ai];
+        lines.push({ type: 'padding', padding: [0, 2, 0, 2], child: {
+          type: 'row', crossAxisAlignment: 'center', children: [
+            { type: 'text', data: fmtTime(ev.at),
+              style: { color: t.muted, fontSize: 10 } },
+            { type: 'sizedBox', width: 8 },
+            { type: 'expanded', child: {
+              type: 'text', data: ev.name + ' — ' + ev.action,
+              style: { color: t.text, fontSize: 11 },
+              maxLines: 1, overflow: 'ellipsis' } },
+          ] } });
+      }
+      children.push({
+        type: 'padding', padding: [16, 10, 16, 6], child: {
+          type: 'container',
+          padding: [12, 12, 12, 12],
+          decoration: { color: t.surface, borderRadius: 12,
+            border: { color: t.border, width: 1 } },
+          child: { type: 'column', crossAxisAlignment: 'stretch', children: [
+            { type: 'text', data: 'Recent activity',
+              style: { color: t.muted, fontSize: 10, fontWeight: 'w700',
+                letterSpacing: 1 } },
+            { type: 'sizedBox', height: 6 },
+          ].concat(lines) },
+        } });
+    }
     if (real) {
       if (accessories.length) {
         children = children.concat(realSections());
@@ -603,10 +721,15 @@
       var curtainPos = Number(tail.substring(splitAt + 1));
       var curtain = findAccessory(curtainId);
       if (!curtain || !curtain.reachable) return;
+      log('curtain write: ' + curtain.name + ' -> ' + curtainPos + '%');
       write(jsr.fa.home.write({
         id: curtainId, type: HK_TARGET_POSITION, value: curtainPos,
         name: curtain.name, room: curtain.room,
       }), function() {
+        log('curtain write ok: ' + curtain.name + ' -> ' + curtainPos + '%');
+        logActivity(curtain.name,
+          curtainPos === 0 ? 'Closed' : curtainPos === 100 ? 'Opened'
+          : 'Set to ' + curtainPos + '%');
         var c = curtainCharacteristic(curtain, HK_CURRENT_POSITION) ||
                 curtainCharacteristic(curtain, HK_TARGET_POSITION);
         if (c) c.value = curtainPos;
@@ -617,8 +740,10 @@
     var a = findAccessory(id);
     if (!a || !a.reachable) return;
     if (actionId.indexOf('power_') === 0) {
+      log('setPower: ' + a.name + ' -> ' + !a.isOn);
       write(jsr.fa.home.setPower({ id: id, on: !a.isOn, name: a.name, room: a.room }), function() {
         a.isOn = !a.isOn;
+        logActivity(a.name, a.isOn ? 'Turned on' : 'Turned off');
       });
       return;
     }
@@ -640,6 +765,18 @@
   }
 
   function handleDemoEvent(actionId) {
+    if (actionId.indexOf('democurtain_') === 0) {
+      var tail = actionId.substring('democurtain_'.length);
+      var splitAt = tail.lastIndexOf('_');
+      var curtainId = tail.substring(0, splitAt);
+      var pos = Number(tail.substring(splitAt + 1));
+      for (var k = 0; k < devices.length; k++) {
+        if (devices[k].id === curtainId) devices[k].position = pos;
+      }
+      save();
+      render();
+      return;
+    }
     if (actionId === 'temp_up' || actionId === 'temp_down') {
       for (var i = 0; i < devices.length; i++) {
         if (devices[i].type === 'thermostat') {
@@ -683,5 +820,8 @@
     devices = (saved && saved.length) ? saved : clone(DEFAULT_DEVICES);
     render();
     checkBridge();
+  });
+  jsr.storage.get('activity').then(function(saved) {
+    if (saved && saved.length) { activity = saved; render(); }
   });
 })();

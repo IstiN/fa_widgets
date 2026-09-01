@@ -1,1 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><text x="12" y="17" font-size="13" text-anchor="middle">🌤️</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0e2a47"/>
+  <circle cx="24" cy="24" r="9" fill="#fbbf24"/>
+  <g stroke="#fbbf24" stroke-width="2.4" stroke-linecap="round">
+    <path d="M24 9 v4 M24 35 v4 M9 24 h4 M35 24 h4 M13.4 13.4 l2.8 2.8 M31.8 31.8 l2.8 2.8 M34.6 13.4 l-2.8 2.8 M16.2 31.8 l-2.8 2.8"/>
+  </g>
+  <path d="M22 46 a9 9 0 0 1 1.2-17.9 A12 12 0 0 1 46 30.5 8 8 0 0 1 45 46 Z"
+        fill="#e2e8f0"/>
+  <path d="M22 46 a9 9 0 0 1 1.2-17.9 A12 12 0 0 1 46 30.5 8 8 0 0 1 45 46 Z"
+        fill="none" stroke="#94a3b8" stroke-width="1.6" opacity="0.5"/>
+</svg>
