@@ -2,7 +2,7 @@
   "id": "homekit",
   "name": "HomeKit Demo",
   "description": "HomeKit control: lights, switches, thermostats — and window coverings (curtains/blinds) with Open/50%/Close",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "platforms": [
     "ios"
   ],

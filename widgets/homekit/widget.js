@@ -36,7 +36,37 @@
     jsr.storage.set('devices', devices);
   }
 
+  // Web preview: jsr.fa.home does not exist — show the calm stub
+  // instead of dying on a TypeError behind the loading spinner.
+  function bridgeAvailable() {
+    return typeof jsr !== 'undefined' && jsr.fa && jsr.fa.home;
+  }
+
+  function renderBridgeStub() {
+    jsr.render({
+      type: 'center',
+      child: {
+        type: 'column', mainAxisSize: 'min', crossAxisAlignment: 'center',
+        children: [
+          { type: 'container', padding: [16, 16, 16, 16],
+            color: t.surface, borderRadius: 16, child:
+            { type: 'icon', name: 'home', color: '#f59e0b', size: 28 } },
+          { type: 'sizedBox', height: 12 },
+          { type: 'text', data: 'Runs in the Fa app',
+            style: { color: t.text, fontSize: 15,
+              fontWeight: 'w600' } },
+          { type: 'sizedBox', height: 4 },
+          { type: 'text',
+            data: 'HomeKit control is not available in the web preview.',
+            style: { color: t.muted, fontSize: 12,
+              textAlign: 'center' } },
+        ],
+      },
+    });
+  }
+
   function checkBridge() {
+    if (!bridgeAvailable()) { loading = false; render(); return; }
     loading = true;
     render();
     jsr.fa.home.homes().then(function(result) {
@@ -500,6 +530,7 @@
   // --- render + events ---------------------------------------------------------
 
   function render() {
+    if (!bridgeAvailable()) { renderBridgeStub(); return; }
     if (!devices) return;
     var real = !loading && !bridgeError && !!accessories;
     var children = [
