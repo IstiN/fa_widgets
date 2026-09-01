@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-01T14:54:13.056861Z",
+  "generatedAt": "2026-09-01T19:57:41.918708Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -32,7 +32,7 @@
     {
       "id": "3d-viewer",
       "name": "3D Model Viewer",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "Interactive GLB/GLTF model viewer via jsr.scene3d: load, auto-rotate and reset with a control-room panel",
       "author": "Fa",
       "tags": [
@@ -46,13 +46,13 @@
       "minRuntime": "0.4.89",
       "icon": "icon.svg",
       "zip": {
-        "file": "3d-viewer-1.0.2.zip",
-        "sha256": "add1a8315d43cd446499f78a636459d2b1ba1f6a9f53adbce8cdb157d91c52a9",
-        "sizeBytes": 3543
+        "file": "3d-viewer-1.0.3.zip",
+        "sha256": "7d0680d1685bf9e5a3444c0286a50afc83dc57c116eca2b1720e559bd2575882",
+        "sizeBytes": 4182
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/3d-viewer/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/3d-viewer/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/3d-viewer/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/3d-viewer/widget.js"
       }
     },
     {
@@ -78,14 +78,14 @@
         "sizeBytes": 3166
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/adaptive-dashboard/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/adaptive-dashboard/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/adaptive-dashboard/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/adaptive-dashboard/widget.js"
       }
     },
     {
       "id": "animation-showcase",
       "name": "Animation Showcase",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "description": "Interactive demos of all animation & gesture capabilities",
       "author": "Fa",
       "tags": [
@@ -98,13 +98,13 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "animation-showcase-1.0.1.zip",
-        "sha256": "b243da1de149e1e33d6d53353e2fa930e6b3350ed227fa2574bf40b60696f465",
-        "sizeBytes": 6547
+        "file": "animation-showcase-1.0.3.zip",
+        "sha256": "dc588588bbd9450cb9fa39387e84a152085f0483f1422c84adb034ee7f65358d",
+        "sizeBytes": 6727
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/animation-showcase/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/animation-showcase/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/animation-showcase/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/animation-showcase/widget.js"
       }
     },
     {
@@ -129,8 +129,8 @@
         "sizeBytes": 2567
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/calculator/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/calculator/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/calculator/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/calculator/widget.js"
       }
     },
     {
@@ -194,7 +194,7 @@
     {
       "id": "crypto",
       "name": "Crypto Prices",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "Live BTC, ETH, SOL prices via CoinGecko",
       "author": "Fa",
       "tags": [
@@ -207,13 +207,13 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "crypto-1.0.2.zip",
-        "sha256": "b36526117ff67cbbcd6665b5e4f135c35c57be8d2e98be9e60d20482de5a82fc",
+        "file": "crypto-1.0.3.zip",
+        "sha256": "34d73389838db8e5b682d42f30088ecf20aadf28b404e00ea54df651a6faaa71",
         "sizeBytes": 3507
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/crypto/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/crypto/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/crypto/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/crypto/widget.js"
       }
     },
     {
@@ -355,7 +355,7 @@
     {
       "id": "m3-showcase",
       "name": "M3 Showcase",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Material 3 components rendered from a single JSON tree: appBar, banner, searchBar, segmentedButton, radio, tabBar, fab, popupMenu, tooltip, navigationBar.",
       "author": "Fa",
       "tags": [
@@ -369,19 +369,19 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "m3-showcase-1.0.1.zip",
-        "sha256": "de01511cbeba2fa193a2dffb4dd0954809eb7bbc3cf9781cc8942a82976e2183",
-        "sizeBytes": 5329
+        "file": "m3-showcase-1.0.2.zip",
+        "sha256": "e36b3140f47af207888c841e28ae5ae4a043df09ebdc2b1f0b03063138c06dd5",
+        "sizeBytes": 5889
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/m3-showcase/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/m3-showcase/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/m3-showcase/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/m3-showcase/widget.js"
       }
     },
     {
       "id": "map",
       "name": "Map",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "OpenStreetMap with preset landmarks — tap to drop your own pins",
       "author": "Fa",
       "tags": [
@@ -394,19 +394,19 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "map-1.0.1.zip",
-        "sha256": "9c31f0eb352c89468a6a67a2fd93321ded45718fd3995fb9823ecbc818c78466",
-        "sizeBytes": 3862
+        "file": "map-1.0.2.zip",
+        "sha256": "5b1e4580d7a609f593d1f982394f18e54eff1e7987b8289aef4364b12f3a732e",
+        "sizeBytes": 4181
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/map/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/map/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/map/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/map/widget.js"
       }
     },
     {
       "id": "pomodoro",
       "name": "Pomodoro",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "description": "Pomodoro timer: 25-minute focus / 5-minute break cycles (every 4th break is 15), start/pause/reset/skip, donut progress ring, completed counter persisted in storage",
       "author": "Fa",
       "tags": [
@@ -421,13 +421,13 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "pomodoro-1.0.4.zip",
-        "sha256": "53aa4251d3c29fa32531a441907512817cc130f3652e703363aab7e67da65536",
-        "sizeBytes": 4588
+        "file": "pomodoro-1.0.5.zip",
+        "sha256": "b34bb8cc1f25d8c8ad2af1546f8ad5614dc242fe85c0314ecf2284ca5c0146b7",
+        "sizeBytes": 4840
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/pomodoro/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/pomodoro/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/pomodoro/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/pomodoro/widget.js"
       }
     },
     {
@@ -462,7 +462,7 @@
     {
       "id": "stocks",
       "name": "Stock Prices",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "Real-time stock quotes",
       "author": "Fa",
       "tags": [
@@ -475,19 +475,19 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "stocks-1.0.2.zip",
-        "sha256": "cbf113de0bb76bc6cbffaa7adf92abd4489fc8fb7ff7ad16e9fb344eb0212f23",
+        "file": "stocks-1.0.3.zip",
+        "sha256": "12f9657db53104dd9eee79de7b18ba28531b6d776595a83511fe67c9ffb3f844",
         "sizeBytes": 4579
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/stocks/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/stocks/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/stocks/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/stocks/widget.js"
       }
     },
     {
       "id": "video-player",
       "name": "Video Player",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "description": "Cinematic video playback via the video node: source switcher (Big Buck Bunny / Elephants Dream / Sintel), BoxFit selector, native transport controls",
       "author": "Fa",
       "tags": [
@@ -502,13 +502,13 @@
       "minRuntime": "0.4.89",
       "icon": "icon.svg",
       "zip": {
-        "file": "video-player-1.0.5.zip",
-        "sha256": "0ca2a2ca8713b6cf98a5817d21d1495b08b581e8606ddae006f9f18f10f8bf2c",
-        "sizeBytes": 4500
+        "file": "video-player-1.0.6.zip",
+        "sha256": "3ac8da4277c3bff25c79534cdcbbeab4d05e97970f22867c97abfdead56ac46d",
+        "sizeBytes": 4725
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/video-player/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/video-player/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/video-player/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/video-player/widget.js"
       }
     },
     {
@@ -543,7 +543,7 @@
     {
       "id": "weather",
       "name": "Weather",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "Current weather for any city using wttr.in",
       "author": "Fa",
       "tags": [
@@ -556,13 +556,13 @@
       "minRuntime": "0.4.92",
       "icon": "icon.svg",
       "zip": {
-        "file": "weather-1.1.0.zip",
-        "sha256": "9d6f849f200e55f9637b7531873f57df8efacb42d231f257f253e888e3320fd0",
-        "sizeBytes": 4444
+        "file": "weather-1.1.1.zip",
+        "sha256": "12ec910e6c46db0d989717b5486ddc31a6aba3083475aaa2f9067dc623d45e63",
+        "sizeBytes": 4445
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/weather/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/71f27f320300da85d70723775641bd8af2fb447b/example/widgets/weather/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/weather/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/weather/widget.js"
       }
     },
     {
