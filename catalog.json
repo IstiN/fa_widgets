@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-31T19:05:14.297300Z",
+  "generatedAt": "2026-09-01T10:55:57.663647Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -136,7 +136,7 @@
     {
       "id": "calendar",
       "name": "Calendar",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "Today's and upcoming events from your system calendar",
       "author": "Fa",
       "tags": [
@@ -153,9 +153,9 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "calendar-1.0.2.zip",
-        "sha256": "e80c777977da5a4396afc6ecce2db6a6face93ac954865b3bb0083325ab084c6",
-        "sizeBytes": 5470
+        "file": "calendar-1.0.3.zip",
+        "sha256": "dc9bb626cacc13c9b7364159a322180ad4b60b5d37c75604b74e4da25b240920",
+        "sizeBytes": 5638
       },
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/calendar/manifest.json",
@@ -271,8 +271,8 @@
     {
       "id": "focus-timer",
       "name": "Focus Timer",
-      "version": "1.0.2",
-      "description": "Pomodoro-style focus timer: 25-minute focus / 5-minute break cycles with start, pause and reset",
+      "version": "1.1.0",
+      "description": "Pomodoro-style 25/5 focus cycles — interactive tile with a compact face for small viewports",
       "author": "Fa",
       "tags": [
         "productivity",
@@ -283,12 +283,12 @@
         "network": false,
         "allowedCommands": []
       },
-      "minRuntime": "0.4.79",
+      "minRuntime": "0.4.89",
       "icon": "icon.svg",
       "zip": {
-        "file": "focus-timer-1.0.2.zip",
-        "sha256": "0ceb83d51d701e9882b708c2b8e3699c49448f852b902d5a5784ef386b3136bc",
-        "sizeBytes": 2974
+        "file": "focus-timer-1.1.0.zip",
+        "sha256": "b53c6bc011ae2300f01163d9f5dacc8ec03f34b66d334f66bdc285f44dab583f",
+        "sizeBytes": 3528
       },
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/focus-timer/manifest.json",
@@ -328,7 +328,7 @@
       "id": "homekit",
       "name": "HomeKit Demo",
       "version": "1.1.0",
-      "description": "Control HomeKit accessories — rooms, lights, switches, thermostats (iOS)",
+      "description": "HomeKit control: lights, switches, thermostats — and window coverings (curtains/blinds) with Open/50%/Close",
       "author": "Fa",
       "tags": [
         "smart-home"
@@ -344,8 +344,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "homekit-1.1.0.zip",
-        "sha256": "4ce68684de2646267caea6efa6be84bdcc9f1214d0ca987f76a33861b44ff8b4",
-        "sizeBytes": 6810
+        "sha256": "622c806974f2f804a3d6d65e4deb81a165dbff725ae3dde742b28fffcf229af5",
+        "sizeBytes": 7897
       },
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/homekit/manifest.json",
