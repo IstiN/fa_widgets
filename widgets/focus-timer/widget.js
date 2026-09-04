@@ -1,4 +1,11 @@
 // Focus Timer widget — pomodoro-style 25/5 cycles on the jsr JSON UI API.
+//
+// State sync (docs/state-sync.md): the full timer state lives in storage
+// under the reserved '__state' key (rev/writer guarded), is hydrated on
+// boot and adopted live from sibling instances (board tile ↔ fullscreen
+// app) via the host's reserved 'state.sync' events. A running countdown is
+// anchored to the wall clock (endsAt) so every instance derives the same
+// remaining time without per-second broadcasts.
 (function () {
   // Hand-drawn SVG flag (24×24 viewBox) — no emoji fonts.
   var FLAG_ICON = '<svg viewBox="0 0 24 24"><path d="M6 3v18" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 3.5h10l-2.5 4 2.5 4h-10z" fill="#a78bfa"/></svg>';
@@ -6,18 +13,18 @@
   var FOCUS_SECONDS = 25 * 60;
   var BREAK_SECONDS = 5 * 60;
 
+  var STATE_KEY = '__state';
+  var myId = 'w-' + Math.random().toString(36).slice(2, 8);
+  var rev = 0;
+  var lastSeenRev = 0;
+
   var mode = 'focus'; // 'focus' | 'break'
   var viewport = null; // {width, height} once the host reports it
   var remaining = FOCUS_SECONDS;
   var running = false;
+  var endsAt = 0; // epoch ms the phase ends at (running only), 0 when paused
   var timerId = null;
-  // jsr.storage.get returns a PROMISE (async bridge) — a sync
-  // Number(jsr.storage.get(...) || 0) reads NaN. Load, then re-render.
   var completedCycles = 0;
-  jsr.storage.get('cycles').then(function (saved) {
-    completedCycles = Number(saved || 0);
-    render();
-  });
 
   function totalSeconds() {
     return mode === 'focus' ? FOCUS_SECONDS : BREAK_SECONDS;
@@ -40,60 +47,127 @@
     }
   }
 
-  function tick() {
-    remaining -= 1;
-    if (remaining <= 0) {
+  function startTick() {
+    stopTick();
+    timerId = setInterval(tick, 1000);
+  }
+
+  function derivedRemaining() {
+    return Math.max(0, Math.round((endsAt - Date.now()) / 1000));
+  }
+
+  // ---- state-sync protocol (persist + adopt) ------------------------------
+
+  function persist() {
+    rev = Math.max(rev, lastSeenRev) + 1;
+    jsr.storage.set(STATE_KEY, {
+      v: 1,
+      rev: rev,
+      writer: myId,
+      mode: mode,
+      running: running,
+      remaining: remaining,
+      endsAt: endsAt,
+      completed: completedCycles,
+    });
+  }
+
+  // Applies a snapshot from storage or a sibling 'state.sync' event.
+  // NEVER persists (adoption must not echo back).
+  function adopt(next, fromBoot) {
+    rev = lastSeenRev = next.rev || 0;
+    mode = next.mode === 'break' ? 'break' : 'focus';
+    running = next.running === true;
+    endsAt = Number(next.endsAt) || 0;
+    completedCycles = Number(next.completed) || 0;
+    remaining = running
+      ? derivedRemaining()
+      : Math.max(0, Number(next.remaining) || 0);
+    if (running) {
+      startTick();
+    } else {
       stopTick();
-      running = false;
-      if (mode === 'focus') {
-        completedCycles += 1;
-        jsr.storage.set('cycles', String(completedCycles));
-        switchMode('break');
-      } else {
-        switchMode('focus');
-      }
+    }
+    jsr.setTitle(mode === 'focus' ? 'Focus Timer' : 'Break Timer');
+    if (!fromBoot) render();
+  }
+
+  function tick() {
+    if (!running) return;
+    var left = derivedRemaining();
+    if (left <= 0) {
+      finishPhase(true);
       return;
     }
-    render();
+    if (left !== remaining) {
+      remaining = left;
+      render();
+    }
+  }
+
+  function finishPhase(countCompleted) {
+    stopTick();
+    running = false;
+    endsAt = 0;
+    if (mode === 'focus') {
+      if (countCompleted) completedCycles += 1;
+      switchMode('break');
+    } else {
+      switchMode('focus');
+    }
+    persist();
   }
 
   function switchMode(nextMode) {
     mode = nextMode;
     remaining = totalSeconds();
     jsr.setTitle(mode === 'focus' ? 'Focus Timer' : 'Break Timer');
-    render();
   }
 
   function start() {
     if (running) return;
     running = true;
-    timerId = setInterval(tick, 1000);
+    endsAt = Date.now() + remaining * 1000;
+    startTick();
+    persist();
     render();
   }
 
   function pause() {
+    if (!running) return;
     running = false;
+    endsAt = 0;
     stopTick();
+    persist();
     render();
   }
 
   function reset() {
     running = false;
+    endsAt = 0;
     stopTick();
     remaining = totalSeconds();
+    persist();
     render();
   }
 
-  function handleEvent(actionId) {
+  function handleEvent(actionId, payload) {
+    // Reserved protocol events must never be treated as UI actions.
+    if (actionId === 'state.sync') {
+      if (!payload || payload.key !== STATE_KEY) return;
+      var next = payload.value;
+      if (!next || next.writer === myId) return; // own echo
+      if ((Number(next.rev) || 0) <= lastSeenRev) return; // stale
+      adopt(next, false);
+      return;
+    }
     if (actionId === 'toggle') {
       if (running) pause();
       else start();
     } else if (actionId === 'reset') {
       reset();
     } else if (actionId === 'skip') {
-      running = false;
-      stopTick();
-      switchMode(mode === 'focus' ? 'break' : 'focus');
+      finishPhase(false);
     }
   }
 
@@ -175,14 +249,7 @@
           ],
         },
       });
-      jsr.exportState({
-        mode: mode,
-        running: running,
-        remainingSeconds: remaining,
-        display: fmt(remaining),
-        completedCycles: completedCycles,
-        progress: progress,
-      });
+      exportState(progress);
       return;
     }
 
@@ -299,6 +366,10 @@
         ],
     });
 
+    exportState(progress);
+  }
+
+  function exportState(progress) {
     jsr.exportState({
       mode: mode,
       running: running,
@@ -317,5 +388,30 @@
     });
   }
   jsr.setTitle('Focus Timer');
+
+  // Boot hydration: the persisted '__state' snapshot is the truth a
+  // previous instance (board tile, last run) left behind. A timer that
+  // expired while nobody was alive resolves HERE — the first instance to
+  // boot after the deadline settles the phase and persists it.
+  jsr.storage.get(STATE_KEY).then(function (saved) {
+    if (saved && typeof saved === 'object' && (Number(saved.rev) || 0) > 0) {
+      adopt(saved, true);
+      if (running && endsAt <= Date.now()) {
+        // Expired while dormant: settle it (counts the completed focus).
+        finishPhase(mode === 'focus');
+      }
+      render();
+      return;
+    }
+    // Legacy counter (pre-sync versions stored only the cycles count).
+    jsr.storage.get('cycles').then(function (legacy) {
+      var n = Number(legacy || 0);
+      if (n > 0) {
+        completedCycles = n;
+        render();
+      }
+    });
+  });
+
   render();
 })();

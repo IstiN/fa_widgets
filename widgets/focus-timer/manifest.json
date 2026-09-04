@@ -1,8 +1,8 @@
 {
   "id": "focus-timer",
   "name": "Focus Timer",
-  "description": "Pomodoro-style 25/5 focus cycles — interactive tile with a compact face for small viewports",
-  "version": "1.1.0",
+  "description": "Pomodoro-style 25/5 focus cycles \u2014 interactive tile, compact face for small viewports, state synced between board tile and fullscreen app",
+  "version": "1.2.0",
   "icon": "icon.svg",
   "author": "Fa",
   "tags": [
