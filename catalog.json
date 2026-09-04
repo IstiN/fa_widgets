@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-01T19:57:41.918708Z",
+  "generatedAt": "2026-09-04T19:59:34.171854Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -51,8 +51,8 @@
         "sizeBytes": 4182
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/3d-viewer/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/3d-viewer/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/3d-viewer/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/3d-viewer/widget.js"
       }
     },
     {
@@ -78,8 +78,8 @@
         "sizeBytes": 3166
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/adaptive-dashboard/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/adaptive-dashboard/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/adaptive-dashboard/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/adaptive-dashboard/widget.js"
       }
     },
     {
@@ -103,8 +103,8 @@
         "sizeBytes": 6727
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/animation-showcase/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/animation-showcase/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/animation-showcase/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/animation-showcase/widget.js"
       }
     },
     {
@@ -129,8 +129,8 @@
         "sizeBytes": 2567
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/calculator/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/calculator/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/calculator/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/calculator/widget.js"
       }
     },
     {
@@ -212,8 +212,8 @@
         "sizeBytes": 3507
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/crypto/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/crypto/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/crypto/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/crypto/widget.js"
       }
     },
     {
@@ -271,8 +271,8 @@
     {
       "id": "focus-timer",
       "name": "Focus Timer",
-      "version": "1.1.0",
-      "description": "Pomodoro-style 25/5 focus cycles — interactive tile with a compact face for small viewports",
+      "version": "1.2.0",
+      "description": "Pomodoro-style 25/5 focus cycles — interactive tile, compact face for small viewports, state synced between board tile and fullscreen app",
       "author": "Fa",
       "tags": [
         "productivity",
@@ -286,9 +286,9 @@
       "minRuntime": "0.4.89",
       "icon": "icon.svg",
       "zip": {
-        "file": "focus-timer-1.1.0.zip",
-        "sha256": "b53c6bc011ae2300f01163d9f5dacc8ec03f34b66d334f66bdc285f44dab583f",
-        "sizeBytes": 3528
+        "file": "focus-timer-1.2.0.zip",
+        "sha256": "5b7b60bc75f994be7bafc03f77c6ba7f3564318618354d63c6d065286ea94f32",
+        "sizeBytes": 4760
       },
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/focus-timer/manifest.json",
@@ -374,8 +374,8 @@
         "sizeBytes": 5889
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/m3-showcase/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/m3-showcase/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/m3-showcase/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/m3-showcase/widget.js"
       }
     },
     {
@@ -399,14 +399,14 @@
         "sizeBytes": 4181
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/map/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/map/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/map/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/map/widget.js"
       }
     },
     {
       "id": "pomodoro",
       "name": "Pomodoro",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "description": "Pomodoro timer: 25-minute focus / 5-minute break cycles (every 4th break is 15), start/pause/reset/skip, donut progress ring, completed counter persisted in storage",
       "author": "Fa",
       "tags": [
@@ -421,13 +421,13 @@
       "minRuntime": "0.4.79",
       "icon": "icon.svg",
       "zip": {
-        "file": "pomodoro-1.0.5.zip",
-        "sha256": "b34bb8cc1f25d8c8ad2af1546f8ad5614dc242fe85c0314ecf2284ca5c0146b7",
-        "sizeBytes": 4840
+        "file": "pomodoro-1.0.6.zip",
+        "sha256": "d1a54c7c685bad6a614ced8ed03c215b2c827726652bc101de3d660366eee30f",
+        "sizeBytes": 7754
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/pomodoro/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/pomodoro/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/pomodoro/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/pomodoro/widget.js"
       }
     },
     {
@@ -480,8 +480,8 @@
         "sizeBytes": 4579
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/stocks/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/stocks/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/stocks/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/stocks/widget.js"
       }
     },
     {
@@ -507,8 +507,8 @@
         "sizeBytes": 4725
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/video-player/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/video-player/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/video-player/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/video-player/widget.js"
       }
     },
     {
@@ -561,8 +561,8 @@
         "sizeBytes": 4445
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/weather/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/e0070327dd9bf9e7b451aabe27e6f83e4d8b5188/example/widgets/weather/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/weather/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/weather/widget.js"
       }
     },
     {
