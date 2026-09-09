@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-06T17:12:50.036079Z",
+  "generatedAt": "2026-09-09T16:48:05.911178Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -214,6 +214,35 @@
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/crypto/manifest.json",
         "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/crypto/widget.js"
+      }
+    },
+    {
+      "id": "e2e-scratch",
+      "name": "E2E Scratch",
+      "version": "1.0.0",
+      "description": "Issue #35 E2E-1 verification widget.",
+      "author": "vabhzw17eg2qu4m9-bit",
+      "tags": [
+        "e2e"
+      ],
+      "permissions": {
+        "network": false,
+        "allowedCommands": []
+      },
+      "minRuntime": "0.4.79",
+      "source": {
+        "repo": "vabhzw17eg2qu4m9-bit/fa-widget-e2e-scratch",
+        "commit": "c4e92661c8a992071359d32328724bd00ed9c15c"
+      },
+      "icon": "icon.svg",
+      "zip": {
+        "file": "e2e-scratch-1.0.0.zip",
+        "sha256": "fa56ca93b944ad94a7c82d152e6f7260faf98fb5b1fcf4a7858c41b2e8ed325f",
+        "sizeBytes": 967
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/vabhzw17eg2qu4m9-bit/fa-widget-e2e-scratch/c4e92661c8a992071359d32328724bd00ed9c15c/manifest.json",
+        "js": "https://raw.githubusercontent.com/vabhzw17eg2qu4m9-bit/fa-widget-e2e-scratch/c4e92661c8a992071359d32328724bd00ed9c15c/widget.js"
       }
     },
     {
