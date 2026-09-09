@@ -5,9 +5,9 @@
     "e2e"
   ],
   "minRuntime": "0.4.79",
-  "author": "vabhzw17eg2qu4m9-bit",
+  "author": "ai-teammate",
   "source": {
-    "repo": "vabhzw17eg2qu4m9-bit/fa-widget-e2e-scratch",
-    "commit": "c4e92661c8a992071359d32328724bd00ed9c15c"
+    "repo": "ai-teammate/fa-widget-e2e-scratch",
+    "commit": "982027d3bc7b34d7d8d811fed5f5a33b28755e6b"
   }
 }
