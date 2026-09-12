@@ -10,24 +10,19 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      # Plain checkout first: `submodules: true` dies with a bare
-      # "No url found for submodule path" when a tree carries a gitlink
-      # without a .gitmodules entry (publisher rewrote the file instead of
-      # appending). Surface that as a readable error BEFORE initializing.
+      # Per-widget git submodules are RETIRED (pins-only catalog): external
+      # widgets are materialized by the fetch step below from overlay
+      # source pins. Only the runtime submodule is initialized from git.
       - uses: actions/checkout@v4
-      - name: Preflight — every gitlink must have a .gitmodules entry
+      - name: Preflight — no per-widget gitlinks (retired scheme)
         run: |
-          status=0
-          while IFS= read -r path; do
-            [ -n "$path" ] || continue
-            if ! git config -f .gitmodules --get-regexp '\.path$' 2>/dev/null | grep -q " ${path}\$"; then
-              echo "::error file=.gitmodules::gitlink '$path' has no .gitmodules entry — publishers must APPEND sections, never rewrite the file"
-              status=1
-            fi
-          done < <(git ls-files -s | awk '$1 == "160000" {print $4}')
-          exit $status
-      - name: Init submodules
-        run: git submodule update --init --depth 1
+          bad=$(git ls-files -s | awk '$1 == "160000" && $4 != "vendor/js_widget_runtime" {print $4}')
+          if [ -n "$bad" ]; then
+            echo "::error::per-widget gitlinks are retired — migrate to overlay source pins (repo + full-sha commit): $bad"
+            exit 1
+          fi
+      - name: Init runtime submodule
+        run: git submodule update --init --depth 1 vendor/js_widget_runtime
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
@@ -37,5 +32,7 @@ jobs:
         run: dart analyze --fatal-infos
       - name: Test
         run: dart test
+      - name: Fetch pinned external sources
+        run: dart run bin/fa_widgets.dart fetch --root widgets
       - name: Validate widgets
         run: dart run bin/fa_widgets.dart validate --root widgets

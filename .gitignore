@@ -11,3 +11,6 @@ pubspec.lock
 /*.txt
 /*.log
 !/*.LICENSE.txt
+
+# External widget sources are materialized from overlay pins by 'fa_widgets fetch' — never committed.
+vendor/external/

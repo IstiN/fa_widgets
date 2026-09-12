@@ -3,17 +3,23 @@ import 'dart:io';
 
 import 'package:archive/archive.dart';
 import 'package:fa_widgets_tool/src/catalog_builder.dart';
+import 'package:fa_widgets_tool/src/pin_fetcher.dart';
 import 'package:fa_widgets_tool/src/validator.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
-/// EXTERNAL (user-repo-sourced) widgets: `widgets/<id>/overlay.json` with a
-/// `source: {repo, commit}` block + the code in a per-widget git submodule
-/// at `vendor/external/<id>/` (flutter_agent_harness #35).
+/// EXTERNAL (user-repo pinned) widgets: `widgets/<id>/overlay.json` with a
+/// `source: {repo, commit}` block; the code is materialized into
+/// `vendor/external/<id>/` by `fa_widgets fetch` from the pinned codeload
+/// tarball (per-widget git submodules are RETIRED,
+/// flutter_agent_harness#232).
 ///
-/// The fixtures build REAL git repos in temp dirs — the validator shells
-/// out to `git rev-parse HEAD` for the pin/drift check, so a bare directory
-/// is not enough.
+/// Fixtures write the materialized files plus the `.jsr-pin.json` marker
+/// directly — no git machinery needed anymore (the validator compares the
+/// marker against the overlay pin).
+
+/// The sha used by default for both the overlay pin and the marker.
+final _defaultSha = 'a' * 40;
 
 /// The pieces of an external-widget fixture.
 typedef ExternalFixture = ({
@@ -23,49 +29,21 @@ typedef ExternalFixture = ({
   String head,
 });
 
-/// Runs `git` inside [dir], failing the test on non-zero exit.
-Future<void> _git(Directory dir, List<String> args) async {
-  final result = await Process.run('git', args, workingDirectory: dir.path);
-  if (result.exitCode != 0) {
-    fail('git ${args.join(' ')} failed: ${result.stderr}');
-  }
-}
-
-/// Initializes [dir] as a git repo, commits everything, returns the HEAD sha.
-Future<String> _gitInitAndCommit(Directory dir) async {
-  await _git(dir, ['init', '-q']);
-  await _git(dir, ['add', '-A']);
-  await _git(dir, [
-    '-c',
-    'user.email=test@example.com',
-    '-c',
-    'user.name=Test',
-    'commit',
-    '-q',
-    '-m',
-    'widget',
-  ]);
-  final rev = await Process.run(
-    'git',
-    ['rev-parse', 'HEAD'],
-    workingDirectory: dir.path,
-  );
-  return (rev.stdout as String).trim();
-}
-
 /// Builds an external-widget fixture: a fake catalog repo root holding
-/// `widgets/<id>/overlay.json` + local icon, the user repo at
-/// `vendor/external/<id>/` (a REAL git repo unless [initGit] is false) and
-/// a `.gitmodules` registration (unless [withGitmodules] is false).
+/// `widgets/<id>/overlay.json` + local icon and, unless [materialize] is
+/// false, the fetched tree at `vendor/external/<id>/` (files + a
+/// `.jsr-pin.json` marker recording [pinRepo]@[pinCommit]). The root
+/// `.gitmodules` carries ONLY the frozen runtime section.
 Future<ExternalFixture> writeExternalWidget(
   String id, {
   Map<String, Object?>? overlay,
   Map<String, Object?>? manifest,
-  String? gitmodulesUrl,
-  bool createSubmodule = true,
-  bool initGit = true,
-  bool withGitmodules = true,
+  String? pinRepo,
+  String? pinCommit,
+  bool materialize = true,
+  bool withMarker = true,
   bool withEntry = true,
+  bool withGitmodules = true,
 }) async {
   final repoRoot = await Directory.systemTemp.createTemp('faw_ext_repo');
   final widgetsRoot = Directory(p.join(repoRoot.path, 'widgets'))
@@ -73,11 +51,12 @@ Future<ExternalFixture> writeExternalWidget(
   final widgetDir = Directory(p.join(widgetsRoot.path, id))..createSync();
   File(p.join(widgetDir.path, 'icon.svg')).writeAsStringSync('<svg>ext</svg>');
 
-  var head = '0' * 40;
+  final repo = pinRepo ?? 'octocat/fa-widget-$id';
+  final commit = pinCommit ?? _defaultSha;
   final submoduleDir = Directory(
     p.join(repoRoot.path, 'vendor', 'external', id),
   );
-  if (createSubmodule) {
+  if (materialize) {
     submoduleDir.createSync(recursive: true);
     File(p.join(submoduleDir.path, 'manifest.json')).writeAsStringSync(
       jsonEncode({
@@ -95,16 +74,19 @@ Future<ExternalFixture> writeExternalWidget(
         '(function(){ jsr.render({type:"text",data:"external"}); })();',
       );
     }
-    if (initGit) {
-      head = await _gitInitAndCommit(submoduleDir);
+    if (withMarker) {
+      File(
+        p.join(submoduleDir.path, pinMarkerFileName),
+      ).writeAsStringSync(jsonEncode({'repo': repo, 'commit': commit}));
     }
   }
 
   if (withGitmodules) {
+    // The frozen contract: only the runtime submodule is registered.
     File(p.join(repoRoot.path, '.gitmodules')).writeAsStringSync(
-      '[submodule "vendor/external/$id"]\n'
-      '\tpath = vendor/external/$id\n'
-      '\turl = ${gitmodulesUrl ?? 'https://github.com/octocat/fa-widget-$id.git'}\n',
+      '[submodule "vendor/js_widget_runtime"]\n'
+      '\tpath = vendor/js_widget_runtime\n'
+      '\turl = https://github.com/IstiN/flutter_js_widget_runtime.git\n',
     );
   }
 
@@ -114,7 +96,7 @@ Future<ExternalFixture> writeExternalWidget(
       'tags': ['demo'],
       'author': 'Octocat',
       'minRuntime': '0.4.89',
-      'source': {'repo': 'octocat/fa-widget-$id', 'commit': head},
+      'source': {'repo': repo, 'commit': commit},
       ...?overlay,
     }),
   );
@@ -122,12 +104,12 @@ Future<ExternalFixture> writeExternalWidget(
     repoRoot: repoRoot,
     widgetsRoot: widgetsRoot,
     submoduleDir: submoduleDir,
-    head: head,
+    head: commit,
   );
 }
 
 void main() {
-  group('external (user-repo submodule) widgets', () {
+  group('external (user-repo pinned) widgets', () {
     test(
       'a valid external widget validates; version comes from its own repo',
       () async {
@@ -155,20 +137,7 @@ void main() {
       },
     );
 
-    test('the ssh-form .gitmodules url is accepted', () async {
-      final fixture = await writeExternalWidget(
-        'ext-demo',
-        gitmodulesUrl: 'git@github.com:octocat/fa-widget-ext-demo.git',
-      );
-      try {
-        final result = validateWidgetsRoot(fixture.widgetsRoot).single;
-        expect(result.errors, isEmpty, reason: result.errors.join('\n'));
-      } finally {
-        await fixture.repoRoot.delete(recursive: true);
-      }
-    });
-
-    test('drift (overlay commit != submodule HEAD) fails', () async {
+    test('drift (overlay pin != materialized marker) fails', () async {
       final fixture = await writeExternalWidget(
         'ext-demo',
         overlay: {
@@ -181,7 +150,7 @@ void main() {
       try {
         final result = validateWidgetsRoot(fixture.widgetsRoot).single;
         expect(result.isValid, isFalse);
-        expect(result.errors.join('\n'), contains('does not match'));
+        expect(result.errors.join('\n'), contains('(stale)'));
         expect(result.errors.join('\n'), contains(fixture.head));
       } finally {
         await fixture.repoRoot.delete(recursive: true);
@@ -189,18 +158,22 @@ void main() {
     });
 
     test(
-      'a missing submodule errors with the update --init hint',
+      'an unmaterialized pin errors with the fetch hint',
       () async {
         final fixture = await writeExternalWidget(
           'ext-demo',
-          createSubmodule: false,
+          materialize: false,
         );
         try {
           final result = validateWidgetsRoot(fixture.widgetsRoot).single;
           expect(result.isValid, isFalse);
           expect(
             result.errors.join('\n'),
-            contains('git submodule update --init vendor/external/ext-demo'),
+            contains('external source not materialized'),
+          );
+          expect(
+            result.errors.join('\n'),
+            contains('dart run bin/fa_widgets.dart fetch'),
           );
         } finally {
           await fixture.repoRoot.delete(recursive: true);
@@ -209,41 +182,28 @@ void main() {
     );
 
     test(
-      'a submodule directory that is not a git checkout errors with the hint',
+      'a hand-placed directory without a pin marker errors with the hint',
       () async {
-        final fixture = await writeExternalWidget('ext-demo', initGit: false);
+        final fixture = await writeExternalWidget(
+          'ext-demo',
+          withMarker: false,
+        );
         try {
           final result = validateWidgetsRoot(fixture.widgetsRoot).single;
           expect(result.isValid, isFalse);
           expect(
             result.errors.join('\n'),
-            contains('not a git submodule checkout'),
+            contains('has no $pinMarkerFileName'),
           );
           expect(
             result.errors.join('\n'),
-            contains('git submodule update --init vendor/external/ext-demo'),
+            contains('dart run bin/fa_widgets.dart fetch'),
           );
         } finally {
           await fixture.repoRoot.delete(recursive: true);
         }
       },
     );
-
-    test('a malformed source.repo fails', () async {
-      final fixture = await writeExternalWidget(
-        'ext-demo',
-        overlay: {
-          'source': {'repo': 'no-slash-here', 'commit': '0' * 40},
-        },
-      );
-      try {
-        final result = validateWidgetsRoot(fixture.widgetsRoot).single;
-        expect(result.isValid, isFalse);
-        expect(result.errors.join('\n'), contains('source.repo'));
-      } finally {
-        await fixture.repoRoot.delete(recursive: true);
-      }
-    });
 
     test('a malformed source.commit fails', () async {
       final fixture = await writeExternalWidget(
@@ -277,30 +237,36 @@ void main() {
       }
     });
 
-    test('a missing .gitmodules registration fails', () async {
+    test('a missing .gitmodules file is fine (pins-only catalog)', () async {
       final fixture = await writeExternalWidget(
         'ext-demo',
         withGitmodules: false,
       );
       try {
         final result = validateWidgetsRoot(fixture.widgetsRoot).single;
-        expect(result.isValid, isFalse);
-        expect(result.errors.join('\n'), contains('.gitmodules'));
-        expect(result.errors.join('\n'), contains('vendor/external/ext-demo'));
+        expect(result.errors, isEmpty, reason: result.errors.join('\n'));
       } finally {
         await fixture.repoRoot.delete(recursive: true);
       }
     });
 
-    test('a .gitmodules url pointing at another repo fails', () async {
-      final fixture = await writeExternalWidget(
-        'ext-demo',
-        gitmodulesUrl: 'https://github.com/someone-else/other-repo.git',
-      );
+    test('a foreign .gitmodules section fails (frozen contract)', () async {
+      final fixture = await writeExternalWidget('ext-demo');
       try {
-        final result = validateWidgetsRoot(fixture.widgetsRoot).single;
-        expect(result.isValid, isFalse);
-        expect(result.errors.join('\n'), contains('does not point at'));
+        final gitmodules = File(
+          p.join(fixture.repoRoot.path, '.gitmodules'),
+        );
+        gitmodules.writeAsStringSync(
+          '${gitmodules.readAsStringSync()}\n'
+          '[submodule "vendor/external/legacy-widget"]\n'
+          '\tpath = vendor/external/legacy-widget\n'
+          '\turl = https://github.com/octocat/legacy-widget.git\n',
+        );
+        final results = validateWidgetsRoot(fixture.widgetsRoot);
+        expect(
+          [for (final r in results) ...r.errors].join('\n'),
+          contains('per-widget git submodules are RETIRED'),
+        );
       } finally {
         await fixture.repoRoot.delete(recursive: true);
       }
@@ -321,37 +287,8 @@ void main() {
               .writeAsStringSync(
             '(function(){ jsr.render({type:"text",data:"tile"}); })();',
           );
-          // Re-commit so the pin matches the fixture overlay.
-          await _git(fixture.submoduleDir, ['add', '-A']);
-          await _git(fixture.submoduleDir, [
-            '-c',
-            'user.email=test@example.com',
-            '-c',
-            'user.name=Test',
-            'commit',
-            '-q',
-            '-m',
-            'tile entry',
-          ]);
-          final rev = await Process.run(
-            'git',
-            ['rev-parse', 'HEAD'],
-            workingDirectory: fixture.submoduleDir.path,
-          );
-          final head = (rev.stdout as String).trim();
-          File(
-            p.join(fixture.widgetsRoot.path, 'ext-demo', 'overlay.json'),
-          ).writeAsStringSync(
-            jsonEncode({
-              'icon': 'icon.svg',
-              'minRuntime': '0.4.89',
-              'source': {
-                'repo': 'octocat/fa-widget-ext-demo',
-                'commit': head,
-              },
-            }),
-          );
-
+          // Adding the entry does not move the pin: the marker already
+          // matches the fixture overlay's default pin.
           final result = validateWidgetsRoot(fixture.widgetsRoot).single;
           expect(result.errors, isEmpty, reason: result.errors.join('\n'));
         } finally {
@@ -459,26 +396,27 @@ void main() {
   );
 
   test(
-    'a vendor/external submodule without a widget overlay warns as orphaned',
+    'a foreign .gitmodules section is an ERROR, runtime section is fine',
     () async {
       final fixture = await writeExternalWidget('ext-demo');
       try {
-        // A scratch/experiment submodule registered in .gitmodules but
-        // absent from the catalog — left behind by a publisher that
-        // rewrote .gitmodules instead of appending its section.
-        final extra = '\n'
-            '[submodule "vendor/external/e2e-scratch"]\n'
-            '\tpath = vendor/external/e2e-scratch\n'
-            '\turl = https://github.com/octocat/fa-widget-e2e-scratch.git\n';
         final gitmodules = File(
           p.join(fixture.repoRoot.path, '.gitmodules'),
         );
-        gitmodules.writeAsStringSync(gitmodules.readAsStringSync() + extra);
+        gitmodules.writeAsStringSync(
+          '${gitmodules.readAsStringSync()}\n'
+          '[submodule "vendor/external/e2e-scratch"]\n'
+          '\tpath = vendor/external/e2e-scratch\n'
+          '\turl = https://github.com/octocat/fa-widget-e2e-scratch.git\n',
+        );
 
         final results = validateWidgetsRoot(fixture.widgetsRoot);
         expect(
-          [for (final r in results) ...r.warnings].join('\n'),
-          contains('orphaned submodule "vendor/external/e2e-scratch"'),
+          [for (final r in results) ...r.errors].join('\n'),
+          allOf(
+            contains('RETIRED'),
+            contains('vendor/external/e2e-scratch'),
+          ),
         );
         // The real widget itself stays valid.
         expect(

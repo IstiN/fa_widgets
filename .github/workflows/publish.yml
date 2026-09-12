@@ -23,9 +23,11 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+      # Pins-only catalog: only the runtime submodule is initialized;
+      # external widgets are fetched from their overlay source pins.
       - uses: actions/checkout@v4
-        with:
-          submodules: true
+      - name: Init runtime submodule
+        run: git submodule update --init --depth 1 vendor/js_widget_runtime
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
@@ -35,6 +37,8 @@ jobs:
         run: dart analyze
       - name: Test
         run: dart test
+      - name: Fetch pinned external sources
+        run: dart run bin/fa_widgets.dart fetch --root widgets
       - name: Validate widgets
         run: dart run bin/fa_widgets.dart validate --root widgets
       - name: Build catalog artifacts

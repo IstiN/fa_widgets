@@ -5,6 +5,7 @@
 library;
 
 export 'src/catalog_builder.dart';
+export 'src/pin_fetcher.dart';
 export 'src/issues.dart';
 export 'src/manifest.dart';
 export 'src/validator.dart';
