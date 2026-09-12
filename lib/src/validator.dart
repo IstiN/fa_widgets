@@ -376,7 +376,19 @@ WidgetValidation _validateOverlayWidget(
     for (final key in allowedOverlayKeys)
       if (overlay[key] != null) key: overlay[key],
   };
-  final manifest = WidgetManifest.fromJson(mergedRaw);
+  final WidgetManifest manifest;
+  try {
+    manifest = WidgetManifest.fromJson(mergedRaw);
+  } on ManifestException catch (e) {
+    // Hard-required fields unusable (e.g. an overlay without the required
+    // `minRuntime`) must surface as readable validation errors — an
+    // unhandled exception here made CI fail with a stack trace instead of
+    // a reviewable message.
+    for (final message in e.errors) {
+      error('$sourceLabel manifest: $message');
+    }
+    return fail();
+  }
 
   // ── shared semantic checks on the MERGED manifest ───────────────────────
   final idPattern = RegExp(r'^[a-z0-9][a-z0-9-]{1,31}$');
@@ -529,10 +541,62 @@ ExternalSource? _parseExternalSource(
 /// at exactly the overlay's `source.commit` (drift = the overlay lies about
 /// what ships), and be registered in the ROOT `.gitmodules` pointing at the
 /// same repo. Returns false when any error was reported.
+/// Root-level hygiene: a submodule registered in `.gitmodules` under
+/// `vendor/external/` without a matching `widgets/<id>/` overlay is an
+/// ORPHAN — usually a publisher that rewrote `.gitmodules` instead of
+/// appending its section (the gitlink survives, checkout dies before
+/// validation ever runs). Non-fatal: attached as warnings on a synthetic
+/// repo-root result.
+void _warnOrphanExternalSubmodules(
+  Directory widgetsRoot,
+  Directory repoRoot,
+  List<WidgetValidation> results,
+) {
+  final gitmodules = File(p.join(repoRoot.path, '.gitmodules'));
+  if (!gitmodules.existsSync()) return;
+  for (final path in _gitmodulesPaths(gitmodules)) {
+    if (!path.startsWith('vendor/external/')) continue;
+    final id = p.basename(path);
+    if (Directory(p.join(widgetsRoot.path, id)).existsSync()) continue;
+    results.add(
+      WidgetValidation._(
+        repoRoot,
+        null,
+        const [],
+        [
+          ValidationWarning(
+            'orphaned submodule "$path" — no widgets/$id/ overlay; remove '
+            'the gitlink or re-add the widget overlay (publishers must '
+            'APPEND .gitmodules sections, never rewrite the file)',
+          ),
+        ],
+        null,
+        null,
+      ),
+    );
+  }
+}
+
+/// Reads a `.gitmodules` file and returns every registered `path` value.
+/// (Minimal INI scan — no quoting games: git writes these sections flat.)
+List<String> _gitmodulesPaths(File gitmodules) {
+  final paths = <String>[];
+  for (final line in gitmodules.readAsLinesSync()) {
+    final trimmed = line.trim();
+    if (trimmed.startsWith('path')) {
+      final eq = trimmed.indexOf('=');
+      if (eq > 0) {
+        final value = trimmed.substring(eq + 1).trim();
+        if (value.isNotEmpty) paths.add(value);
+      }
+    }
+  }
+  return paths;
+}
+
 bool _validateExternalSubmodule(
   Directory codeDir,
-  ExternalSource source,
-  Directory repoRoot,
+  ExternalSource source,  Directory repoRoot,
   void Function(String) error,
 ) {
   final id = p.basename(codeDir.path);
@@ -762,6 +826,11 @@ List<WidgetValidation> validateWidgetsRoot(
       ),
     );
   }
+  _warnOrphanExternalSubmodules(
+    widgetsRoot,
+    effectiveRepoRoot,
+    results,
+  );
   return results
     ..sort(
       (WidgetValidation a, WidgetValidation b) =>

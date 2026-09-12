@@ -435,4 +435,62 @@ void main() {
       },
     );
   });
+
+  test(
+    'an overlay without minRuntime reports a readable error (no crash)',
+    () async {
+      // Regression: WidgetManifest.fromJson threw ManifestException outside
+      // the validator's try/catch — CI failed with a stack trace (exit 255)
+      // instead of a reviewable ERROR. The overlay omits `minRuntime` and
+      // the submodule manifest does not supply one either, so the merged
+      // manifest cannot satisfy the hard-required field.
+      final fixture = await writeExternalWidget(
+        'ext-demo',
+        overlay: {'minRuntime': null},
+      );
+      try {
+        final result = validateWidgetsRoot(fixture.widgetsRoot).single;
+        expect(result.isValid, isFalse);
+        expect(result.errors.join('\n'), contains('minRuntime'));
+      } finally {
+        await fixture.repoRoot.delete(recursive: true);
+      }
+    },
+  );
+
+  test(
+    'a vendor/external submodule without a widget overlay warns as orphaned',
+    () async {
+      final fixture = await writeExternalWidget('ext-demo');
+      try {
+        // A scratch/experiment submodule registered in .gitmodules but
+        // absent from the catalog — left behind by a publisher that
+        // rewrote .gitmodules instead of appending its section.
+        final extra = '\n'
+            '[submodule "vendor/external/e2e-scratch"]\n'
+            '\tpath = vendor/external/e2e-scratch\n'
+            '\turl = https://github.com/octocat/fa-widget-e2e-scratch.git\n';
+        final gitmodules = File(
+          p.join(fixture.repoRoot.path, '.gitmodules'),
+        );
+        gitmodules.writeAsStringSync(gitmodules.readAsStringSync() + extra);
+
+        final results = validateWidgetsRoot(fixture.widgetsRoot);
+        expect(
+          [for (final r in results) ...r.warnings].join('\n'),
+          contains('orphaned submodule "vendor/external/e2e-scratch"'),
+        );
+        // The real widget itself stays valid.
+        expect(
+          results
+              .where((r) => r.directory.path.endsWith('ext-demo'))
+              .single
+              .errors,
+          isEmpty,
+        );
+      } finally {
+        await fixture.repoRoot.delete(recursive: true);
+      }
+    },
+  );
 }

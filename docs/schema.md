@@ -44,7 +44,12 @@ those are single-sourced from the submodule manifest.
 - The submodule must be registered in the ROOT `.gitmodules` with
   `path = vendor/external/<id>` and a url pointing at `source.repo`
   (https or ssh form, `.git` suffix optional).
-- The repo holds a normal widget at its root: `manifest.json` (same
+- - `.gitmodules` is APPEND-ONLY: a publisher adds its own
+  `vendor/external/<id>` section and never rewrites or prunes the file —
+  existing sections belong to other widgets (a rewrite orphans their
+  gitlinks and breaks submodule checkout for the whole repo). CI runs a
+  preflight that reports any gitlink without a `.gitmodules` entry.
+The repo holds a normal widget at its root: `manifest.json` (same
   rules as a vendored CORE base manifest — `id` must equal the catalog
   folder name) plus `widget.js` or the manifest-declared live-tile entry
   (`widget.entry`). Version/id/permissions come from THAT manifest; the
