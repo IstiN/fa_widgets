@@ -37,6 +37,8 @@ those are single-sourced from the submodule manifest.
 
 ### EXTERNAL rules (pins-only catalog)
 
+The dichotomy is deliberate and stable: an overlay WITHOUT `source` is VENDORED first-party code (lives in the runtime submodule); an overlay WITH `source` is EXTERNAL and is validated/packaged from its pin. Do not 'fix' one into the other.
+
 - A publish PR adds exactly one file — `widgets/<id>/overlay.json`.
   Parallel publishes from different devices are single-file PRs and
   cannot conflict; republishing an unchanged widget is a no-op.
