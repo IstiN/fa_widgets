@@ -1,0 +1,10 @@
+{
+  "icon": "icon.svg",
+  "description": "Удобный список покупок с категориями, архивом и виджетом на рабочий стол",
+  "author": "IstiN",
+  "minRuntime": "0.4.112",
+  "source": {
+    "repo": "IstiN/fa-widget-shopping-list",
+    "commit": "8d38eaba210202b4032bedb8d39fce152ed584e3"
+  }
+}

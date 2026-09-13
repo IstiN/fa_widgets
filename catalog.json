@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-09T16:55:11.951263Z",
+  "generatedAt": "2026-09-13T06:18:33.502667Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -486,6 +486,32 @@
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/reminders/manifest.json",
         "js": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/reminders/widget.js"
+      }
+    },
+    {
+      "id": "shopping-list",
+      "name": "Список покупок",
+      "version": "1.1.0",
+      "description": "Удобный список покупок с категориями, архивом и виджетом на рабочий стол",
+      "author": "IstiN",
+      "permissions": {
+        "network": false,
+        "allowedCommands": []
+      },
+      "minRuntime": "0.4.112",
+      "source": {
+        "repo": "IstiN/fa-widget-shopping-list",
+        "commit": "8d38eaba210202b4032bedb8d39fce152ed584e3"
+      },
+      "icon": "icon.svg",
+      "zip": {
+        "file": "shopping-list-1.1.0.zip",
+        "sha256": "0e6b9e23e9f7306bea1236bb53e6cc4d51c762d95930586da462a0be511eacbd",
+        "sizeBytes": 12479
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa-widget-shopping-list/8d38eaba210202b4032bedb8d39fce152ed584e3/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa-widget-shopping-list/8d38eaba210202b4032bedb8d39fce152ed584e3/widget.js"
       }
     },
     {
