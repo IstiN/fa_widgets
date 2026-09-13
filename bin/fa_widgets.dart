@@ -40,6 +40,22 @@ Future<void> main(List<String> arguments) async {
         ),
     )
     ..addCommand(
+      'fetch',
+      ArgParser()
+        ..addOption(
+          'root',
+          abbr: 'r',
+          defaultsTo: 'widgets',
+          help: 'Path to the widgets root directory.',
+        )
+        ..addFlag(
+          'force',
+          abbr: 'f',
+          negatable: false,
+          help: 'Re-fetch pinned tarballs even when the pin marker matches.',
+        ),
+    )
+    ..addCommand(
       'diff-tags',
       ArgParser()
         ..addOption(
@@ -69,11 +85,15 @@ Future<void> main(List<String> arguments) async {
       exit(_runValidate(parsed.command!));
     case 'catalog':
       exit(_runCatalog(parsed.command!));
+    case 'fetch':
+      await _runFetch(parsed.command!);
+      return;
     case 'diff-tags':
       exit(_runDiffTags(parsed.command!));
     default:
       stderr.writeln(
-        'usage: dart run bin/fa_widgets.dart <validate|catalog> [options]\n'
+        'usage: dart run bin/fa_widgets.dart '
+        '<validate|catalog|fetch|diff-tags> [options]\n'
         '${parser.usage}',
       );
       exit(_exitUsage);
@@ -99,6 +119,46 @@ int _runValidate(ArgResults command) {
   stderr.writeln('$count widget(s) checked');
   stderr.writeln(hadErrors ? 'INVALID' : 'OK');
   return hadErrors ? _exitFail : _exitOk;
+}
+
+/// Materializes every external widget's pinned source tarball into
+/// `vendor/external/<id>/` (flutter_agent_harness#232: per-widget git
+/// submodules are retired; overlays carry `source: {repo, commit}` pins).
+/// Fails with named single-line errors — 404 repo, bad sha, private repo,
+/// oversized or corrupt tarball — never a stack dump.
+Future<void> _runFetch(ArgResults command) async {
+  final root = Directory(command['root'] as String);
+  if (!root.existsSync()) {
+    stderr.writeln('widgets root not found: ${root.path}');
+    exit(_exitFail);
+  }
+  final force = command['force'] as bool? ?? false;
+  final collected = collectWidgetPins(root);
+  var failed = false;
+  for (final problem in collected.problems) {
+    stderr.writeln('ERROR $problem');
+    failed = true;
+  }
+  for (final (id, pin) in collected.pins) {
+    try {
+      final result = await fetchPin(
+        repoRoot: Directory.current,
+        id: id,
+        pin: pin,
+        force: force,
+      );
+      stderr.writeln(
+        result.status == 'fetched'
+            ? 'fetched    $id ${pin.repo}@${pin.commit}'
+            : 'up-to-date $id ${pin.repo}@${pin.commit}',
+      );
+    } on PinFetchException catch (e) {
+      stderr.writeln('ERROR $id: $e');
+      failed = true;
+    }
+  }
+  stderr.writeln(failed ? 'FETCH FAILED' : '${collected.pins.length} pin(s) OK');
+  if (failed) exit(_exitFail);
 }
 
 /// The git ref the vendor submodule is pinned at — preview URLs for

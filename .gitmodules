@@ -1,9 +1,3 @@
 [submodule "vendor/js_widget_runtime"]
 	path = vendor/js_widget_runtime
 	url = https://github.com/IstiN/flutter_js_widget_runtime.git
-[submodule "vendor/external/shopping-list"]
-	path = vendor/external/shopping-list
-	url = https://github.com/IstiN/fa-widget-shopping-list.git
-[submodule "vendor/external/e2e-scratch"]
-	path = vendor/external/e2e-scratch
-	url = https://github.com/ai-teammate/fa-widget-e2e-scratch.git

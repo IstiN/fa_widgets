@@ -13,11 +13,13 @@ A `widgets/<id>/` folder is one of:
   (`example/widgets/<id>/`, single source of truth). The merged manifest
   (base + overlay) is what validation, zips and `catalog.json` see.
 - **EXTERNAL** — `overlay.json` with a REQUIRED `source` block; the code
-  and the base `manifest.json` come from a per-widget git submodule at
-  `vendor/external/<id>/` — the author's own PUBLIC GitHub repo, pinned
-  at `source.commit`. This is how widgets published from the Fa app
-  arrive (the app pushes the widget to the user's repo and opens the PR
-  with the overlay + submodule pin).
+  and the base `manifest.json` come from the author's own PUBLIC GitHub
+  repo, pinned at `source.commit` (a full-sha pin). A publish PR adds
+  exactly ONE file — the overlay; CI materializes the pinned tarball
+  (`codeload.github.com/<repo>/tar.gz/<commit>`) into
+  `vendor/external/<id>/` with `fa_widgets fetch`. Per-widget git
+  submodules are RETIRED (flutter_agent_harness#232): no gitlink, no
+  `.gitmodules` write.
 
 ### `widgets/<id>/overlay.json` (vendored and external)
 
@@ -33,18 +35,27 @@ A `widgets/<id>/` folder is one of:
 Any other key — especially `version` or `id` — is a validation ERROR:
 those are single-sourced from the submodule manifest.
 
-### EXTERNAL rules
+### EXTERNAL rules (pins-only catalog)
 
+The dichotomy is deliberate and stable: an overlay WITHOUT `source` is VENDORED first-party code (lives in the runtime submodule); an overlay WITH `source` is EXTERNAL and is validated/packaged from its pin. Do not 'fix' one into the other.
+
+- A publish PR adds exactly one file — `widgets/<id>/overlay.json`.
+  Parallel publishes from different devices are single-file PRs and
+  cannot conflict; republishing an unchanged widget is a no-op.
 - `source.repo` must be a GitHub `owner/name` slug
   (`[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+`); the repo MUST be public — catalog
-  CI clones external submodules anonymously.
-- `source.commit` must be a full 40-hex sha; the
-  `vendor/external/<id>/` submodule HEAD must equal it exactly (drift =
-  validation error — re-pin the submodule and update the overlay).
-- The submodule must be registered in the ROOT `.gitmodules` with
-  `path = vendor/external/<id>` and a url pointing at `source.repo`
-  (https or ssh form, `.git` suffix optional).
-- The repo holds a normal widget at its root: `manifest.json` (same
+  CI fetches tarballs anonymously (codeload).
+- `source.commit` must be a full 40-hex sha (short shas cannot address a
+  tarball). sha-addressed pins are immutable: a force-push never moves
+  them; a pin to a missing sha fails fetch/validate with a named error.
+- `dart run bin/fa_widgets.dart fetch` materializes every pin into
+  `vendor/external/<id>/` (16 MiB tarball cap; a `.jsr-pin.json` marker
+  records what was fetched — a stale or hand-placed directory is a
+  validation error, re-run fetch).
+- `.gitmodules` is FROZEN maintainer-owned data: its only legal entry is
+  `vendor/js_widget_runtime`. Any other section (and any per-widget
+  gitlink) is a validation ERROR — migrate to an overlay source pin.
+The repo holds a normal widget at its root: `manifest.json` (same
   rules as a vendored CORE base manifest — `id` must equal the catalog
   folder name) plus `widget.js` or the manifest-declared live-tile entry
   (`widget.entry`). Version/id/permissions come from THAT manifest; the

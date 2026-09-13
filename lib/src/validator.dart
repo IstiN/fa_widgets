@@ -5,6 +5,7 @@ import 'package:path/path.dart' as p;
 
 import 'issues.dart';
 import 'manifest.dart';
+import 'pin_fetcher.dart';
 
 /// Upper bounds producing warnings (not errors) so oversized submissions
 /// still pass local validation but get flagged in review.
@@ -318,7 +319,7 @@ WidgetValidation _validateOverlayWidget(
     externalSource = _parseExternalSource(overlay['source'], error);
     if (externalSource == null) return fail();
     codeDir = Directory(p.join(repoRoot.path, 'vendor', 'external', id));
-    if (!_validateExternalSubmodule(codeDir, externalSource, repoRoot, error)) {
+    if (!_validateExternalPin(codeDir, externalSource, error)) {
       return fail();
     }
   } else {
@@ -336,14 +337,20 @@ WidgetValidation _validateOverlayWidget(
   final sourceLabel = isExternal ? 'external' : 'vendor';
   final baseManifestFile = File(p.join(codeDir.path, 'manifest.json'));
   if (!baseManifestFile.existsSync()) {
-    error(
-      isExternal
-          ? 'external source missing: '
-              '${p.relative(baseManifestFile.path, from: repoRoot.path)} — '
-              'run: git submodule update --init vendor/external/$id'
-          : 'vendor source missing: ${p.relative(baseManifestFile.path)} — '
-              'run: git submodule update --init',
-    );
+    if (isExternal) {
+      error(
+        'external source missing: '
+        '${p.relative(baseManifestFile.path, from: repoRoot.path)} — '
+        'run: dart run bin/fa_widgets.dart fetch (materializes the pinned '
+        'tarball of ${externalSource!.repo}@${externalSource.commit} into '
+        'vendor/external/$id)',
+      );
+    } else {
+      error(
+        'vendor source missing: ${p.relative(baseManifestFile.path)} — '
+        'run: git submodule update --init',
+      );
+    }
     return fail();
   }
 
@@ -376,7 +383,19 @@ WidgetValidation _validateOverlayWidget(
     for (final key in allowedOverlayKeys)
       if (overlay[key] != null) key: overlay[key],
   };
-  final manifest = WidgetManifest.fromJson(mergedRaw);
+  final WidgetManifest manifest;
+  try {
+    manifest = WidgetManifest.fromJson(mergedRaw);
+  } on ManifestException catch (e) {
+    // Hard-required fields unusable (e.g. an overlay without the required
+    // `minRuntime`) must surface as readable validation errors — an
+    // unhandled exception here made CI fail with a stack trace instead of
+    // a reviewable message.
+    for (final message in e.errors) {
+      error('$sourceLabel manifest: $message');
+    }
+    return fail();
+  }
 
   // ── shared semantic checks on the MERGED manifest ───────────────────────
   final idPattern = RegExp(r'^[a-z0-9][a-z0-9-]{1,31}$');
@@ -528,108 +547,98 @@ ExternalSource? _parseExternalSource(
 /// submodule at `vendor/external/<id>` must exist, be a git checkout pinned
 /// at exactly the overlay's `source.commit` (drift = the overlay lies about
 /// what ships), and be registered in the ROOT `.gitmodules` pointing at the
-/// same repo. Returns false when any error was reported.
-bool _validateExternalSubmodule(
+/// Root-level hygiene: `.gitmodules` is FROZEN maintainer-owned data —
+/// its single legal entry is the runtime submodule. Any other section is
+/// a leftover per-widget submodule (retired scheme) and fails validation
+/// with a named migration error (attached on a synthetic repo-root
+/// result).
+void _errorForeignGitmodulesSections(
+  Directory widgetsRoot,
+  Directory repoRoot,
+  List<WidgetValidation> results,
+) {
+  final gitmodules = File(p.join(repoRoot.path, '.gitmodules'));
+  if (!gitmodules.existsSync()) return;
+  for (final path in _gitmodulesPaths(gitmodules)) {
+    if (path == 'vendor/js_widget_runtime') continue;
+    results.add(
+      WidgetValidation._(
+        repoRoot,
+        null,
+        [
+          ValidationError(
+            '$path: per-widget git submodules are RETIRED (pins-only '
+            'catalog) — remove the gitlink and this .gitmodules section, '
+            'keep the source pin in widgets/${p.basename(path)}/overlay.json',
+          ),
+        ],
+        const [],
+        null,
+        null,
+      ),
+    );
+  }
+}
+
+/// Reads a `.gitmodules` file and returns every registered `path` value.
+/// (Minimal INI scan — no quoting games: git writes these sections flat.)
+List<String> _gitmodulesPaths(File gitmodules) {
+  final paths = <String>[];
+  for (final line in gitmodules.readAsLinesSync()) {
+    final trimmed = line.trim();
+    if (trimmed.startsWith('path')) {
+      final eq = trimmed.indexOf('=');
+      if (eq > 0) {
+        final value = trimmed.substring(eq + 1).trim();
+        if (value.isNotEmpty) paths.add(value);
+      }
+    }
+  }
+  return paths;
+}
+
+bool _validateExternalPin(
   Directory codeDir,
   ExternalSource source,
-  Directory repoRoot,
   void Function(String) error,
 ) {
   final id = p.basename(codeDir.path);
-  final submodulePath = 'vendor/external/$id';
-  final initHint = 'run: git submodule update --init $submodulePath';
-  var ok = true;
+  final fetchHint =
+      'run: dart run bin/fa_widgets.dart fetch (materializes pinned '
+      'tarballs into vendor/external/<id>)';
 
   if (!codeDir.existsSync()) {
-    error('external submodule $submodulePath is missing — $initHint');
+    error(
+      'external source not materialized: vendor/external/$id — $fetchHint',
+    );
     return false;
   }
-
-  String? head;
-  try {
-    final result = Process.runSync(
-      'git',
-      ['-C', codeDir.path, 'rev-parse', 'HEAD'],
-    );
-    if (result.exitCode == 0) {
-      final out = (result.stdout as String).trim();
-      if (out.isNotEmpty) head = out;
-    }
-  } on ProcessException {
-    head = null;
-  }
-  if (head == null) {
-    error('$submodulePath is not a git submodule checkout — $initHint');
-    ok = false;
-  } else if (head != source.commit) {
+  final marker = File(p.join(codeDir.path, pinMarkerFileName));
+  if (!marker.existsSync()) {
     error(
-      'source.commit ${source.commit} does not match the $submodulePath '
-      'submodule HEAD $head (drift) — re-pin the submodule to the pushed '
-      'commit and update the overlay',
+      'vendor/external/$id has no $pinMarkerFileName — a hand-placed '
+      'directory is not a materialized pin; $fetchHint',
     );
-    ok = false;
+    return false;
   }
-
-  final url =
-      _gitmodulesUrl(File(p.join(repoRoot.path, '.gitmodules')), submodulePath);
-  if (url == null) {
+  final recorded = decodePinMarker(marker);
+  if (recorded == null) {
     error(
-      '.gitmodules has no entry for path $submodulePath — register it: '
-      'git submodule add https://github.com/${source.repo}.git '
-      '$submodulePath',
+      'vendor/external/$id carries a malformed $pinMarkerFileName — '
+      're-materialize: $fetchHint',
     );
-    ok = false;
-  } else if (!_gitmodulesUrlMatches(url, source.repo)) {
+    return false;
+  }
+  if (recorded.repo != source.repo || recorded.commit != source.commit) {
     error(
-      ".gitmodules url '$url' for $submodulePath does not point at "
-      "source.repo '${source.repo}'",
+      'vendor/external/$id was materialized for '
+      '${recorded.repo}@${recorded.commit} but the overlay pins '
+      '${source.repo}@${source.commit} (stale) — re-run: '
+      'dart run bin/fa_widgets.dart fetch',
     );
-    ok = false;
+    return false;
   }
-  return ok;
-}
-
-/// Reads a `.gitmodules` file and returns the registered url of the
-/// submodule whose `path` equals [submodulePath], or null when the file or
-/// the entry is missing. (Minimal INI scan — no quoting games: git writes
-/// these sections flat.)
-String? _gitmodulesUrl(File gitmodules, String submodulePath) {
-  if (!gitmodules.existsSync()) return null;
-  String? result;
-  String? currentPath;
-  String? currentUrl;
-  void flush() {
-    if (currentPath == submodulePath && currentUrl != null) {
-      result ??= currentUrl;
-    }
-  }
-
-  for (final line in gitmodules.readAsLinesSync()) {
-    final trimmed = line.trim();
-    if (trimmed.startsWith('[')) {
-      flush();
-      currentPath = null;
-      currentUrl = null;
-      continue;
-    }
-    final eq = trimmed.indexOf('=');
-    if (eq < 0) continue;
-    final key = trimmed.substring(0, eq).trim();
-    final value = trimmed.substring(eq + 1).trim();
-    if (key == 'path') currentPath = value;
-    if (key == 'url') currentUrl = value;
-  }
-  flush();
-  return result;
-}
-
-/// Whether a `.gitmodules` url points at the GitHub repo [repo]
-/// (`owner/name`): accepts the https form with or without `.git` and the
-/// ssh form (`git@github.com:owner/name.git`).
-bool _gitmodulesUrlMatches(String url, String repo) {
-  final normalized =
-      url.endsWith('.git') ? url.substring(0, url.length - 4) : url;
-  return normalized.endsWith('/$repo') || normalized.endsWith(':$repo');
+  return true;
 }
 
 /// The manifest-declared live-tile entry (`widget.entry`), or null.
@@ -762,6 +771,11 @@ List<WidgetValidation> validateWidgetsRoot(
       ),
     );
   }
+  _errorForeignGitmodulesSections(
+    widgetsRoot,
+    effectiveRepoRoot,
+    results,
+  );
   return results
     ..sort(
       (WidgetValidation a, WidgetValidation b) =>
