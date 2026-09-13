@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-13T06:18:33.502667Z",
+  "generatedAt": "2026-09-13T06:24:46.210742Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -237,8 +237,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "e2e-scratch-1.0.0.zip",
-        "sha256": "c288f9e5ecc88ad4d61667c6b4513e91193b9792473f1fc94ce5988ae8212a99",
-        "sizeBytes": 959
+        "sha256": "a9212ffa248858a66a60b1c5abc553cd31a8e7738afc207c8fa9ba3251c47cd4",
+        "sizeBytes": 1181
       },
       "preview": {
         "manifest": "https://raw.githubusercontent.com/ai-teammate/fa-widget-e2e-scratch/965d5062330263f44c8646a453728a0c96d67620/manifest.json",
@@ -506,8 +506,8 @@
       "icon": "icon.svg",
       "zip": {
         "file": "shopping-list-1.1.0.zip",
-        "sha256": "0e6b9e23e9f7306bea1236bb53e6cc4d51c762d95930586da462a0be511eacbd",
-        "sizeBytes": 12479
+        "sha256": "552ac801d2661996aab80ee9446e55b5e5234f4beb03c003dc4a5dc5a505a174",
+        "sizeBytes": 12705
       },
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa-widget-shopping-list/8d38eaba210202b4032bedb8d39fce152ed584e3/manifest.json",
