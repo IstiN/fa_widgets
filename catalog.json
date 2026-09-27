@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-13T06:24:46.210742Z",
+  "generatedAt": "2026-09-27T20:11:09.102478Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -51,8 +51,8 @@
         "sizeBytes": 4182
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/3d-viewer/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/3d-viewer/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/3d-viewer/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/3d-viewer/widget.js"
       }
     },
     {
@@ -78,8 +78,8 @@
         "sizeBytes": 3166
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/adaptive-dashboard/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/adaptive-dashboard/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/adaptive-dashboard/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/adaptive-dashboard/widget.js"
       }
     },
     {
@@ -103,8 +103,8 @@
         "sizeBytes": 6727
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/animation-showcase/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/animation-showcase/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/animation-showcase/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/animation-showcase/widget.js"
       }
     },
     {
@@ -129,8 +129,8 @@
         "sizeBytes": 2567
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/calculator/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/calculator/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/calculator/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/calculator/widget.js"
       }
     },
     {
@@ -212,8 +212,8 @@
         "sizeBytes": 3507
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/crypto/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/crypto/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/crypto/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/crypto/widget.js"
       }
     },
     {
@@ -403,8 +403,8 @@
         "sizeBytes": 5889
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/m3-showcase/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/m3-showcase/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/m3-showcase/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/m3-showcase/widget.js"
       }
     },
     {
@@ -428,8 +428,8 @@
         "sizeBytes": 4181
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/map/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/map/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/map/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/map/widget.js"
       }
     },
     {
@@ -455,8 +455,8 @@
         "sizeBytes": 7754
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/pomodoro/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/pomodoro/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/pomodoro/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/pomodoro/widget.js"
       }
     },
     {
@@ -535,14 +535,14 @@
         "sizeBytes": 4579
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/stocks/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/stocks/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/stocks/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/stocks/widget.js"
       }
     },
     {
       "id": "video-player",
       "name": "Video Player",
-      "version": "1.0.6",
+      "version": "1.0.7",
       "description": "Cinematic video playback via the video node: source switcher (Big Buck Bunny / Elephants Dream / Sintel), BoxFit selector, native transport controls",
       "author": "Fa",
       "tags": [
@@ -557,13 +557,13 @@
       "minRuntime": "0.4.89",
       "icon": "icon.svg",
       "zip": {
-        "file": "video-player-1.0.6.zip",
-        "sha256": "3ac8da4277c3bff25c79534cdcbbeab4d05e97970f22867c97abfdead56ac46d",
-        "sizeBytes": 4725
+        "file": "video-player-1.0.7.zip",
+        "sha256": "1a5b69298d33c6399968e3175d6c0ea5eb6819c2a26703aa3a55c214955551fc",
+        "sizeBytes": 5141
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/video-player/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/video-player/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/video-player/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/video-player/widget.js"
       }
     },
     {
@@ -616,8 +616,8 @@
         "sizeBytes": 4445
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/weather/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/db4e6dd4369c1ba8bb6325633d09187cc382f786/example/widgets/weather/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/weather/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/760c4bb382d12a2b04904de631f8326087857c61/example/widgets/weather/widget.js"
       }
     },
     {
