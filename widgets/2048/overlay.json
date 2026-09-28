@@ -1,0 +1,9 @@
+{
+  "icon": "icon.svg",
+  "description": "Классическая головоломка 2048 с дизайном в теме Fa",
+  "author": "IstiN",
+  "source": {
+    "repo": "IstiN/fa-widget-2048",
+    "commit": "456f2a9eab1fd18d435ec2f85ba5f0c5abd17b9e"
+  }
+}
