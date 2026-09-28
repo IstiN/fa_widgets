@@ -1,0 +1,15 @@
+{
+  "icon": "icon.svg",
+  "description": "Minecraft-like voxel sandbox with light survival — fully local, plays on macOS, iOS, Android and web.",
+  "author": "Uladzimir Klyshevich",
+  "tags": [
+    "game",
+    "voxel",
+    "sandbox"
+  ],
+  "minRuntime": "0.4.79",
+  "source": {
+    "repo": "IstiN/fa_craft",
+    "commit": "3cc18199603b6d65451027c81f0e411a390e4d90"
+  }
+}
