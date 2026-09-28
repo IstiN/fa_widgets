@@ -1,8 +1,34 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-27T20:11:09.102478Z",
+  "generatedAt": "2026-09-28T12:42:50.316590Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
+    {
+      "id": "2048",
+      "name": "2048 Мини 🎲",
+      "version": "1.0.0",
+      "description": "Классическая головоломка 2048 с дизайном в теме Fa",
+      "author": "IstiN",
+      "permissions": {
+        "network": false,
+        "allowedCommands": []
+      },
+      "minRuntime": "0.4.79",
+      "source": {
+        "repo": "IstiN/fa-widget-2048",
+        "commit": "456f2a9eab1fd18d435ec2f85ba5f0c5abd17b9e"
+      },
+      "icon": "icon.svg",
+      "zip": {
+        "file": "2048-1.0.0.zip",
+        "sha256": "5f4626fb5e3e2ebb7a4b77e82c0f84700a080d9f82a95b571ad15dfbfb87960d",
+        "sizeBytes": 4596
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa-widget-2048/456f2a9eab1fd18d435ec2f85ba5f0c5abd17b9e/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa-widget-2048/456f2a9eab1fd18d435ec2f85ba5f0c5abd17b9e/widget.js"
+      }
+    },
     {
       "id": "3d-game",
       "name": "3D Dodge Game",
