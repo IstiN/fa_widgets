@@ -1,0 +1,12 @@
+{
+  "icon": "icon.svg",
+  "tags": [
+    "demo",
+    "3d",
+    "voxel",
+    "creative"
+  ],
+  "author": "Fa",
+  "minRuntime": "0.4.127",
+  "description": "Chunked voxel terrain on the pure-Dart software rasterizer: vertex buffers pushed per chunk from JS, dig/build edits re-upload only the dirty chunk, orbit camera with day/night light"
+}
