@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#0F172A"/>
+  <!-- isometric voxel cube cluster -->
+  <g stroke="#0B1220" stroke-width="1.2" stroke-linejoin="round">
+    <!-- top faces -->
+    <path d="M32 12 L46 20 L32 28 L18 20 Z" fill="#4ADE80"/>
+    <path d="M18 20 L32 28 L32 44 L18 36 Z" fill="#22C55E"/>
+    <path d="M46 20 L46 36 L32 44 L32 28 Z" fill="#16A34A"/>
+    <!-- stacked cube behind-left -->
+    <path d="M14 26 L22 30.5 L22 46.5 L14 42 Z" fill="#38BDF8" opacity="0.9"/>
+    <path d="M14 26 L22 30.5 L18 33 L10 28.5 Z" fill="#7DD3FC" opacity="0.9"/>
+    <!-- stacked cube behind-right -->
+    <path d="M50 26 L54 28.5 L54 44.5 L50 42 Z" fill="#F59E0B" opacity="0.9"/>
+    <path d="M42 22 L50 26 L46 28.5 L42 26.5 Z" fill="#FCD34D" opacity="0.9"/>
+  </g>
+</svg>
