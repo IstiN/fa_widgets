@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-29T06:51:50.933502Z",
+  "generatedAt": "2026-09-29T06:58:27.191369Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -619,6 +619,34 @@
       "preview": {
         "manifest": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/voice-notes/manifest.json",
         "js": "https://raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/voice-notes/widget.js"
+      }
+    },
+    {
+      "id": "voxel-sandbox",
+      "name": "Voxel Sandbox",
+      "version": "1.0.0",
+      "description": "Chunked voxel terrain on the pure-Dart software rasterizer: vertex buffers pushed per chunk from JS, dig/build edits re-upload only the dirty chunk, orbit camera with day/night light",
+      "author": "Fa",
+      "tags": [
+        "demo",
+        "3d",
+        "voxel",
+        "creative"
+      ],
+      "permissions": {
+        "network": false,
+        "allowedCommands": []
+      },
+      "minRuntime": "0.4.127",
+      "icon": "icon.svg",
+      "zip": {
+        "file": "voxel-sandbox-1.0.0.zip",
+        "sha256": "1e91d7bb7fc37f0825f30165d6ed30cc845fbdecfb54405b77b8dffb65f51bcd",
+        "sizeBytes": 4302
+      },
+      "preview": {
+        "manifest": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/532cfaadceb16a4e19da95b0f8adb967a9f6cf01/example/widgets/voxel-sandbox/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/flutter_js_widget_runtime/532cfaadceb16a4e19da95b0f8adb967a9f6cf01/example/widgets/voxel-sandbox/widget.js"
       }
     },
     {
