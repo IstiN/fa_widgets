@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-30T14:20:55.314238Z",
+  "generatedAt": "2026-09-30T18:38:50.531765Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -314,17 +314,17 @@
       "minRuntime": "0.4.79",
       "source": {
         "repo": "IstiN/fa_craft",
-        "commit": "ece2511ce201edf6956a52910971a2c4055a0796"
+        "commit": "a315c734845fa5c6bfb2fe8fcfde0199be23083e"
       },
       "icon": "icon.svg",
       "zip": {
         "file": "fa-craft-0.1.0.zip",
-        "sha256": "139ea8fdefcf64926d638f31159dcd362c6e509cb84bd40eda500f4d5a3d6bcc",
-        "sizeBytes": 823397
+        "sha256": "0f87be2d713407eb3193a9e1bde29a46e251a5e690fc573c5e6c5730d54d2479",
+        "sizeBytes": 823483
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/fa_craft/ece2511ce201edf6956a52910971a2c4055a0796/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/fa_craft/ece2511ce201edf6956a52910971a2c4055a0796/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa_craft/a315c734845fa5c6bfb2fe8fcfde0199be23083e/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa_craft/a315c734845fa5c6bfb2fe8fcfde0199be23083e/widget.js"
       }
     },
     {
