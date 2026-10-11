@@ -234,3 +234,71 @@ Pin? decodePinMarker(File marker) {
   }
   return (pins: pins, problems: problems);
 }
+
+/// The outcome of mirroring one external widget's icon into the catalog
+/// repo.
+typedef IconMirrorResult = ({String id, String status, String icon});
+
+/// Mirrors the resolved icon of an EXTERNAL widget from its materialized
+/// pinned source (`vendor/external/<id>/`) into the catalog repo
+/// (`widgets/<id>/<icon>`).
+///
+/// The catalog contract (fa_widgets#11): the client resolves a manifest's
+/// `icon: "<file>"` against
+/// `raw.githubusercontent.com/IstiN/fa_widgets/main/widgets/<id>/<file>` —
+/// a REPO mirror. Local and vendored widgets commit the icon next to the
+/// overlay, but standalone-repo externals ship it only in the origin repo,
+/// so the fetch step must mirror the PINNED bytes (never origin `main`)
+/// for web/extension installs to stop 404ing.
+///
+/// The pinned source is authoritative for externals: when the bytes
+/// differ, the mirror is refreshed (a pin bump with a new icon updates
+/// the mirror on the next fetch). Returns null when there is nothing to
+/// mirror: no icon declared after the overlay merge, or the pinned source
+/// lacks the file (the validator's icon check reports that separately).
+IconMirrorResult? mirrorExternalIcon({
+  required Directory widgetsRoot,
+  required Directory repoRoot,
+  required String id,
+}) {
+  final overlayFile = File(p.join(widgetsRoot.path, id, 'overlay.json'));
+  if (!overlayFile.existsSync()) return null;
+  final overlay = jsonDecode(overlayFile.readAsStringSync());
+  if (overlay is! Map) return null;
+
+  final codeDir = Directory(p.join(repoRoot.path, 'vendor', 'external', id));
+  var icon = '';
+  final srcManifestFile = File(p.join(codeDir.path, 'manifest.json'));
+  if (srcManifestFile.existsSync()) {
+    final srcManifest = jsonDecode(srcManifestFile.readAsStringSync());
+    if (srcManifest is Map && srcManifest['icon'] is String) {
+      icon = srcManifest['icon'] as String;
+    }
+  }
+  if (overlay['icon'] is String) {
+    icon = overlay['icon'] as String; // the overlay wins, like the merge
+  }
+  if (icon.isEmpty || icon.contains('..') || icon.startsWith('/')) {
+    return null;
+  }
+
+  final src = File(p.join(codeDir.path, icon));
+  if (!src.existsSync()) return null;
+  final bytes = src.readAsBytesSync();
+  final dest = File(p.join(widgetsRoot.path, id, icon));
+  if (dest.existsSync()) {
+    final existing = dest.readAsBytesSync();
+    if (existing.length == bytes.length && _bytesEqual(existing, bytes)) {
+      return (id: id, status: 'up-to-date', icon: icon);
+    }
+  }
+  dest.writeAsBytesSync(bytes);
+  return (id: id, status: 'mirrored', icon: icon);
+}
+
+bool _bytesEqual(List<int> a, List<int> b) {
+  for (var i = 0; i < a.length; i++) {
+    if (a[i] != b[i]) return false;
+  }
+  return true;
+}

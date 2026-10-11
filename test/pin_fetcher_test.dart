@@ -417,4 +417,121 @@ void main() {
       await writtenRepo.delete(recursive: true);
     }
   });
+
+  mirrorTests();
+}
+
+/// fa_widgets#11: after fetch, the pinned icon is mirrored into
+/// `widgets/<id>/` so the catalog's repo-mirror icon URLs stop 404ing
+/// for standalone-repo external widgets.
+void mirrorTests() {
+  group('mirrorExternalIcon (fa_widgets#11)', () {
+    Future<Directory> mirroredRepo() async {
+      final repoRoot = await _fixtureRepo();
+      final codeDir = Directory(p.join(repoRoot.path, 'vendor', 'external', 'ext'))
+        ..createSync(recursive: true);
+      File(p.join(codeDir.path, 'manifest.json')).writeAsStringSync(
+        jsonEncode({'id': 'ext', 'icon': 'icon.svg'}),
+      );
+      File(p.join(codeDir.path, 'icon.svg'))
+          .writeAsStringSync('<svg>pinned</svg>');
+      return repoRoot;
+    }
+
+    test('mirrors the pinned icon bytes into widgets/<id>/', () async {
+      final repoRoot = await mirroredRepo();
+      final result = mirrorExternalIcon(
+        widgetsRoot: Directory(p.join(repoRoot.path, 'widgets')),
+        repoRoot: repoRoot,
+        id: 'ext',
+      );
+      expect(result, isNotNull);
+      expect(result!.status, 'mirrored');
+      expect(result.icon, 'icon.svg');
+      expect(
+        File(p.join(repoRoot.path, 'widgets', 'ext', 'icon.svg'))
+            .readAsStringSync(),
+        '<svg>pinned</svg>',
+        reason: 'mirror content is the PINNED source bytes',
+      );
+    });
+
+    test('is up-to-date once the mirror matches, refreshes on drift',
+        () async {
+      final repoRoot = await mirroredRepo();
+      final widgetsRoot = Directory(p.join(repoRoot.path, 'widgets'));
+      mirrorExternalIcon(widgetsRoot: widgetsRoot, repoRoot: repoRoot, id: 'ext');
+      final again = mirrorExternalIcon(
+          widgetsRoot: widgetsRoot, repoRoot: repoRoot, id: 'ext');
+      expect(again!.status, 'up-to-date');
+
+      // A pin bump with a redrawn icon must refresh the committed mirror.
+      File(p.join(repoRoot.path, 'vendor', 'external', 'ext', 'icon.svg'))
+          .writeAsStringSync('<svg>v2</svg>');
+      final refreshed = mirrorExternalIcon(
+          widgetsRoot: widgetsRoot, repoRoot: repoRoot, id: 'ext');
+      expect(refreshed!.status, 'mirrored');
+      expect(
+        File(p.join(widgetsRoot.path, 'ext', 'icon.svg')).readAsStringSync(),
+        '<svg>v2</svg>',
+      );
+    });
+
+    test('the overlay icon override wins over the source manifest', () async {
+      final repoRoot = await mirroredRepo();
+      final codeDir = Directory(p.join(repoRoot.path, 'vendor', 'external', 'ext'));
+      File(p.join(codeDir.path, 'logo.png'))
+          .writeAsBytesSync(utf8.encode('png-bytes'));
+      File(p.join(repoRoot.path, 'widgets', 'ext', 'overlay.json'))
+          .writeAsStringSync(
+        jsonEncode({
+          'icon': 'logo.png',
+          'source': {'repo': _pin.repo, 'commit': _pin.commit},
+        }),
+      );
+      final result = mirrorExternalIcon(
+        widgetsRoot: Directory(p.join(repoRoot.path, 'widgets')),
+        repoRoot: repoRoot,
+        id: 'ext',
+      );
+      expect(result!.icon, 'logo.png');
+      expect(
+        File(p.join(repoRoot.path, 'widgets', 'ext', 'logo.png'))
+            .readAsStringSync(),
+        'png-bytes',
+      );
+    });
+
+    test('returns null when nothing can be mirrored', () async {
+      final repoRoot = await _fixtureRepo();
+      final widgetsRoot = Directory(p.join(repoRoot.path, 'widgets'));
+      // No materialized source at all.
+      expect(
+        mirrorExternalIcon(widgetsRoot: widgetsRoot, repoRoot: repoRoot, id: 'ext'),
+        isNull,
+      );
+      // Materialized, but the source carries no icon file.
+      final codeDir = Directory(p.join(repoRoot.path, 'vendor', 'external', 'ext'))
+        ..createSync(recursive: true);
+      File(p.join(codeDir.path, 'manifest.json'))
+          .writeAsStringSync(jsonEncode({'id': 'ext', 'icon': 'icon.svg'}));
+      expect(
+        mirrorExternalIcon(widgetsRoot: widgetsRoot, repoRoot: repoRoot, id: 'ext'),
+        isNull,
+        reason: 'the validator reports the missing icon; the mirror skips',
+      );
+      // No icon declared anywhere.
+      File(p.join(codeDir.path, 'manifest.json'))
+          .writeAsStringSync(jsonEncode({'id': 'ext'}));
+      File(p.join(widgetsRoot.path, 'ext', 'overlay.json')).writeAsStringSync(
+        jsonEncode({
+          'source': {'repo': _pin.repo, 'commit': _pin.commit},
+        }),
+      );
+      expect(
+        mirrorExternalIcon(widgetsRoot: widgetsRoot, repoRoot: repoRoot, id: 'ext'),
+        isNull,
+      );
+    });
+  });
 }

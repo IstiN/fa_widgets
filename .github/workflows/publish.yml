@@ -39,6 +39,22 @@ jobs:
         run: dart test
       - name: Fetch pinned external sources
         run: dart run bin/fa_widgets.dart fetch --root widgets
+      # fa_widgets#11: catalog icon URLs resolve against THIS repo
+      # (raw.githubusercontent .../widgets/<id>/<icon>), but standalone-repo
+      # externals ship the icon only in the origin repo — the fetch step
+      # mirrors the pinned bytes into widgets/<id>/; commit them like the
+      # catalog.json mirror below ([skip ci]: the push must not retrigger).
+      - name: Commit mirrored external icons
+        run: |
+          git add widgets
+          if git diff --cached --quiet -- widgets; then
+            echo "icon mirrors unchanged"
+          else
+            git config user.name "fa-widgets-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "chore: mirror external widget icons [skip ci]"
+            git push origin HEAD:main
+          fi
       - name: Validate widgets
         run: dart run bin/fa_widgets.dart validate --root widgets
       - name: Build catalog artifacts

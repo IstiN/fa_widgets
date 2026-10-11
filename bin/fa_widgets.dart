@@ -152,6 +152,17 @@ Future<void> _runFetch(ArgResults command) async {
             ? 'fetched    $id ${pin.repo}@${pin.commit}'
             : 'up-to-date $id ${pin.repo}@${pin.commit}',
       );
+      // fa_widgets#11: the catalog's icon URLs resolve against THIS repo,
+      // so mirror the pinned icon bytes into widgets/<id>/ alongside the
+      // overlay (standalone-repo externals ship the icon only upstream).
+      final mirror = mirrorExternalIcon(
+        widgetsRoot: root,
+        repoRoot: Directory.current,
+        id: id,
+      );
+      if (mirror != null && mirror.status == 'mirrored') {
+        stderr.writeln('mirrored   $id ${mirror.icon} (pinned icon -> repo)');
+      }
     } on PinFetchException catch (e) {
       stderr.writeln('ERROR $id: $e');
       failed = true;

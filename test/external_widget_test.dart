@@ -309,6 +309,42 @@ void main() {
     });
 
     test(
+      'fa_widgets#11: an icon present only in the pinned source must be '
+      'mirrored into widgets/<id>/ — the mirror invariant errors until '
+      'fetch repairs it',
+      () async {
+        final fixture = await writeExternalWidget('ext-demo');
+        try {
+          // Model the broken catalog entries: the origin repo HAS the
+          // icon, the catalog repo mirror does not.
+          File(p.join(fixture.submoduleDir.path, 'icon.svg'))
+              .writeAsStringSync('<svg>origin</svg>');
+          File(p.join(fixture.widgetsRoot.path, 'ext-demo', 'icon.svg'))
+              .deleteSync();
+
+          final broken = validateWidgetsRoot(fixture.widgetsRoot).single;
+          expect(broken.isValid, isFalse);
+          expect(broken.errors.join('\n'), contains('not mirrored'));
+          expect(broken.errors.join('\n'), contains('fa_widgets#11'));
+
+          // The fetch step mirrors the pinned bytes and validation heals.
+          final mirror = mirrorExternalIcon(
+            widgetsRoot: fixture.widgetsRoot,
+            repoRoot: fixture.repoRoot,
+            id: 'ext-demo',
+          );
+          expect(mirror, isNotNull);
+          expect(mirror!.status, 'mirrored');
+          final healed = validateWidgetsRoot(fixture.widgetsRoot).single;
+          expect(healed.errors, isEmpty,
+              reason: healed.errors.join('\n'));
+        } finally {
+          await fixture.repoRoot.delete(recursive: true);
+        }
+      },
+    );
+
+    test(
       'build packs the zip from the submodule and carries source through',
       () async {
         final fixture = await writeExternalWidget('ext-demo');

@@ -454,6 +454,21 @@ WidgetValidation _validateOverlayWidget(
     warn,
     fallbackDir: isExternal ? codeDir : null,
   );
+  // fa_widgets#11: web/extension installs resolve the catalog's icon
+  // against raw .../fa_widgets/main/widgets/<id>/<icon> — a REPO mirror.
+  // `fa_widgets fetch` maintains it from the pinned source; a missing
+  // mirror means the zip installs fine but web installs 404.
+  if (isExternal &&
+      manifest.icon.isNotEmpty &&
+      !File('${dir.path}/${manifest.icon}').existsSync() &&
+      File(p.join(codeDir.path, manifest.icon)).existsSync()) {
+    error(
+      "icon '${manifest.icon}' is not mirrored at "
+      'widgets/${manifest.id}/${manifest.icon} — run '
+      '`dart run bin/fa_widgets.dart fetch` and commit the mirror '
+      '(web installs read the repo mirror; fa_widgets#11)',
+    );
+  }
   if (manifest.description.isEmpty) warn('no description');
 
   // ── publishable source: submodule files (manifest REPLACED by the merge)
