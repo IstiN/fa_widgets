@@ -7,9 +7,9 @@
     "voxel",
     "sandbox"
   ],
-  "minRuntime": "0.4.79",
+  "minRuntime": "0.4.156",
   "source": {
     "repo": "IstiN/fa_craft",
-    "commit": "204b42218ecadbfcb88a44a5c22de1b8e057640e"
+    "commit": "ced46a15070bb5f441132db315cf90464d801073"
   }
 }
