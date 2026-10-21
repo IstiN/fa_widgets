@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-14T14:12:25.821681Z",
+  "generatedAt": "2026-10-21T09:15:16.872334Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -299,7 +299,7 @@
     {
       "id": "fa-craft",
       "name": "Fa Craft",
-      "version": "0.2.23",
+      "version": "0.2.25",
       "description": "Minecraft-like voxel sandbox with light survival — fully local, plays on macOS, iOS, Android and web.",
       "author": "Uladzimir Klyshevich",
       "tags": [
@@ -314,17 +314,17 @@
       "minRuntime": "0.4.161",
       "source": {
         "repo": "IstiN/fa_craft",
-        "commit": "caf0d1c15d9985e3116e7496e8df95661479de16"
+        "commit": "17c82669edb76be791067d380a319c7da43382fd"
       },
       "icon": "icon.svg",
       "zip": {
-        "file": "fa-craft-0.2.23.zip",
-        "sha256": "6dd2ed63d5da3ea195d268cf84e8f253b9e3a19476ca619cb56026f39556eb0f",
-        "sizeBytes": 855513
+        "file": "fa-craft-0.2.25.zip",
+        "sha256": "8cb1d67092ad11533eb63332653cb9ec0d8877d8c101e10fbdb16ef2c36c8df7",
+        "sizeBytes": 858059
       },
       "preview": {
-        "manifest": "https://raw.githubusercontent.com/IstiN/fa_craft/caf0d1c15d9985e3116e7496e8df95661479de16/manifest.json",
-        "js": "https://raw.githubusercontent.com/IstiN/fa_craft/caf0d1c15d9985e3116e7496e8df95661479de16/widget.js"
+        "manifest": "https://raw.githubusercontent.com/IstiN/fa_craft/17c82669edb76be791067d380a319c7da43382fd/manifest.json",
+        "js": "https://raw.githubusercontent.com/IstiN/fa_craft/17c82669edb76be791067d380a319c7da43382fd/widget.js"
       }
     },
     {
