@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-21T21:04:11.206675Z",
+  "generatedAt": "2026-11-21T21:05:25.641820Z",
   "sourceRepo": "https://github.com/IstiN/fa_widgets",
   "widgets": [
     {
@@ -21,7 +21,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "2048-1.0.0.zip",
-        "sha256": "dba305a80504453480a5c46d8b7504e6578ccdca8cafddb25ceda9693abd977d",
+        "sha256": "5f4626fb5e3e2ebb7a4b77e82c0f84700a080d9f82a95b571ad15dfbfb87960d",
         "sizeBytes": 4596
       },
       "preview": {
@@ -47,7 +47,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "3d-game-1.0.2.zip",
-        "sha256": "8d66327d6c90b077ac3b91e85b9eb552a81a7d818dcb9a6bbf384a5491c868a1",
+        "sha256": "24155fd8befa2f8901c832dc65e919c7a55869a8bb80f3995c8e52ab093ec9f8",
         "sizeBytes": 4466
       },
       "preview": {
@@ -73,7 +73,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "3d-viewer-1.0.3.zip",
-        "sha256": "d79cd4974870cd821eb7d5d703a0af2b13cd2ccd77548cc8deebee3f91f1ccb0",
+        "sha256": "7d0680d1685bf9e5a3444c0286a50afc83dc57c116eca2b1720e559bd2575882",
         "sizeBytes": 4182
       },
       "preview": {
@@ -100,7 +100,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "adaptive-dashboard-1.0.1.zip",
-        "sha256": "58cfb8af1717da6af596ffd72afd66aa8fd0593ba12c8aaf4fa02f7ab0b9dc0b",
+        "sha256": "a5db86ea464c70fb51ebdf9d86d978ddaa560467a95e79813348bb99118ac40f",
         "sizeBytes": 3166
       },
       "preview": {
@@ -125,7 +125,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "animation-showcase-1.0.4.zip",
-        "sha256": "8cecb07419783a7230ba9afb312bdfb4c9453f55b2e115f6b157f4aa6bbeeebb",
+        "sha256": "2fe21498dbba79d1807857d4268a1ad807f49a07b4e8eb011c47dbeb1efd20a4",
         "sizeBytes": 6855
       },
       "preview": {
@@ -151,7 +151,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "calculator-1.0.1.zip",
-        "sha256": "f83b44beb69da41b1f881096b91ac2986a386ed58ae715bce83e222745113f38",
+        "sha256": "0d2536d33f4df14717d8f6e3b4a22f5b2ef7a6652d68411ac47affa39b723fc4",
         "sizeBytes": 2567
       },
       "preview": {
@@ -180,7 +180,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "calendar-1.0.3.zip",
-        "sha256": "cfd7e39f645f95ce0f268efdbca1aacad0c6ae237dcfd72e8846a83dec6c7974",
+        "sha256": "dc9bb626cacc13c9b7364159a322180ad4b60b5d37c75604b74e4da25b240920",
         "sizeBytes": 5638
       },
       "preview": {
@@ -209,7 +209,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "contacts-1.0.2.zip",
-        "sha256": "a90e59731f42f5dfdd2d2dc823c499e8eda786f4518cbd653747f56d9b4926e8",
+        "sha256": "d6adacbb50f916207dac931fd3d7895a96920c5d50091e979f0720909542b314",
         "sizeBytes": 5586
       },
       "preview": {
@@ -234,7 +234,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "crypto-1.0.4.zip",
-        "sha256": "ddb0efec98f0b6b2c1ee93ee52cfc6c8c766ad24263643fa8328389956cdc41b",
+        "sha256": "7821c9b70ff2ce84a1dfd011e9e2ae71e53d1a0e1062be1fd87ff61703dbd26b",
         "sizeBytes": 3616
       },
       "preview": {
@@ -263,7 +263,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "e2e-scratch-1.0.0.zip",
-        "sha256": "cbfecc98cefd39396a4c750aead4fa6ee891913985db5ddccee3eba7038b4aa7",
+        "sha256": "a9212ffa248858a66a60b1c5abc553cd31a8e7738afc207c8fa9ba3251c47cd4",
         "sizeBytes": 1181
       },
       "preview": {
@@ -288,7 +288,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "english-teacher-2.0.1.zip",
-        "sha256": "324e1f51d3eea0aed11347935260f3240513c8dee84303972d8cd91504549137",
+        "sha256": "12a5b6efbcbab9b19007569844339f31daa374bf5c6d26d2475d746dc263fea3",
         "sizeBytes": 9814
       },
       "preview": {
@@ -319,7 +319,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "fa-craft-0.2.32.zip",
-        "sha256": "3c3959cd39fe978c5fc15e2c902bc4325d15cdcf6e6299ceea8a161255fed904",
+        "sha256": "366aa9c3d405a96d4afcc517e38d945fcd91c0d5f5df551356286eb05abae4d3",
         "sizeBytes": 865824
       },
       "preview": {
@@ -346,7 +346,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "fitness-trainer-2.0.2.zip",
-        "sha256": "91f62a70043d76f646f6ea7d04f43f54ed6cff7fdb8798d8530296453052c591",
+        "sha256": "1449d539afcca53414e0b6b7e319ff15571e1dd54a947b8ba5e195b7af066142",
         "sizeBytes": 3322869
       },
       "preview": {
@@ -373,7 +373,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "focus-timer-1.2.0.zip",
-        "sha256": "4823466b07ab4804eea463ba38ce8aead69658b202e3e6be9e85db774f8e13b8",
+        "sha256": "5b7b60bc75f994be7bafc03f77c6ba7f3564318618354d63c6d065286ea94f32",
         "sizeBytes": 4760
       },
       "preview": {
@@ -402,7 +402,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "health-1.1.3.zip",
-        "sha256": "a3849564b567d276ef7f2fb7a9c8cf5dd98d33860adde48dac8e6577000afaf9",
+        "sha256": "e1cf49cb27938ff08488561f4e3151789127f754f32f480d3a543a4426a45a79",
         "sizeBytes": 4672
       },
       "preview": {
@@ -430,7 +430,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "homekit-1.1.2.zip",
-        "sha256": "03d397e7eac9aab0c7ca3e399241ccc242a71fe1fb418159b1f48554ce13a79d",
+        "sha256": "c048f1aa454065c2285b5d1cc9d5ccd3b456736aa4d12ba0580b59b35e9c3eb4",
         "sizeBytes": 9769
       },
       "preview": {
@@ -456,7 +456,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "m3-showcase-1.0.2.zip",
-        "sha256": "3e6ee9f78cf2c0e3a3353643582c09c91c817735c37f2c59741af456771b7d29",
+        "sha256": "e36b3140f47af207888c841e28ae5ae4a043df09ebdc2b1f0b03063138c06dd5",
         "sizeBytes": 5889
       },
       "preview": {
@@ -481,7 +481,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "map-1.0.3.zip",
-        "sha256": "d1fab05536ba71a9e4572616dd825c47e8c7fd0a9dccf7e9138c6775179e7398",
+        "sha256": "f406be13177993cbd2b0ad75b18d2cf1ed17992b91de9773dbe3b419fe0d699e",
         "sizeBytes": 4390
       },
       "preview": {
@@ -508,7 +508,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "pomodoro-1.0.6.zip",
-        "sha256": "899d77ad7fcf2ea098cc98017f0af3d504bd48466128057d15c063e78f063e79",
+        "sha256": "d1a54c7c685bad6a614ced8ed03c215b2c827726652bc101de3d660366eee30f",
         "sizeBytes": 7754
       },
       "preview": {
@@ -537,7 +537,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "reminders-1.0.0.zip",
-        "sha256": "72a99f0a5aa1d3c36da2bd97e9b7838167b586af14b8015c1a63b31b4b00f319",
+        "sha256": "fcb78094d592fd1cdb868909d17ed475d16b72ad9238d910bfd548c8199355d3",
         "sizeBytes": 5702
       },
       "preview": {
@@ -563,7 +563,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "shopping-list-1.1.0.zip",
-        "sha256": "2e5600e86fef29570e3324c375baa4f080de2abe8060b6031c358c79a883744a",
+        "sha256": "552ac801d2661996aab80ee9446e55b5e5234f4beb03c003dc4a5dc5a505a174",
         "sizeBytes": 12705
       },
       "preview": {
@@ -588,7 +588,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "stocks-1.0.4.zip",
-        "sha256": "09ca6c21bc18b462bff6e33e4d74b4b5bf42b47d884ca2cc9f2ddb6aace54794",
+        "sha256": "3eec61e6e4f2e2eb0fdc3a2ac86558fb09e017385e74e17040eac280f82c3b30",
         "sizeBytes": 4693
       },
       "preview": {
@@ -615,7 +615,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "video-player-1.0.8.zip",
-        "sha256": "4064fd3d49a2a6b8935e7364001f59ab07d8a193bcdb77f666de622b01777966",
+        "sha256": "e9543a2cc24ab15c47e5a190625f303e43b964666ea1922036c4dca484969dd5",
         "sizeBytes": 5337
       },
       "preview": {
@@ -644,7 +644,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "voice-notes-1.1.1.zip",
-        "sha256": "847f32b0310c982f57271abe7a7b808ca672865e27f45f9c65097bd7d3eaf84c",
+        "sha256": "f7be5b5f016811bb8200e558f87e8cba7b076e2f63f8935dc5b841a2427b9d5f",
         "sizeBytes": 4064
       },
       "preview": {
@@ -672,7 +672,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "voxel-sandbox-1.0.0.zip",
-        "sha256": "0cd417d231c7760b8e56d57472c4235e9c779c7d23f5c2c9744e7fe60177a3fb",
+        "sha256": "a0520487a895144e64be20745668b8535190a2d11e75dd8974850d732b832144",
         "sizeBytes": 4353
       },
       "preview": {
@@ -697,7 +697,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "weather-1.1.2.zip",
-        "sha256": "7c98c86df7ead13863888f2855591f0313114d36e8c1a52d762459e146c30946",
+        "sha256": "ae77b0df4e2aa1428551e1c0a3bfb84eff11deb0ee3ffead6aad08457b28096d",
         "sizeBytes": 4518
       },
       "preview": {
@@ -722,7 +722,7 @@
       "icon": "icon.svg",
       "zip": {
         "file": "yolo-hello-1.0.3.zip",
-        "sha256": "ecfc0953fc25f6fb074832b1785b43fe6225b6a11df4a0ddd2748cec217b6e68",
+        "sha256": "bb9cb60b6659968a1c5ec45edc46616f7be26ba6c67f26bb446cd219e8610358",
         "sizeBytes": 2657
       },
       "preview": {
