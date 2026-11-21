@@ -1,1 +1,6 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2 C7.6 2 4 5.6 4 10 C4 15.4 12 22 12 22 C12 22 20 15.4 20 10 C20 5.6 16.4 2 12 2 Z' fill='#ef4444'/><circle cx='12' cy='10' r='3' fill='#fecaca'/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs><linearGradient id="pin" x1="18" y1="8" x2="46" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#FF9B7E"/><stop offset="1" stop-color="#C23B32"/></linearGradient></defs>
+  <path d="M32 58C24 46 12 36 12 25 12 14 21 6 32 6s20 8 20 19c0 11-12 21-20 33Z" fill="url(#pin)" stroke="#FFD8CC" stroke-opacity=".6"/>
+  <circle cx="32" cy="25" r="8.5" fill="#FFF3EE" stroke="#B93A31" stroke-opacity=".45"/>
+  <path d="M18 14c3-4 8-6 12-6" fill="none" stroke="#FFFFFF" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/>
+</svg>

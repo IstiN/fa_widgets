@@ -1,11 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0e2a47"/>
-  <circle cx="24" cy="24" r="9" fill="#fbbf24"/>
-  <g stroke="#fbbf24" stroke-width="2.4" stroke-linecap="round">
-    <path d="M24 9 v4 M24 35 v4 M9 24 h4 M35 24 h4 M13.4 13.4 l2.8 2.8 M31.8 31.8 l2.8 2.8 M34.6 13.4 l-2.8 2.8 M16.2 31.8 l-2.8 2.8"/>
-  </g>
-  <path d="M22 46 a9 9 0 0 1 1.2-17.9 A12 12 0 0 1 46 30.5 8 8 0 0 1 45 46 Z"
-        fill="#e2e8f0"/>
-  <path d="M22 46 a9 9 0 0 1 1.2-17.9 A12 12 0 0 1 46 30.5 8 8 0 0 1 45 46 Z"
-        fill="none" stroke="#94a3b8" stroke-width="1.6" opacity="0.5"/>
+  <defs><linearGradient id="sun" x1="12" y1="8" x2="38" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#FFE08A"/><stop offset="1" stop-color="#F0A63C"/></linearGradient><linearGradient id="cloud" x1="20" y1="28" x2="52" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#B9CCDE"/></linearGradient></defs>
+  <g stroke="#F3C25C" stroke-width="3" stroke-linecap="round"><path d="M24 4v5M8 12l4 4M40 12l-4 4M4 26h5"/></g>
+  <circle cx="24" cy="24" r="12" fill="url(#sun)" stroke="#FFE9B8" stroke-opacity=".8"/>
+  <path d="M22 56a10 10 0 0 1-2-20 13 13 0 0 1 25-3 9 9 0 0 1 9 9 8 8 0 0 1-3 14Z" fill="url(#cloud)" stroke="#F4F8FC" stroke-opacity=".8"/>
 </svg>

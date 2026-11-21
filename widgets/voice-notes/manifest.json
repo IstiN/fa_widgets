@@ -2,7 +2,7 @@
   "id": "voice-notes",
   "name": "Voice Notes",
   "description": "Record voice takes with a Record/Stop toggle and play them back; transcripts are kept when available",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "platforms": [
     "ios",
     "macos"

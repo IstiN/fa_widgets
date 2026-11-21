@@ -1,1 +1,8 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='9' y='2' width='6' height='12' rx='3' fill='#3b82f6'/><path d='M5 11a7 7 0 0 0 14 0' stroke='#93c5fd' stroke-width='2' fill='none' stroke-linecap='round'/><rect x='11' y='18' width='2' height='4' rx='1' fill='#1d4ed8'/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs><linearGradient id="mic" x1="24" y1="6" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#A9C6FF"/><stop offset="1" stop-color="#3C62B8"/></linearGradient></defs>
+  <rect x="24" y="5" width="16" height="30" rx="8" fill="url(#mic)" stroke="#D9E6FF" stroke-opacity=".7"/>
+  <path d="M16 28a16 16 0 0 0 32 0" fill="none" stroke="#8FB0E8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M32 44v10" stroke="#8FB0E8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M22 58h20" stroke="#8FB0E8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M29 12v14" stroke="#EAF2FF" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/>
+</svg>

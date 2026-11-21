@@ -1,8 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="#1a1030"/>
-  <circle cx="32" cy="32" r="21" fill="#f7931a"/>
-  <circle cx="32" cy="32" r="21" fill="none" stroke="#ffb74d" stroke-width="2" opacity="0.6"/>
-  <path d="M26 20 v24 M31 20 v24" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
-  <path d="M26 23 h8 a5 5 0 0 1 0 10 h-8 z M26 33 h9 a5.5 5.5 0 0 1 0 11 h-9 z"
-        fill="#f7931a" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/>
+  <defs><linearGradient id="coin" x1="12" y1="10" x2="52" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#FFC96B"/><stop offset="1" stop-color="#D5801F"/></linearGradient></defs>
+  <circle cx="32" cy="32" r="25" fill="url(#coin)" stroke="#FFE3B0" stroke-opacity=".8"/>
+  <circle cx="32" cy="32" r="19.5" fill="none" stroke="#FFF0D4" stroke-opacity=".45"/>
+  <g fill="none" stroke="#FFF8EC" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M26 20v24M22 24h12a6.5 6.5 0 0 1 0 13H22m0 0h14a6.5 6.5 0 0 1 0 13H22" transform="translate(0 -2)"/><path d="M28 13v5M36 13v5M28 46v5M36 46v5"/></g>
 </svg>
